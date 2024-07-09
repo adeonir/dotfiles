@@ -25,13 +25,17 @@ brew install \
   httpie \
   mysql \
   node \
+  openssl \
   openssl@3 \
   postgresql@13 \
   pyenv \
   python3 \
+  readline \
   rbenv \
   sqlite \
+  sqlite3 \
   starship \
+  tcl-tk \
   tree \
   vercel-cli \
   wget \
