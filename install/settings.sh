@@ -109,3 +109,14 @@ fi
 
 ln -sf $DOTFILES/settings/.zshrc ~/
 msg_checking ".zshrc"
+
+# .zprofile
+if [ -f "$HOME/.zprofile" ]; then
+    msg_update ".zprofile"
+    rm ~/.zprofile
+else
+    msg_install ".zprofile"
+fi
+
+ln -sf $DOTFILES/settings/.zprofile ~/
+msg_checking ".zprofile"

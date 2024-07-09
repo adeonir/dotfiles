@@ -83,8 +83,9 @@ esac
 # Pnpm end
 
 # Pyenv
-export PATH="$HOME/.pyenv/shims:$PATH"
-eval "$(pyenv init --path)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # Rbenv
 eval "$(rbenv init -)"
