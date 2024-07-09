@@ -1,0 +1,42 @@
+# Aliases
+
+# IP addresses
+alias external-ip='curl -4 icanhazip.com'
+alias local-ip='ipconfig getifaddr en0'
+
+# Folder aliases
+alias home='~'
+alias temp='~/Temp'
+alias joyjet='~/Joyjet'
+alias dev='~/Development'
+alias courses='~/Courses'
+alias github='~/Github'
+alias sites='~/Sites'
+
+# Command aliases
+alias bup='brew update; brew upgrade; brew cleanup; brew cu --all --yes --no-brew-update'
+alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
+alias npm-up='npx npm-check-updates --dep prod,dev --upgrade --color --interactive'
+alias npm-upg='npm update -g'
+alias yarn-up='yarn upgrade-interactive --latest'
+alias pnpm-up='pnpm up --latest -r -i'
+alias vim='nvim'
+alias vi='nvim'
+alias pip='pip3'
+alias vz='code ~/.zshrc'
+alias sz='source ~/.zshrc'
+
+# Show/hide hidden files in Finder
+alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
+alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
+alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
+
+# Lock the screen (when going away from keyboard)
+alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+# Sleep
+alias sleep='pmset sleepnow'
+

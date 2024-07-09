@@ -1,0 +1,10 @@
+# Functions
+
+## Create a new directory and a file
+function mktouch () {
+  for p in $@; do
+    mkdir -p $(dirname "$p")
+  done
+
+  touch $@
+}
