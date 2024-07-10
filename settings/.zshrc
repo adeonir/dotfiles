@@ -3,9 +3,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib:$PATH"
 
-# Composer path
-export PATH=$PATH:~/.composer/vendor/bin
-
 # Xterm config
 export TERM=xterm-256color
 
@@ -13,7 +10,7 @@ export TERM=xterm-256color
 export FORCE_COLOR=1
 
 # Path to oh-my-zsh installation.
-export ZSH="/Users/adeonir/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Path sourses
 source $ZSH/oh-my-zsh.sh
@@ -62,20 +59,21 @@ zinit for \
     light-mode zsh-users/zsh-history-substring-search \
     light-mode zsh-users/zsh-syntax-highlighting \
     light-mode zdharma-continuum/fast-syntax-highlighting \
-    light-mode zdharma-continuum/history-search-multi-word
+    light-mode zdharma-continuum/history-search-multi-word \
+    load agkozak/zsh-z
 # Zinit end
 
 # Starship
 eval "$(starship init zsh)"
 
 # Bun
-export BUN_INSTALL="/Users/adeonir/.bun"
+export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-[ -s "/Users/adeonir/.bun/_bun" ] && source "/Users/adeonir/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 # Bun end
 
 # Pnpm
-export PNPM_HOME="/Users/adeonir/Library/pnpm"
+export PNPM_HOME="$HOME/.pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -91,7 +89,7 @@ eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 
 # Console Ninja
-PATH=~/.console-ninja/.bin:$PATH
+PATH=$HOME/.console-ninja/.bin:$PATH
 
 # Flutter
 export PATH=$HOME/.flutter/bin:$PATH
