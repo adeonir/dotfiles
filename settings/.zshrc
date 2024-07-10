@@ -100,9 +100,9 @@ export PATH=$HOME/.flutter/bin:$PATH
 export PATH=$HOME/.gem/bin:$PATH
 
 # Nvm autoload
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 autoload -U add-zsh-hook
 
@@ -128,4 +128,6 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 # Nvm autoload end
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Openjdk
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
