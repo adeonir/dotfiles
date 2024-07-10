@@ -39,8 +39,8 @@
 [color]
   ui = true
 [color "status"]
-  added = yellow
-  changed = green
+  added = green
+  changed = yellow
   untracked = red
 [color "branch"]
   current = white
