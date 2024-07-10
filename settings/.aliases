@@ -6,12 +6,11 @@ alias local-ip='ipconfig getifaddr en0'
 
 # Folder aliases
 alias home='~'
-alias temp='~/Temp'
-alias joyjet='~/Joyjet'
-alias dev='~/Development'
-alias courses='~/Courses'
-alias github='~/Github'
-alias sites='~/Sites'
+alias courses='~/www/courses'
+alias github='~/www/github'
+alias joyjet='~/www/joyjet'
+alias projects='~/www/projects'
+alias temp='~/www/temp'
 
 # Command aliases
 alias bup='brew update; brew upgrade; brew cleanup; brew cu --all --yes --no-brew-update'
@@ -23,8 +22,8 @@ alias pnpm-up='pnpm up --latest -r -i'
 alias vim='nvim'
 alias vi='nvim'
 alias pip='pip3'
-alias vz='code ~/.zshrc'
-alias sz='source ~/.zshrc'
+alias codezsh='code ~/.zshrc'
+alias sourcezsh='source ~/.zshrc'
 
 # Show/hide hidden files in Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
