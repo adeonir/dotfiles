@@ -18,6 +18,7 @@ fi
 # Brew apps
 msg_install "Installing apps with brew"
 brew cleanup
+brew tap buo/cask-upgrade
 brew install \
   curl \
   gh \
