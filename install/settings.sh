@@ -62,21 +62,6 @@ fi
 ln -sf $DOTFILES/settings/.npmrc ~/
 msg_checking ".npmrc"
 
-# BetterVim
-if [ -z "$BETTER_VIM_LICENSE" ]; then
-  msg_alert "BETTER_VIM_LICENSE is not set"
-else
-  if [ -f "$HOME/.config/better-vim/better-vim.lua" ]; then
-      msg_update "better-vim"
-      rm ~/.config/better-vim/better-vim.lua
-  else
-      msg_install "better-vim"
-  fi
-fi
-
-ln -sf $DOTFILES/settings/better-vim/better-vim.lua ~/.config/better-vim/
-msg_checking "better-vim"
-
 # Warp theme
 if [ -f "$HOME/.warp/themes/catppuccin_macchiato.yml" ]; then
     msg_update "warp theme"

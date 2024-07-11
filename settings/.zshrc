@@ -85,8 +85,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Rbenv
-eval "$(rbenv init -)"
+# Ruby
+export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+export PATH=`gem environment gemdir`/bin:$PATH
 
 # Console Ninja
 PATH=$HOME/.console-ninja/.bin:$PATH
@@ -129,3 +130,6 @@ load-nvmrc
 
 # Openjdk
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# bun completions
+[ -s "/Users/adeonir/.bun/_bun" ] && source "/Users/adeonir/.bun/_bun"

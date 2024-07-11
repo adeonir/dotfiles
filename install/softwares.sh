@@ -5,6 +5,7 @@ source colors.sh
 #  Brew Cask
 msg_install "Installing software with brew cask"
 cask=(
+  "android-studio"
   "arc"
   "bitwarden"
   "chatgpt"
@@ -13,6 +14,7 @@ cask=(
   "docker"
   "figma"
   "font-fira-code-nerd-font"
+  "flutter"
   "google-chrome"
   "google-chrome@dev"
   "google-drive"
@@ -38,10 +40,19 @@ for app in "${cask[@]}"; do
 done
 
 # BetterVim
+msg_alert "What is the license key for BetterVim?"
+read BETTER_VIM_LICENSE
+
 if [ -z "$BETTER_VIM_LICENSE" ]; then
   msg_alert "BETTER_VIM_LICENSE is not set"
 else
-  msg_install "Installing BetterVim"
-  curl -L "https://bettervim.com/install/$BETTER_VIM_LICENSE" | bash
-  msg_ok "BetterVim installed"
+  if [ -f "$HOME/.config/better-vim/better-vim.lua" ]; then
+      msg_update "better-vim"
+      rm ~/.config/better-vim/better-vim.lua
+  else
+      msg_install "better-vim"
+  fi
 fi
+
+ln -sf $DOTFILES/settings/better-vim/better-vim.lua ~/.config/better-vim/
+msg_checking "better-vim"

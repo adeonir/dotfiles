@@ -32,7 +32,7 @@ brew install \
   pyenv \
   python3 \
   readline \
-  rbenv \
+  ruby \
   sqlite \
   sqlite3 \
   starship \
