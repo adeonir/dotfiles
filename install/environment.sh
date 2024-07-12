@@ -21,6 +21,7 @@ brew cleanup
 brew tap buo/cask-upgrade
 brew install \
   curl \
+  fnm \
   gh \
   git \
   httpie \
@@ -44,21 +45,28 @@ brew install \
 msg_ok "Apps installed"
 
 # Bun
-msg_install "Installing Bun"
-curl -fsSL https://bun.sh/install | bash
-msg_ok "Bun installed"
+if [ ! -d $HOME/.bun ]; then
+  msg_install "Installing Bun"
+  curl -fsSL https://bun.sh/install | bash
+  msg_ok "Bun installed"
+else
+  msg_alert "Bun already installed"
+fi
 
 # oh-my-zsh
-msg_install "Installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-msg_ok "oh-my-zsh installed"
+if (test ! -d $HOME/.oh-my-zsh); then
+  msg_install "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  msg_ok "oh-my-zsh installed"
+else
+  msg_alert "oh-my-zsh already installed"
+fi
 
 # zinit
-msg_install "Installing zinit"
-sh -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-msg_ok "zinit installed"
-
-# nvm
-msg_install "Installing NVM"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-msg_ok "NVM installed"
+if (test ! -d $HOME/.local/share/zinit); then
+  msg_install "Installing zinit"
+  sh -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+  msg_ok "zinit installed"
+else
+  msg_alert "zinit already installed"
+fi

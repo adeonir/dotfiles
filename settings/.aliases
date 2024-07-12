@@ -19,11 +19,10 @@ alias npm-up='npx npm-check-updates --dep prod,dev --upgrade --color --interacti
 alias npm-upg='npm update -g'
 alias yarn-up='yarn upgrade-interactive --latest'
 alias pnpm-up='pnpm up --latest -r -i'
+alias to-nvmrc='echo $(node -v) > .nvmrc'
 alias vim='nvim'
 alias vi='nvim'
 alias pip='pip3'
-alias codezsh='code ~/.zshrc'
-alias sourcezsh='source ~/.zshrc'
 
 # Show/hide hidden files in Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'

@@ -84,17 +84,6 @@ fi
 ln -sf $DOTFILES/settings/starship.toml ~/.config/
 msg_checking "starship"
 
-# .zshrc
-if [ -f "$HOME/.zshrc" ]; then
-    msg_update ".zshrc"
-    rm ~/.zshrc
-else
-    msg_install ".zshrc"
-fi
-
-ln -sf $DOTFILES/settings/.zshrc ~/
-msg_checking ".zshrc"
-
 # .zprofile
 if [ -f "$HOME/.zprofile" ]; then
     msg_update ".zprofile"
@@ -105,3 +94,14 @@ fi
 
 ln -sf $DOTFILES/settings/.zprofile ~/
 msg_checking ".zprofile"
+
+# .zshrc
+if [ -f "$HOME/.zshrc" ]; then
+    msg_update ".zshrc"
+    rm ~/.zshrc
+else
+    msg_install ".zshrc"
+fi
+
+ln -sf $DOTFILES/settings/.zshrc ~/
+msg_checking ".zshrc"
