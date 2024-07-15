@@ -67,7 +67,7 @@ zinit for \
 eval "$(starship init zsh)"
 
 # Fnm
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
 # Bun
 export BUN_INSTALL="$HOME/.bun"
