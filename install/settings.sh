@@ -26,7 +26,6 @@ else
 fi
 
 ln -sf $DOTFILES/settings/.gitconfig ~/
-ln -sf $DOTFILES/settings/.gitignore ~/
 msg_checking ".gitconfig"
 
 # .aliases
@@ -69,8 +68,7 @@ if [ -f "$HOME/.warp/themes/catppuccin_macchiato.yml" ]; then
 else
     msg_install "warp theme"
 fi
-
-ln -sf $DOTFILES/settings/.warp/themes/catppuccin_macchiato.yml ~/.warp/themes/
+ln -sf $DOTFILES/settings/warp/catppuccin_macchiato.yml $HOME/.warp/themes/
 msg_checking "warp theme"
 
 # Starship
