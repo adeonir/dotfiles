@@ -232,22 +232,37 @@
   "console-ninja.featureSet": "Community",
   "console-ninja.predictiveLoggingEnabled": false,
   "console-ninja.captureFunctions": true,
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": true,
-    "markdown": false,
-    "scminput": false
-  },
-  "github.copilot.editor.enableAutoCompletions": true,
+  "cSpell.caseSensitive": false,
+  "cSpell.ignoreWords": [
+    "aspnetcorerazor",
+    "autofetch",
+    "casl",
+    "catppuccin",
+    "clsx",
+    "dayjs",
+    "fastify",
+    "forgedev",
+    "lintstaged",
+    "macchiato",
+    "nextjs",
+    "polacode",
+    "saas",
+    "sequelizerc",
+    "stylelintrc",
+    "tailwindcss"
+  ],
+  "cSpell.ignorePaths": [
+    "node_modules",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "vscode-extension",
+    "yarn.lock",
+    ".git/objects",
+    ".vscode"
+  ],
   "cSpell.userWords": [
     "Adeonir",
-    "casl",
-    "fastify",
-    "Fastify",
-    "forgedev",
-    "nextjs",
-    "saas",
-    "tailwindcss"
+    "adeonirLabs"
   ],
   "evenBetterToml.formatter.allowedBlankLines": 0,
   "evenBetterToml.formatter.columnWidth": 0,
