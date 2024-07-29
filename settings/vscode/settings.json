@@ -7,7 +7,7 @@
     "source.fixAll.eslint": "always",
     "source.fixAll": "always"
   },
-  "editor.codeLens": false,
+  "editor.codeLens": true,
   "editor.colorDecorators": true,
   "editor.cursorWidth": 1,
   "editor.fontFamily": "FiraCode Nerd Font",
@@ -43,22 +43,25 @@
   "color-highlight.markRuler": false,
   "color-highlight.markerType": "dot-before",
   "color-highlight.matchRgbWithNoFunction": true,
-  // File types
+  // Formatters
+  "[aspnetcorerazor]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "[dart]": {
+    "editor.formatOnSave": true
+  },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSave": true
   },
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
     "editor.autoClosingBrackets": "beforeWhitespace"
-  },
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma",
-    "editor.formatOnSave": true
-  },
-  "[dart]": {
-    "editor.formatOnSave": true
   },
   // Catppuccin
   "catppuccin-icons.associations.languages": {
@@ -120,7 +123,7 @@
     ".md": "mdx",
     "*.tsx": "typescriptreact",
     "*.css": "tailwindcss",
-    "config": "aspnetcorerazor"
+    "*.config": "aspnetcorerazor"
   },
   "files.exclude": {
     "**/.git": false
@@ -182,7 +185,6 @@
   "polacode.target": "snippet",
   "polacode.transparentBackground": true,
   // General
-  "debug.disassemblyView.showSourceCode": false,
   "errorLens.enabledDiagnosticLevels": [
     "error",
     "warning"
@@ -196,17 +198,8 @@
     "tailwind.config.*": "tailwind.config*, postcss.config*"
   },
   "gitlens.plusFeatures.enabled": false,
-  "symbols.hidesExplorerArrows": false,
-  "symbols.files.associations": {
-    "playwright.config.ts": "react-test",
-    "tailwind.config.ts": "tailwindcss",
-    "vitest.setup.ts": "vitest",
-    "*.module.ts": "nest",
-    "*.guard.ts": "typescript",
-    "*.spec.ts": "ts-test",
-    "*.spec.tsx": "ts-test",
-    ".env.example": "gear",
-    ".env.local.example": "gear"
+  "material-icon-theme.files.associations": {
+    "*.aspx": "html"
   },
   "update.mode": "none",
   "update.showReleaseNotes": false,
@@ -215,24 +208,23 @@
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.labelFormat": "short",
   "workbench.fontAliasing": "auto",
-  "workbench.iconTheme": "symbols",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.layoutControl.enabled": false,
   "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tree.enableStickyScroll": true,
   "workbench.tree.indent": 16,
-  "workbench.layoutControl.enabled": false,
   "workbench.tree.renderIndentGuides": "always",
-  "apc.listRow": {
-    "height": 24
-  },
-  "cSpell.language": "en,pt,pt_BR",
   "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.untrustedFiles": "open",
   "console-ninja.featureSet": "Community",
-  "console-ninja.predictiveLoggingEnabled": false,
   "console-ninja.captureFunctions": true,
+  "console-ninja.predictiveLoggingEnabled": false,
+  "dotnet.preferCSharpExtension": true,
   "cSpell.caseSensitive": false,
+  "cSpell.language": "en,pt,pt_BR",
   "cSpell.ignoreWords": [
     "aspnetcorerazor",
     "autofetch",
@@ -240,8 +232,11 @@
     "catppuccin",
     "clsx",
     "dayjs",
+    "dotnettools",
     "fastify",
     "forgedev",
+    "hono",
+    "lefthook",
     "lintstaged",
     "macchiato",
     "nextjs",
@@ -264,7 +259,7 @@
     "Adeonir",
     "adeonirLabs"
   ],
-  "evenBetterToml.formatter.allowedBlankLines": 0,
-  "evenBetterToml.formatter.columnWidth": 0,
-  "security.workspace.trust.untrustedFiles": "open"
+  "apc.listRow": {
+    "height": 24
+  }
 }
