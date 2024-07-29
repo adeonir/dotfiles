@@ -5,9 +5,9 @@ source colors.sh
 #  Brew Cask
 msg_install "Installing software with brew cask"
 cask=(
+  "1password"
   "android-studio"
   "arc"
-  "bitwarden"
   "chatgpt"
   "clockify"
   "discord"
@@ -29,7 +29,6 @@ cask=(
   "visual-studio-code"
   "warp"
   "whatsapp"
-  "yandex-disk"
   "zoom"
 )
 

@@ -24,8 +24,7 @@
   ca = !git add -A && git commit -m
   sg = !git add -A && git stash
   sf = show --name-only
-  lg = log --oneline --decorate --pretty=format:'%C(yellow)%h%C(red)%d %C(white)%s %C(blue)<%cn> %C(green)(%cr - %C(green)%ad)' --date=iso --graph
-  lp = log --oneline --decorate --pretty=format:'%C(yellow)%h%C(red)%d %C(white)%s %C(blue)<%cn>'
+  lg = log --oneline --decorate --pretty=format:'%C(yellow)%h%C(red)%d %C(white)%s %C(blue)<%cn> %C(green)(%cr - %C(green)%ad)' --date=iso
   pf = push -f
   pl = push --force-with-lease
   no-edit = commit --no-edit
