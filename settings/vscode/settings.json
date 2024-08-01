@@ -198,9 +198,6 @@
     "tailwind.config.*": "tailwind.config*, postcss.config*"
   },
   "gitlens.plusFeatures.enabled": false,
-  "material-icon-theme.files.associations": {
-    "*.aspx": "html"
-  },
   "update.mode": "none",
   "update.showReleaseNotes": false,
   "window.commandCenter": false,
@@ -208,7 +205,6 @@
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.labelFormat": "short",
   "workbench.fontAliasing": "auto",
-  "workbench.iconTheme": "material-icon-theme",
   "workbench.layoutControl.enabled": false,
   "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.editor": "json",
