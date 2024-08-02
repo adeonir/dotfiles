@@ -197,7 +197,13 @@
     "package.json": "package-lock*, yarn.lock, pnpm-lock*, bun.lock*, tsconfig*, .eslint*, .prettier*, .lintstaged*, babel*, biome, .nvm*, .npm*",
     "tailwind.config.*": "tailwind.config*, postcss.config*"
   },
+  "console-ninja.captureFunctions": true,
+  "console-ninja.featureSet": "Community",
+  "console-ninja.predictiveLoggingEnabled": false,
+  "dotnet.preferCSharpExtension": true,
   "gitlens.plusFeatures.enabled": false,
+  "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.untrustedFiles": "open",
   "update.mode": "none",
   "update.showReleaseNotes": false,
   "window.commandCenter": false,
@@ -213,12 +219,6 @@
   "workbench.tree.enableStickyScroll": true,
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
-  "security.promptForLocalFileProtocolHandling": false,
-  "security.workspace.trust.untrustedFiles": "open",
-  "console-ninja.featureSet": "Community",
-  "console-ninja.captureFunctions": true,
-  "console-ninja.predictiveLoggingEnabled": false,
-  "dotnet.preferCSharpExtension": true,
   "cSpell.caseSensitive": false,
   "cSpell.language": "en,pt,pt_BR",
   "cSpell.ignoreWords": [
@@ -255,7 +255,10 @@
     "Adeonir",
     "adeonirLabs"
   ],
-  "apc.listRow": {
-    "height": 24
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
   }
 }

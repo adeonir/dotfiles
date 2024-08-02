@@ -13,5 +13,4 @@ cd $DOTFILES
 
 source install/environment.sh
 source install/softwares.sh
-source install/extensions.sh
 source install/settings.sh
