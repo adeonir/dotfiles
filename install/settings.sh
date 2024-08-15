@@ -78,6 +78,7 @@ if [ -f "$HOME/.warp/themes/catppuccin_macchiato.yml" ]; then
   rm $HOME/.warp/themes/catppuccin_macchiato.yml
 else
   msg_install "warp theme"
+  mkdir -p $HOME/.warp/themes
 fi
 ln -sf $DOTFILES/settings/warp/catppuccin_macchiato.yml $HOME/.warp/themes/
 msg_checking "warp theme"
@@ -88,6 +89,7 @@ if [ -f "$HOME/.config/starship.toml" ]; then
   rm $HOME/.config/starship.toml
 else
   msg_install "starship"
+  mkdir -p $HOME/.config
 fi
 ln -sf $DOTFILES/settings/starship.toml $HOME/.config/
 msg_checking "starship"
