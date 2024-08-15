@@ -63,23 +63,6 @@
   "[typescriptreact]": {
     "editor.autoClosingBrackets": "beforeWhitespace"
   },
-  // Catppuccin
-  "catppuccin-icons.associations.languages": {
-    "typescriptreact": "typescript-react"
-  },
-  "catppuccin-icons.associations.extensions": {
-    "spec.ts": "typescript-test"
-  },
-  "catppuccin-icons.associations.files": {
-    "vite.config.ts": "vite"
-  },
-  "catppuccin-icons.associations.folders": {
-    "auth": "folder_security",
-    "layouts": "folder_layouts",
-    "lib": "folder_utils",
-    "pages": "folder_templates",
-    "types": "folder_types"
-  },
   // JavaScript
   "javascript.format.semicolons": "remove",
   "javascript.suggest.autoImports": true,
@@ -260,5 +243,7 @@
     "plaintext": false,
     "markdown": true,
     "scminput": false
-  }
+  },
+  "symbols.hidesExplorerArrows": false,
+  "workbench.iconTheme": "symbols"
 }
