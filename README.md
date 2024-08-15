@@ -49,6 +49,36 @@ Catppuccin is a soothing pastel theme for various applications. The Warp termina
 
 Starship is a cross-shell prompt that is fast, customizable, and minimalistic. The configuration file can be found at settings/starship.toml.
 
+### Rbenv
+
+Check the latest Ruby version available and install it by running the following commands:
+
+```bash
+rbenv install -l
+rbenv install <version>
+```
+
+Then, set the global Ruby version:
+
+```bash
+rbenv global <version>
+```
+
+### MySQL
+
+The MySQL installation script will prompt you to set a root password. After installation, you can start the MySQL service with the following command:
+
+```bash
+brew services start mysql
+mysql_secure_installation
+```
+
+Then connect to the MySQL server:
+
+```bash
+mysql -u root -p
+```
+
 ## Software Installation
 
 The script `install/softwares.sh` installs the following software using Homebrew Cask:
