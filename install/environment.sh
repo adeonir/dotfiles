@@ -27,8 +27,6 @@ msg_install "Installing apps with brew"
 brew cleanup
 brew tap buo/cask-upgrade
 brew install \
-  docker \
-  docker-compose \
   fnm \
   gh \
   git \
@@ -39,7 +37,6 @@ brew install \
   openssl@3 \
   postgresql \
   pyenv \
-  python3 \
   readline \
   rbenv \
   sqlite \
@@ -53,6 +50,14 @@ msg_ok "Apps installed"
 
 # Fnm
 fnm default system
+
+# Ruby
+rbenv install 3.3.4
+rbenv global 3.3.4
+
+# Python
+pyenv install 3.12.5
+pyenv global 3.12.5
 
 # Bun
 if [ ! -d $HOME/.bun ]; then
