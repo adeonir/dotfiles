@@ -95,11 +95,17 @@ export PATH=`gem environment gemdir`/bin:$PATH
 # Console Ninja
 PATH=$HOME/.console-ninja/.bin:$PATH
 
-# Flutter
-export PATH=$HOME/.flutter/bin:$PATH
-
 # CocoaPods
 export PATH=$HOME/.gem/bin:$PATH
 
 # Openjdk
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# Joyjet ssh key
+function cd() {
+  builtin cd "$@"  # Call the original `cd` command
+
+  if [[ "$PWD" == "$HOME/www/joyjet"* ]]; then
+    ssh-add ~/.ssh/id_rsa_joyjet
+  fi
+}
