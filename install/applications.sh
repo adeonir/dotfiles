@@ -8,12 +8,7 @@ if test ! $(which brew); then
   msg_install "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   msg_ok 'Homebrew installed'
-
-  if [ -f ~/.bash_profile ]; then
-    source ~/.bash_profile
-  elif [ -f ~/.bashrc ]; then
-    source ~/.bashrc
-  fi
+  exec "$SHELL"
 else
   msg_alert "Homebrew already installed"
 fi
@@ -27,6 +22,9 @@ msg_install "Installing apps with brew"
 brew cleanup
 brew tap buo/cask-upgrade
 brew install \
+  curl \
+  docker \
+  docker-compose \
   fnm \
   gh \
   git \
@@ -34,14 +32,12 @@ brew install \
   mysql \
   node \
   openssl \
-  openssl@3 \
   postgresql \
-  pyenv \
+  python3 \
   readline \
-  rbenv \
+  ruby \
   sqlite \
   starship \
-  tcl-tk \
   tree \
   vercel-cli \
   wget \
@@ -50,14 +46,6 @@ msg_ok "Apps installed"
 
 # Fnm
 fnm default system
-
-# Ruby
-rbenv install 3.3.4
-rbenv global 3.3.4
-
-# Python
-pyenv install 3.12.5
-pyenv global 3.12.5
 
 # Bun
 if [ ! -d $HOME/.bun ]; then

@@ -81,16 +81,6 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# Pnpm end
-
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# Ruby
-export PATH=/opt/homebrew/opt/ruby/bin:$PATH
-export PATH=`gem environment gemdir`/bin:$PATH
 
 # Console Ninja
 PATH=$HOME/.console-ninja/.bin:$PATH
