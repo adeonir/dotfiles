@@ -95,7 +95,7 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 function cd() {
   builtin cd "$@"  # Call the original `cd` command
 
-  if [[ "$PWD" == "$HOME/www/joyjet"* ]]; then
+  if [[ "$PWD" == "$HOME/Development/joyjet"* ]]; then
     ssh-add ~/.ssh/id_rsa_joyjet
   fi
 }

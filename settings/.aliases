@@ -3,18 +3,17 @@
 # IP addresses
 alias external-ip='curl -4 icanhazip.com'
 alias local-ip='ipconfig getifaddr en0'
+alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
 # Folder aliases
-alias home='~'
-alias courses='~/www/courses'
-alias github='~/www/github'
-alias joyjet='~/www/joyjet'
-alias projects='~/www/projects'
-alias temp='~/www/temp'
+alias courses='~/Development/courses'
+alias github='~/Development/github'
+alias joyjet='~/Development/joyjet'
+alias projects='~/Development/projects'
+alias temp='~/Development/temp'
 
 # Command aliases
 alias bup='brew update; brew upgrade; brew cleanup; brew cu --all --yes --no-brew-update'
-alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias npm-up='npx npm-check-updates --dep prod,dev --upgrade --color --interactive'
 alias npm-gup='npm update -g'
 alias pnpm-up='pnpm up --latest -r -i'
@@ -23,7 +22,6 @@ alias yarn-up='yarn upgrade-interactive --latest'
 alias to-nvmrc='echo $(node -v) > .nvmrc'
 alias vim='nvim'
 alias vi='nvim'
-alias pip='pip3'
 
 # Show/hide hidden files in Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
@@ -38,4 +36,3 @@ alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Sleep
 alias sleep='pmset sleepnow'
-
