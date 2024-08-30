@@ -8,6 +8,7 @@ cask=(
   "1password"
   "arc"
   "clockify"
+  "cursor"
   "discord"
   "docker"
   "figma"

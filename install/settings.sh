@@ -12,6 +12,16 @@ fi
 ln -sf $DOTFILES/settings/vscode/settings.json $HOME/Library/Application\ Support/Code/User/
 msg_checking "vscode settings"
 
+# cursor settings
+if [ -f "$HOME/Library/Application\ Support/Cursor/User/settings.json" ]; then
+  msg_update "cursor settings"
+  rm $HOME/Library/Application\ Support/Cursor/User/settings.json
+else
+  msg_install "cursor settings"
+fi
+ln -sf $DOTFILES/settings/cursor/settings.json $HOME/Library/Application\ Support/Cursor/User/
+msg_checking "cursor settings"
+
 # .editorconfig
 if [ -f "$HOME/.editorconfig" ]; then
   msg_update ".editorconfig"
