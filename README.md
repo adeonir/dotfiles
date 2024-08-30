@@ -49,21 +49,6 @@ Catppuccin is a soothing pastel theme for various applications. The Warp termina
 
 Starship is a cross-shell prompt that is fast, customizable, and minimalistic. The configuration file can be found at settings/starship.toml.
 
-### Rbenv
-
-Check the latest Ruby version available and install it by running the following commands:
-
-```bash
-rbenv install -l
-rbenv install <version>
-```
-
-Then, set the global Ruby version:
-
-```bash
-rbenv global <version>
-```
-
 ### MySQL
 
 The MySQL installation script will prompt you to set a root password. After installation, you can start the MySQL service with the following command:
@@ -79,46 +64,74 @@ Then connect to the MySQL server:
 mysql -u root -p
 ```
 
-## Software Installation
+## Applications
+
+The script `install/applications.sh` installs the following applications using Homebrew:
+
+- curl
+- docker
+- docker-compose
+- fnm
+- gh
+- git
+- httpie
+- mysql
+- node
+- openssl
+- postgresql
+- python3
+- readline
+- ruby
+- sqlite
+- starship
+- tree
+- vercel-cli
+- wget
+- zsh
+
+## Softwares
 
 The script `install/softwares.sh` installs the following software using Homebrew Cask:
 
-1Password
-Arc
-ChatGPT
-Clockify
-Discord
-Docker
-Figma
-Font Fira Code Nerd Font
-Google Chrome
-Notion Calendar
-Raycast
-Setapp
-Slack
-Spotify
-Telegram
-Visual Studio Code
-Warp
-WhatsApp
-Zoom
+- 1password
+- arc
+- chatgpt
+- clockify
+- cursor
+- discord
+- docker
+- figma
+- font-fira-code-nerd-font
+- google-chrome
+- notion-calendar
+- raycast
+- setapp
+- shottr
+- slack
+- spotify
+- telegram
+- visual-studio-code
+- warp
+- whatsapp
+- zoom
 
 ## Settings
 
 The script `install/settings.sh` sets up various configuration files:
 
-- .aliases: settings/.aliases
-- .editorconfig: settings/.editorconfig
-- .functions: settings/.functions
-- .gitconfig: settings/git/.gitconfig
-- .gitignore: settings/git/.gitignore
-- .npmrc: settings/.npmrc
-- .zprofile: settings/.zprofile
-- .zshrc: settings/.zshrc
-- BetterVim configuration: settings/better-vim/better-vim.lua
-- Starship prompt: settings/starship.toml
-- VSCode settings: settings/vscode/settings.json
-- Warp theme: settings/warp/catppuccin_macchiato.yml
+- .aliases
+- .editorconfig
+- .functions
+- .gitconfig
+- .gitignore
+- .npmrc
+- .zprofile
+- .zshrc
+- bettervim config
+- cursor settings
+- starship config
+- vscode settings
+- warp theme
 
 ---
 
