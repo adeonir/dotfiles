@@ -15,9 +15,6 @@
     "height": 24
   },
 
-  // Dotnet
-  "dotnet.preferCSharpExtension": true,
-
   // Editor
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
@@ -105,11 +102,20 @@
   },
 
   // Formatters
-  "[aspnetcorerazor]": {
-    "editor.defaultFormatter": "ms-dotnettools.csharp"
-  },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[javascriptreact]": {
+    "editor.autoClosingBrackets": "beforeWhitespace"
+  },
+  "[typescriptreact]": {
+    "editor.autoClosingBrackets": "beforeWhitespace"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -117,12 +123,6 @@
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma",
     "editor.formatOnSave": true
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[typescriptreact]": {
-    "editor.autoClosingBrackets": "beforeWhitespace"
   },
 
   // General
@@ -285,9 +285,6 @@
     ".git/objects",
     ".vscode"
   ],
-  "cSpell.userWords": [
-    "Adeonir",
-    "adeonirLabs"
-  ],
+  "cSpell.userWords": ["Adeonir", "adeonirLabs"],
   "debug.disassemblyView.showSourceCode": false
 }

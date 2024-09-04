@@ -97,7 +97,6 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - arc
 - chatgpt
 - clockify
-- cursor
 - discord
 - docker
 - figma
@@ -128,7 +127,6 @@ The script `install/settings.sh` sets up various configuration files:
 - .zprofile
 - .zshrc
 - bettervim config
-- cursor settings
 - starship config
 - vscode settings
 - warp theme
