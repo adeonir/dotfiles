@@ -145,7 +145,7 @@
     "**/dist": true,
     ".git": true
   },
-  "search.useIgnoreFiles": false,
+  "search.useIgnoreFiles": true,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
   "symbols.hidesExplorerArrows": false,
