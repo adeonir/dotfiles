@@ -32,6 +32,7 @@ brew install \
   mysql \
   node \
   openssl \
+  php \
   postgresql \
   python3 \
   readline \
