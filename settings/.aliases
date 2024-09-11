@@ -31,6 +31,12 @@ alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
 alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 
+# Lock/unlock the Dock
+alias lockdock='defaults write com.apple.Dock position-immutable -bool yes && killall Dock'
+alias unlockdock='defaults write com.apple.Dock position-immutable -bool no && killall Dock'
+alias fixdock='defaults write com.apple.Dock size-immutable -bool true; killall Dock'
+alias releasedock='defaults write com.apple.Dock size-immutable -bool false; killall Dock'
+
 # Lock the screen (when going away from keyboard)
 alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
