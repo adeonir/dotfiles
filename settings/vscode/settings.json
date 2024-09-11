@@ -109,10 +109,12 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[javascriptreact]": {
-    "editor.autoClosingBrackets": "beforeWhitespace"
+    "editor.autoClosingBrackets": "beforeWhitespace",
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
-    "editor.autoClosingBrackets": "beforeWhitespace"
+    "editor.autoClosingBrackets": "beforeWhitespace",
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -143,6 +145,7 @@
   "search.exclude": {
     "**/node_modules": true,
     "**/dist": true,
+    "*lock*": true,
     ".git": true
   },
   "search.useIgnoreFiles": true,
