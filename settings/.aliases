@@ -6,11 +6,11 @@ alias local-ip='ipconfig getifaddr en0'
 alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
 # Folder aliases
-alias courses='~/Development/courses'
-alias github='~/Development/github'
-alias joyjet='~/Development/joyjet'
-alias projects='~/Development/projects'
-alias temp='~/Development/temp'
+alias courses='~/Developer/courses'
+alias github='~/Developer/github'
+alias joyjet='~/Developer/joyjet'
+alias projects='~/Developer/projects'
+alias temp='~/Developer/temp'
 
 # Command aliases
 alias bup='brew update; brew upgrade; brew cleanup; brew cu --all --yes --no-brew-update'

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES="$HOME/Development/projects/dotfiles"
+DOTFILES="$HOME/Developer/projects/dotfiles"
 
 if [[ -d $DOTFILES ]]; then
   echo 'Checking dotfiles directory'
