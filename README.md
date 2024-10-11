@@ -69,8 +69,6 @@ mysql -u root -p
 The script `install/applications.sh` installs the following applications using Homebrew:
 
 - curl
-- docker
-- docker-compose
 - fnm
 - gh
 - git
@@ -78,6 +76,7 @@ The script `install/applications.sh` installs the following applications using H
 - mysql
 - node
 - openssl
+- php
 - postgresql
 - python3
 - readline
@@ -95,17 +94,16 @@ The script `install/softwares.sh` installs the following software using Homebrew
 
 - 1password
 - arc
-- chatgpt
 - clockify
+- cursor
 - discord
 - docker
 - figma
 - font-fira-code-nerd-font
 - google-chrome
-- notion-calendar
+- postman
 - raycast
 - setapp
-- shottr
 - slack
 - spotify
 - telegram
