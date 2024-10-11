@@ -3,7 +3,7 @@
   email = adeonir@gmail.com
   initials = ak
 [core]
-  editor = code -w
+  editor = cursor -w
   excludesfiles = ~/.gitignore
 [branch]
   autosetuprebase = always
@@ -51,8 +51,6 @@
   new = green
 [init]
   defaultBranch = main
-[includeIf "gitdir:~/Joyjet/"]
-  path = ~/Joyjet/.gitconfig
 [fetch]
 	prune = true
 [push]
@@ -62,3 +60,5 @@
   rebase = true
 [merge]
   log = true
+[includeIf "gitdir:~/Joyjet/"]
+  path = ~/Joyjet/.gitconfig
