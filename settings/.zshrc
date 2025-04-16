@@ -99,3 +99,10 @@ function cd() {
     ssh-add ~/.ssh/id_rsa_joyjet
   fi
 }
+
+# Add pyenv to PATH
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+# Initialize pyenv
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"

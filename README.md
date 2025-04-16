@@ -68,6 +68,7 @@ mysql -u root -p
 
 The script `install/applications.sh` installs the following applications using Homebrew:
 
+- bat
 - curl
 - fnm
 - gh
@@ -77,6 +78,7 @@ The script `install/applications.sh` installs the following applications using H
 - node
 - openssl
 - php
+- pnpm
 - postgresql
 - python3
 - readline
@@ -86,6 +88,7 @@ The script `install/applications.sh` installs the following applications using H
 - tree
 - vercel-cli
 - wget
+- yarn
 - zsh
 
 ## Softwares

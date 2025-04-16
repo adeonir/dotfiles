@@ -22,6 +22,7 @@ msg_install "Installing apps with brew"
 brew cleanup
 brew tap buo/cask-upgrade
 brew install \
+  bat \
   curl \
   fnm \
   gh \
@@ -31,6 +32,7 @@ brew install \
   node \
   openssl \
   php \
+  pnpm \
   postgresql \
   python3 \
   readline \
@@ -40,6 +42,7 @@ brew install \
   tree \
   vercel-cli \
   wget \
+  yarn \
   zsh
 msg_ok "Apps installed"
 

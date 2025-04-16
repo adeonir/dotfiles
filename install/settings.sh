@@ -32,15 +32,25 @@ fi
 ln -sf $DOTFILES/settings/.editorconfig $HOME/
 msg_checking ".editorconfig"
 
-# .gitconfig
+# .gitconfig (global)
 if [ -f "$HOME/settings/git/.gitconfig" ]; then
-  msg_update ".gitconfig"
+  msg_update ".gitconfig (global)"
   rm $HOME/.gitconfig
 else
-  msg_install ".gitconfig"
+  msg_install ".gitconfig (global)"
 fi
 ln -sf $DOTFILES/settings/git/.gitconfig $HOME/
-msg_checking ".gitconfig"
+msg_checking ".gitconfig (global)"
+
+# .gitconfig (joyjet)
+if [ -f "$HOME/Developer/joyjet/.gitconfig" ]; then
+  msg_update ".gitconfig (joyjet)"
+  rm $HOME/Developer/joyjet/.gitconfig
+else
+  msg_install ".gitconfig (joyjet)"
+fi
+ln -sf $DOTFILES/settings/joyjet/.gitconfig $HOME/Developer/joyjet/
+msg_checking ".gitconfig (joyjet)"
 
 # .gitignore
 if [ -f "$HOME/settings/git/.gitignore" ]; then

@@ -21,7 +21,8 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
-    "source.fixAll": "always"
+    "source.fixAll": "always",
+    "quickfix.biome": "explicit"
   },
   "editor.codeLens": true,
   "editor.colorDecorators": true,
@@ -62,6 +63,20 @@
   "editor.stickyScroll.enabled": false,
   "editor.tabSize": 2,
 
+  // Symbols
+  "symbols.folders.associations": {
+    "configs": "folder-config",
+    "errors": "folder-red",
+    "in-memory": "folder-orange-code",
+    "node_modules": "folder-modules",
+    "packages": "folder-blue-code"
+  },
+  "symbols.files.associations": {
+    ".env": "document",
+    "*.e2e-spec.ts": "ts-test",
+    "vitest.config.e2e.ts": "vitest"
+  },
+
   // Emmet
   "emmet.includeLanguages": {
     "aspnetcorerazor": "html",
@@ -75,6 +90,16 @@
     "typescript": ["tsx"]
   },
   "emmet.triggerExpansionOnTab": true,
+
+  // Eslint
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html"
+  ],
 
   // Files
   "files.associations": {
@@ -103,20 +128,24 @@
 
   // Formatters
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
-    "editor.autoClosingBrackets": "beforeWhitespace",
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
-    "editor.autoClosingBrackets": "beforeWhitespace",
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
@@ -138,12 +167,13 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "package.json": "package-lock*, yarn.lock, pnpm-lock*, bun.lock*, tsconfig*, .eslint*, .prettier*, .lintstaged*, babel*, biome, .nvm*, .npm*",
+    "package.json": "package*, pnpm*, bun*, .npm*, yarn*, .nvm*, tsconfig*, .eslint*, eslint*, .prettier*, .editorconfig, vite*, biome*, .lintstaged*, babel*, metro*, docker*, tsup*, lefthook*",
     "tailwind.config.*": "tailwind.config*, postcss.config*"
   },
   "problems.decorations.enabled": false,
   "search.exclude": {
     "**/node_modules": true,
+    "**/.next": true,
     "**/dist": true,
     "*lock*": true,
     ".git": true
@@ -165,12 +195,15 @@
   "git.confirmSync": false,
   "git.ignoreRebaseWarning": true,
   "git.openRepositoryInParentFolders": "never",
+
+  // GitHub Copilot
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,
     "markdown": true,
     "scminput": false
   },
+  "github.copilot.chat.inlineChatHint.enabled": true,
 
   // GitLens
   "gitlens.codeLens.authors.enabled": false,
@@ -180,7 +213,7 @@
   "gitlens.plusFeatures.enabled": false,
 
   // JavaScript
-  "javascript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.quoteStyle": "single",
   "javascript.referencesCodeLens.showOnAllFunctions": true,
   "javascript.suggest.autoImports": true,
@@ -188,7 +221,7 @@
   "javascript.updateImportsOnFileMove.enabled": "never",
 
   // TypeScript
-  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.quoteStyle": "single",
   "typescript.referencesCodeLens.showOnAllFunctions": true,
   "typescript.suggest.autoImports": true,
@@ -222,7 +255,7 @@
 
   // Terminal
   "console-ninja.captureFunctions": true,
-  "console-ninja.featureSet": "Community",
+  "console-ninja.featureSet": "Pro",
   "console-ninja.fontSize": 13,
   "console-ninja.predictiveLoggingEnabled": false,
   "debug.console.fontFamily": "MonoLisa Nerd Font",
@@ -254,40 +287,5 @@
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
-
-  // Spell Checker
-  "cSpell.caseSensitive": false,
-  "cSpell.language": "en,pt,pt_BR",
-  "cSpell.ignoreWords": [
-    "aspnetcorerazor",
-    "autofetch",
-    "casl",
-    "catppuccin",
-    "clsx",
-    "dayjs",
-    "dotnettools",
-    "fastify",
-    "forgedev",
-    "hono",
-    "lefthook",
-    "lintstaged",
-    "macchiato",
-    "nextjs",
-    "polacode",
-    "saas",
-    "sequelizerc",
-    "stylelintrc",
-    "tailwindcss"
-  ],
-  "cSpell.ignorePaths": [
-    "node_modules",
-    "package-lock.json",
-    "pnpm-lock.yaml",
-    "vscode-extension",
-    "yarn.lock",
-    ".git/objects",
-    ".vscode"
-  ],
-  "cSpell.userWords": ["Adeonir", "adeonirLabs"],
   "debug.disassemblyView.showSourceCode": false
 }
