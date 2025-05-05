@@ -97,13 +97,16 @@ The script `install/softwares.sh` installs the following software using Homebrew
 
 - 1password
 - arc
+- chatgpt
 - clockify
-- cursor
 - discord
-- docker
 - figma
 - font-fira-code-nerd-font
+- ghostty
 - google-chrome
+- notion
+- obsidian
+- orbstack
 - postman
 - raycast
 - setapp
@@ -111,8 +114,9 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - spotify
 - telegram
 - visual-studio-code
-- warp
 - whatsapp
+- windsurf
+- yaak
 - zoom
 
 ## Settings
@@ -130,7 +134,8 @@ The script `install/settings.sh` sets up various configuration files:
 - bettervim config
 - starship config
 - vscode settings
-- warp theme
+- windsurf settings
+- ghostty config
 
 ---
 

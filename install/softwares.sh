@@ -11,11 +11,10 @@ cask=(
   "catch"
   "chatgpt"
   "clockify"
-  "cursor"
   "discord"
   "figma"
+  "ghostty"
   "google-chrome"
-  "notion"
   "orbstack"
   "postman"
   "raycast"
@@ -26,8 +25,8 @@ cask=(
   "transmission"
   "twingate"
   "visual-studio-code"
-  "warp"
   "whatsapp"
+  "windsurf
   "zoom"
 )
 

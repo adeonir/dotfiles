@@ -106,3 +106,6 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 # Initialize pyenv
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+# Added by Windsurf
+export PATH="/Users/adeonir/.codeium/windsurf/bin:$PATH"

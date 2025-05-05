@@ -12,15 +12,15 @@ fi
 ln -sf $DOTFILES/settings/vscode/settings.json $HOME/Library/Application\ Support/Code/User/
 msg_checking "vscode settings"
 
-# cursor settings
-if [ -f "$HOME/Library/Application\ Support/Cursor/User/settings.json" ]; then
-  msg_update "cursor settings"
-  rm $HOME/Library/Application\ Support/Cursor/User/settings.json
+# Windsurf settings
+if [ -f "$HOME/Library/Application\ Support/Windsurf/User/settings.json" ]; then
+  msg_update "windsurf settings"
+  rm $HOME/Library/Application\ Support/Windsurf/User/settings.json
 else
-  msg_install "cursor settings"
+  msg_install "windsurf settings"
 fi
-ln -sf $DOTFILES/settings/cursor/settings.json $HOME/Library/Application\ Support/Cursor/User/
-msg_checking "cursor settings"
+ln -sf $DOTFILES/settings/windsurf/settings.json $HOME/Library/Application\ Support/Windsurf/User/
+msg_checking "windsurf settings"
 
 # .editorconfig
 if [ -f "$HOME/.editorconfig" ]; then
@@ -92,16 +92,16 @@ fi
 ln -sf $DOTFILES/settings/.npmrc $HOME/
 msg_checking ".npmrc"
 
-# Warp theme
-if [ -f "$HOME/.warp/themes/catppuccin_macchiato.yml" ]; then
-  msg_update "warp theme"
-  rm $HOME/.warp/themes/catppuccin_macchiato.yml
+# Ghostty config
+if [ -f "$HOME/.config/ghostty" ]; then
+  msg_update "ghostty config"
+  rm $HOME/.config/ghostty
 else
-  msg_install "warp theme"
-  mkdir -p $HOME/.warp/themes
+  msg_install "ghostty config"
+  mkdir -p $HOME/.config/ghostty
 fi
-ln -sf $DOTFILES/settings/warp/catppuccin_macchiato.yml $HOME/.warp/themes/
-msg_checking "warp theme"
+ln -sf $DOTFILES/settings/ghostty/config $HOME/.config/ghostty/
+msg_checking "ghostty config"
 
 # Starship
 if [ -f "$HOME/.config/starship.toml" ]; then
