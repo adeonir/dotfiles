@@ -11,6 +11,7 @@ cask=(
   "catch"
   "chatgpt"
   "clockify"
+  "cursor"
   "discord"
   "figma"
   "ghostty"

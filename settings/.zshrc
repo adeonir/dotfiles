@@ -99,9 +99,6 @@ eval "$(pyenv init -)"
 # Add pyenv to PATH
 export PATH="$HOME/.pyenv/bin:$PATH"
 
-# Add Windsurf to PATH
-export PATH="$HOME/.codeium/windsurf/bin:$PATH"
-
 # Joyjet ssh key
 function cd() {
   builtin cd "$@"  # Call the original `cd` command
@@ -110,3 +107,6 @@ function cd() {
     ssh-add ~/.ssh/id_rsa_joyjet
   fi
 }
+
+# Added by Windsurf
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
