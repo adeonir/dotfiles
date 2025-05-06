@@ -5,6 +5,7 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
     "quickfix.biome": "explicit"
   },
   "editor.codeLens": true,
@@ -48,8 +49,9 @@
   "editor.snippetSuggestions": "bottom",
   "editor.stickyScroll.enabled": false,
   "editor.tabSize": 2,
-  "errorLens.fontWeight": "300",
+
   // Symbols
+  "symbols.hidesExplorerArrows": false,
   "symbols.folders.associations": {
     "configs": "folder-config",
     "errors": "folder-red",
@@ -66,6 +68,7 @@
     "*.e2e-spec.ts": "ts-test",
     "vitest.config.e2e.ts": "vitest"
   },
+
   // Emmet
   "emmet.includeLanguages": {
     "aspnetcorerazor": "html",
@@ -79,6 +82,7 @@
     "typescript": ["tsx"]
   },
   "emmet.triggerExpansionOnTab": true,
+
   // Files
   "eslint.validate": [
     "javascript",
@@ -112,6 +116,7 @@
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true
   },
+
   // Formatters
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -141,11 +146,13 @@
     "editor.defaultFormatter": "Prisma.prisma",
     "editor.formatOnSave": true
   },
+
   // General
   "color-highlight.markerType": "dot-before",
   "color-highlight.markRuler": false,
   "color-highlight.matchHslWithNoFunction": true,
   "color-highlight.matchRgbWithNoFunction": true,
+  "errorLens.fontWeight": "300",
   "errorLens.enabledDiagnosticLevels": ["error", "warning"],
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
@@ -167,10 +174,12 @@
   "search.useIgnoreFiles": false,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  "symbols.hidesExplorerArrows": false,
   "update.mode": "none",
   "update.showReleaseNotes": false,
+  "vue.server.hybridMode": false,
   "window.nativeFullScreen": true,
+  "window.commandCenter": true,
+
   // Git
   "diffEditor.codeLens": true,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -179,12 +188,14 @@
   "git.confirmSync": false,
   "git.ignoreRebaseWarning": true,
   "git.openRepositoryInParentFolders": "never",
+
   // GitLens
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
   "gitlens.defaultDateFormat": null,
   "gitlens.plusFeatures.enabled": false,
+
   // JavaScript
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.quoteStyle": "single",
@@ -193,6 +204,7 @@
   "javascript.suggest.completeFunctionCalls": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.preferences.useAliasesForRenames": false,
+
   // TypeScript
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.quoteStyle": "single",
@@ -201,6 +213,7 @@
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.preferences.useAliasesForRenames": false,
+
   // Tailwind css
   "tailwindCSS.validate": true,
   "tailwindCSS.colorDecorators": true,
@@ -226,6 +239,7 @@
   "tailwindCSS.lint.cssConflict": "warning",
   "tailwindCSS.lint.recommendedVariantOrder": "warning",
   "tailwindCSS.showPixelEquivalents": true,
+
   // Terminal
   "console-ninja.captureFunctions": true,
   "console-ninja.featureSet": "Pro",
@@ -236,7 +250,7 @@
   "debug.console.lineHeight": 24,
   "debug.disassemblyView.showSourceCode": false,
   "githubPullRequests.pullBranch": "never",
-  "terminal.external.osxExec": "Warp.app",
+  "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.env.osx": {},
@@ -246,6 +260,7 @@
   "terminal.integrated.fontWeightBold": "500",
   "terminal.integrated.lineHeight": 1.8,
   "terminal.integrated.showExitAlert": false,
+
   // Workbench
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.empty.hint": "hidden",
@@ -260,5 +275,6 @@
   "workbench.tips.enabled": false,
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always"
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.activityBar.orientation": "vertical"
 }

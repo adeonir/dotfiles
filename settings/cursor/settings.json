@@ -5,8 +5,8 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
-    "source.fixAll": "always",
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
     "quickfix.biome": "explicit"
   },
   "editor.codeLens": true,
@@ -16,7 +16,7 @@
   "editor.fontFamily": "MonoLisa Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
-  "editor.fontWeight": "400",
+  "editor.fontWeight": "300",
   "editor.formatOnSave": false,
   "editor.gotoLocation.multipleDeclarations": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
@@ -50,8 +50,9 @@
   "editor.snippetSuggestions": "bottom",
   "editor.stickyScroll.enabled": false,
   "editor.tabSize": 2,
-  "errorLens.fontWeight": "400",
+
   // Symbols
+  "symbols.hidesExplorerArrows": false,
   "symbols.folders.associations": {
     "configs": "folder-config",
     "errors": "folder-red",
@@ -68,6 +69,7 @@
     "*.e2e-spec.ts": "ts-test",
     "vitest.config.e2e.ts": "vitest"
   },
+
   // Emmet
   "emmet.includeLanguages": {
     "aspnetcorerazor": "html",
@@ -148,6 +150,7 @@
   "color-highlight.markRuler": false,
   "color-highlight.matchHslWithNoFunction": true,
   "color-highlight.matchRgbWithNoFunction": true,
+  "errorLens.fontWeight": "300",
   "errorLens.enabledDiagnosticLevels": ["error", "warning"],
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
@@ -169,11 +172,12 @@
   "search.useIgnoreFiles": false,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  "symbols.hidesExplorerArrows": false,
   "update.mode": "none",
   "update.showReleaseNotes": false,
-  "window.commandCenter": false,
+  "vue.server.hybridMode": false,
   "window.nativeFullScreen": true,
+  "window.commandCenter": true,
+
   // Git
   "diffEditor.codeLens": true,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -196,6 +200,7 @@
   "javascript.suggest.completeFunctionCalls": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.preferences.useAliasesForRenames": false,
+
   // TypeScript
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.quoteStyle": "single",
@@ -204,6 +209,7 @@
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.preferences.useAliasesForRenames": false,
+
   // Tailwind css
   "tailwindCSS.validate": true,
   "tailwindCSS.colorDecorators": true,
@@ -237,19 +243,21 @@
   "debug.console.fontFamily": "MonoLisa Nerd Font",
   "debug.console.fontSize": 13,
   "debug.console.lineHeight": 24,
-  "terminal.external.osxExec": "Warp.app",
+  "debug.disassemblyView.showSourceCode": false,
+  "githubPullRequests.pullBranch": "never",
+  "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.env.osx": {},
   "terminal.integrated.fontFamily": "MonoLisa Nerd Font",
   "terminal.integrated.fontSize": 13,
-  "terminal.integrated.fontWeight": "400",
+  "terminal.integrated.fontWeight": "300",
   "terminal.integrated.fontWeightBold": "500",
   "terminal.integrated.lineHeight": 1.8,
   "terminal.integrated.showExitAlert": false,
+
   // Workbench
-  "workbench.activityBar.orientation": "vertical",
-  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
@@ -263,67 +271,5 @@
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
-  // Spell Checker
-  "cSpell.language": "en,pt,pt_BR",
-  "cSpell.ignoreWords": [
-    "aspnetcorerazor",
-    "autofetch",
-    "casl",
-    "catppuccin",
-    "clsx",
-    "dayjs",
-    "DITTOFI",
-    "dotnettools",
-    "dtos",
-    "fastify",
-    "forgedev",
-    "hono",
-    "lefthook",
-    "lintstaged",
-    "macchiato",
-    "nextjs",
-    "polacode",
-    "saas",
-    "sequelizerc",
-    "stylelintrc",
-    "tailwindcss",
-    "tanstack",
-    "usecase"
-  ],
-  "cSpell.ignorePaths": [
-    "node_modules",
-    "package-lock.json",
-    "pnpm-lock.yaml",
-    "vscode-extension",
-    "yarn.lock",
-    ".git/objects",
-    ".vscode"
-  ],
-  "cSpell.userWords": [
-    "acum",
-    "Adeonir",
-    "adeonirLabs",
-    "adeonirTech",
-    "algoliasearch",
-    "embla",
-    "highcharts",
-    "nativewind",
-    "Reisenthal",
-    "rubik",
-    "servicos",
-    "trendpulse",
-    "vercel",
-    "whatsapp"
-  ],
-  "debug.disassemblyView.showSourceCode": false,
-  "cursor.cmdk.useThemedDiffBackground": true,
-  "cursor.terminal.usePreviewBox": true,
-  "vue.server.hybridMode": false,
-  "redhat.telemetry.enabled": false,
-  "githubPullRequests.pullBranch": "never",
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "hediet.vscode-drawio.resizeImages": null,
-  "gitlens.hovers.enabled": false
+  "workbench.activityBar.orientation": "vertical"
 }
