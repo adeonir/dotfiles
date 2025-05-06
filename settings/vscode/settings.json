@@ -1,27 +1,11 @@
 {
-  // Apc
-  "apc.header": {
-    "height": 36
-  },
-  "apc.sidebar.titlebar": {
-    "fontSize": 14,
-    "height": 36
-  },
-  "apc.activityBar": {
-    "size": 40,
-    "itemMargin": 4
-  },
-  "apc.listRow": {
-    "height": 24
-  },
-
   // Editor
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
-    "source.fixAll": "always",
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
     "quickfix.biome": "explicit"
   },
   "editor.codeLens": true,
@@ -31,6 +15,7 @@
   "editor.fontFamily": "MonoLisa Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
+  "editor.fontWeight": "300",
   "editor.formatOnSave": false,
   "editor.gotoLocation.multipleDeclarations": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
@@ -50,7 +35,9 @@
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.occurrencesHighlight": "off",
   "editor.overviewRulerBorder": false,
-  "editor.quickSuggestions": { "strings": true },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
   "editor.renderControlCharacters": false,
   "editor.renderLineHighlight": "gutter",
   "editor.renderWhitespace": "trailing",
@@ -64,6 +51,7 @@
   "editor.tabSize": 2,
 
   // Symbols
+  "symbols.hidesExplorerArrows": false,
   "symbols.folders.associations": {
     "configs": "folder-config",
     "errors": "folder-red",
@@ -73,6 +61,10 @@
   },
   "symbols.files.associations": {
     ".env": "document",
+    ".env*": "document",
+    ".env.prod": "document",
+    ".env.test": "document",
+    ".env.example": "document",
     "*.e2e-spec.ts": "ts-test",
     "vitest.config.e2e.ts": "vitest"
   },
@@ -91,17 +83,16 @@
   },
   "emmet.triggerExpansionOnTab": true,
 
-  // Eslint
+  // Files
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact",
     "vue",
-    "html"
+    "html",
+    "astro"
   ],
-
-  // Files
   "files.associations": {
     ".env": "env",
     ".env.*": "env",
@@ -110,8 +101,8 @@
     ".stylelintrc": "json",
     ".sequelizerc": "javascript",
     ".md": "mdx",
-    "*.tsx": "typescriptreact",
     "*.css": "tailwindcss",
+    "*.tsx": "typescriptreact",
     "*.config": "aspnetcorerazor"
   },
   "files.exclude": {
@@ -161,6 +152,7 @@
   "color-highlight.markRuler": false,
   "color-highlight.matchHslWithNoFunction": true,
   "color-highlight.matchRgbWithNoFunction": true,
+  "errorLens.fontWeight": "300",
   "errorLens.enabledDiagnosticLevels": ["error", "warning"],
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
@@ -172,20 +164,21 @@
   },
   "problems.decorations.enabled": false,
   "search.exclude": {
+    "**/storybook-static": true,
     "**/node_modules": true,
     "**/.next": true,
     "**/dist": true,
     "*lock*": true,
     ".git": true
   },
-  "search.useIgnoreFiles": true,
+  "search.useIgnoreFiles": false,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  "symbols.hidesExplorerArrows": false,
   "update.mode": "none",
   "update.showReleaseNotes": false,
-  "window.commandCenter": false,
+  "vue.server.hybridMode": false,
   "window.nativeFullScreen": true,
+  "window.commandCenter": true,
 
   // Git
   "diffEditor.codeLens": true,
@@ -195,15 +188,6 @@
   "git.confirmSync": false,
   "git.ignoreRebaseWarning": true,
   "git.openRepositoryInParentFolders": "never",
-
-  // GitHub Copilot
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": true,
-    "scminput": false
-  },
-  "github.copilot.chat.inlineChatHint.enabled": true,
 
   // GitLens
   "gitlens.codeLens.authors.enabled": false,
@@ -218,7 +202,8 @@
   "javascript.referencesCodeLens.showOnAllFunctions": true,
   "javascript.suggest.autoImports": true,
   "javascript.suggest.completeFunctionCalls": true,
-  "javascript.updateImportsOnFileMove.enabled": "never",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.useAliasesForRenames": false,
 
   // TypeScript
   "typescript.preferences.importModuleSpecifier": "non-relative",
@@ -226,13 +211,11 @@
   "typescript.referencesCodeLens.showOnAllFunctions": true,
   "typescript.suggest.autoImports": true,
   "typescript.suggest.completeFunctionCalls": true,
-  "typescript.updateImportsOnFileMove.enabled": "never",
-
-  // Polacode
-  "polacode.target": "snippet",
-  "polacode.transparentBackground": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.useAliasesForRenames": false,
 
   // Tailwind css
+  "tailwindCSS.validate": true,
   "tailwindCSS.colorDecorators": true,
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.experimental.classRegex": [
@@ -244,13 +227,17 @@
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-    ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["(?:^|\\s+)['`\"]([^'`\"]*)['`\"](?:,|$)"]
   ],
   "tailwindCSS.includeLanguages": {
     "plaintext": "html",
     "typescript": "javascript",
     "typescriptreact": "javascript"
   },
+  "tailwindCSS.lint.cssConflict": "warning",
+  "tailwindCSS.lint.recommendedVariantOrder": "warning",
   "tailwindCSS.showPixelEquivalents": true,
 
   // Terminal
@@ -261,31 +248,33 @@
   "debug.console.fontFamily": "MonoLisa Nerd Font",
   "debug.console.fontSize": 13,
   "debug.console.lineHeight": 24,
+  "debug.disassemblyView.showSourceCode": false,
+  "githubPullRequests.pullBranch": "never",
+  "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.env.osx": {},
   "terminal.integrated.fontFamily": "MonoLisa Nerd Font",
   "terminal.integrated.fontSize": 13,
-  "terminal.integrated.fontWeightBold": "normal",
+  "terminal.integrated.fontWeight": "300",
+  "terminal.integrated.fontWeightBold": "500",
   "terminal.integrated.lineHeight": 1.8,
   "terminal.integrated.showExitAlert": false,
 
   // Workbench
-  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.labelFormat": "short",
   "workbench.fontAliasing": "antialiased",
   "workbench.iconTheme": "symbols",
-  "workbench.layoutControl.enabled": false,
   "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
-  "workbench.startupEditor": "newUntitledFile",
   "workbench.tips.enabled": false,
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
-  "debug.disassemblyView.showSourceCode": false
+  "workbench.activityBar.orientation": "vertical"
 }

@@ -1,20 +1,4 @@
 {
-  // Apc
-  "apc.header": {
-    "height": 36
-  },
-  "apc.sidebar.titlebar": {
-    "fontSize": 14,
-    "height": 36
-  },
-  "apc.activityBar": {
-    "size": 40,
-    "itemMargin": 4
-  },
-  "apc.listRow": {
-    "height": 24
-  },
-
   // Editor
   "cursor.cpp.disabledLanguages": [
     "plaintext",
@@ -24,8 +8,9 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
-    "source.fixAll": "always"
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "quickfix.biome": "explicit"
   },
   "editor.codeLens": true,
   "editor.colorDecorators": true,
@@ -34,6 +19,7 @@
   "editor.fontFamily": "MonoLisa Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
+  "editor.fontWeight": "300",
   "editor.formatOnSave": false,
   "editor.gotoLocation.multipleDeclarations": "goto",
   "editor.gotoLocation.multipleDefinitions": "goto",
@@ -68,6 +54,25 @@
   "editor.stickyScroll.enabled": false,
   "editor.tabSize": 2,
 
+  // Symbols
+  "symbols.hidesExplorerArrows": false,
+  "symbols.folders.associations": {
+    "configs": "folder-config",
+    "errors": "folder-red",
+    "in-memory": "folder-orange-code",
+    "node_modules": "folder-modules",
+    "packages": "folder-blue-code"
+  },
+  "symbols.files.associations": {
+    ".env": "document",
+    ".env*": "document",
+    ".env.prod": "document",
+    ".env.test": "document",
+    ".env.example": "document",
+    "*.e2e-spec.ts": "ts-test",
+    "vitest.config.e2e.ts": "vitest"
+  },
+
   // Emmet
   "emmet.includeLanguages": {
     "aspnetcorerazor": "html",
@@ -89,7 +94,8 @@
     "typescript",
     "typescriptreact",
     "vue",
-    "html"
+    "html",
+    "astro"
   ],
   "files.associations": {
     ".env": "env",
@@ -99,8 +105,8 @@
     ".stylelintrc": "json",
     ".sequelizerc": "javascript",
     ".md": "mdx",
-    "*.tsx": "typescriptreact",
     "*.css": "tailwindcss",
+    "*.tsx": "typescriptreact",
     "*.config": "aspnetcorerazor"
   },
   "files.exclude": {
@@ -117,20 +123,24 @@
 
   // Formatters
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
-    "editor.autoClosingBrackets": "beforeWhitespace",
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
-    "editor.autoClosingBrackets": "beforeWhitespace",
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
@@ -146,21 +156,21 @@
   "color-highlight.markRuler": false,
   "color-highlight.matchHslWithNoFunction": true,
   "color-highlight.matchRgbWithNoFunction": true,
-  "errorLens.enabledDiagnosticLevels": [
-    "error",
-    "warning"
-  ],
+  "errorLens.fontWeight": "300",
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "package.json": "package-lock*, yarn.lock, pnpm-lock*, bun.lock*, tsconfig*, .eslint*, .prettier*, .lintstaged*, babel*, biome, .nvm*, .npm*",
+    "package.json": "package*, pnpm*, bun*, .npm*, yarn*, .nvm*, tsconfig*, .eslint*, eslint*, .prettier*, .editorconfig, vite*, biome*, .lintstaged*, babel*, metro*, docker*, tsup*, lefthook*",
     "tailwind.config.*": "tailwind.config*, postcss.config*"
   },
   "problems.decorations.enabled": false,
   "search.exclude": {
+    "**/storybook-static": true,
     "**/node_modules": true,
+    "**/.next": true,
     "**/dist": true,
     "*lock*": true,
     ".git": true
@@ -168,11 +178,11 @@
   "search.useIgnoreFiles": false,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  "symbols.hidesExplorerArrows": false,
   "update.mode": "none",
   "update.showReleaseNotes": false,
-  "window.commandCenter": true,
+  "vue.server.hybridMode": false,
   "window.nativeFullScreen": true,
+  "window.commandCenter": true,
 
   // Git
   "diffEditor.codeLens": true,
@@ -191,26 +201,25 @@
   "gitlens.plusFeatures.enabled": false,
 
   // JavaScript
-  "javascript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.quoteStyle": "single",
   "javascript.referencesCodeLens.showOnAllFunctions": true,
   "javascript.suggest.autoImports": true,
   "javascript.suggest.completeFunctionCalls": true,
-  "javascript.updateImportsOnFileMove.enabled": "never",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.useAliasesForRenames": false,
 
   // TypeScript
-  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.quoteStyle": "single",
   "typescript.referencesCodeLens.showOnAllFunctions": true,
   "typescript.suggest.autoImports": true,
   "typescript.suggest.completeFunctionCalls": true,
-  "typescript.updateImportsOnFileMove.enabled": "never",
-
-  // Polacode
-  "polacode.target": "snippet",
-  "polacode.transparentBackground": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.useAliasesForRenames": false,
 
   // Tailwind css
+  "tailwindCSS.validate": true,
   "tailwindCSS.colorDecorators": true,
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.experimental.classRegex": [
@@ -222,35 +231,41 @@
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-    ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["(?:^|\\s+)['`\"]([^'`\"]*)['`\"](?:,|$)"]
   ],
   "tailwindCSS.includeLanguages": {
     "plaintext": "html",
     "typescript": "javascript",
     "typescriptreact": "javascript"
   },
+  "tailwindCSS.lint.cssConflict": "warning",
+  "tailwindCSS.lint.recommendedVariantOrder": "warning",
   "tailwindCSS.showPixelEquivalents": true,
 
   // Terminal
   "console-ninja.captureFunctions": true,
-  "console-ninja.featureSet": "Community",
+  "console-ninja.featureSet": "Pro",
   "console-ninja.fontSize": 13,
   "console-ninja.predictiveLoggingEnabled": false,
   "debug.console.fontFamily": "MonoLisa Nerd Font",
   "debug.console.fontSize": 13,
   "debug.console.lineHeight": 24,
   "debug.disassemblyView.showSourceCode": false,
+  "githubPullRequests.pullBranch": "never",
+  "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.env.osx": {},
   "terminal.integrated.fontFamily": "MonoLisa Nerd Font",
   "terminal.integrated.fontSize": 13,
-  "terminal.integrated.fontWeightBold": "normal",
+  "terminal.integrated.fontWeight": "300",
+  "terminal.integrated.fontWeightBold": "500",
   "terminal.integrated.lineHeight": 1.8,
   "terminal.integrated.showExitAlert": false,
 
-    // Workbench
-  "workbench.activityBar.orientation": "vertical",
+  // Workbench
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
@@ -265,5 +280,5 @@
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
-  "vue.server.hybridMode": false
+  "workbench.activityBar.orientation": "vertical"
 }
