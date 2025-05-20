@@ -28,6 +28,7 @@ cask=(
   "twingate"
   "visual-studio-code"
   "whatsapp"
+  "windsurf"
   "zoom"
 )
 
