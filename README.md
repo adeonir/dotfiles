@@ -104,7 +104,6 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - font-fira-code-nerd-font
 - ghostty
 - google-chrome
-- notion
 - orbstack
 - raycast
 - setapp

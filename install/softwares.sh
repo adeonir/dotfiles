@@ -16,7 +16,6 @@ cask=(
   "figma"
   "ghostty"
   "google-chrome"
-  "notion"
   "orbstack"
   "raycast"
   "setapp"
