@@ -92,16 +92,16 @@ fi
 ln -sf $DOTFILES/settings/.npmrc $HOME/
 msg_checking ".npmrc"
 
-# Warp theme
-if [ -f "$HOME/.warp/themes/catppuccin_macchiato.yml" ]; then
-  msg_update "warp theme"
-  rm $HOME/.warp/themes/catppuccin_macchiato.yml
+# Ghostty config
+if [ -f "$HOME/.config/ghostty" ]; then
+  msg_update "ghostty config"
+  rm $HOME/.config/ghostty
 else
-  msg_install "warp theme"
-  mkdir -p $HOME/.warp/themes
+  msg_install "ghostty config"
+  mkdir -p $HOME/.config/ghostty
 fi
-ln -sf $DOTFILES/settings/warp/catppuccin_macchiato.yml $HOME/.warp/themes/
-msg_checking "warp theme"
+ln -sf $DOTFILES/settings/ghostty/config $HOME/.config/ghostty/
+msg_checking "ghostty config"
 
 # Starship
 if [ -f "$HOME/.config/starship.toml" ]; then

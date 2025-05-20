@@ -15,8 +15,8 @@ The script install/environment.sh sets up the development environment by configu
 - Installing Homebrew and essential packages
 - Setting up fnm (Fast Node Manager) for managing Node.js versions
 - Configuring Oh My Zsh and Zinit for Zsh customization
-- Applying the Catppuccin theme for the Warp terminal
 - Configuring the Starship prompt
+- Applying the Catppuccin theme for the Ghostty terminal
 - Setting up Better Vim with custom configurations
 
 These scripts ensure that your development environment is consistent and ready to use.
@@ -29,10 +29,6 @@ Homebrew is a package manager for macOS (or Linux) that simplifies the installat
 
 fnm is a fast and simple Node.js version manager, built in Rust. It allows you to easily switch between different versions of Node.js.
 
-### Better Vim
-
-Better Vim is a customized configuration for Vim, aimed at improving the default experience with additional plugins and settings. The configuration file can be found at settings/better-vim/better-vim.lua.
-
 ### Oh My Zsh
 
 Oh My Zsh is an open-source, community-driven framework for managing your Zsh configuration. It comes bundled with a ton of helpful functions, helpers, plugins, themes, and more.
@@ -41,13 +37,17 @@ Oh My Zsh is an open-source, community-driven framework for managing your Zsh co
 
 Zinit is a flexible and fast Zsh plugin manager that allows you to load plugins and configure them in a declarative manner.
 
+### Starship
+
+Starship is a cross-shell prompt that is fast, customizable, and minimalistic. The configuration file can be found at settings/starship.toml.
+
 ### Catppuccin
 
 Catppuccin is a soothing pastel theme for various applications. The Warp terminal theme configuration can be found at settings/warp/catppuccin_macchiato.yml.
 
-### Starship
+### Better Vim
 
-Starship is a cross-shell prompt that is fast, customizable, and minimalistic. The configuration file can be found at settings/starship.toml.
+Better Vim is a customized configuration for Vim, aimed at improving the default experience with additional plugins and settings. The configuration file can be found at settings/better-vim/better-vim.lua.
 
 ### MySQL
 
@@ -103,6 +103,7 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - docker
 - figma
 - font-fira-code-nerd-font
+- ghostty
 - google-chrome
 - postman
 - raycast
@@ -111,7 +112,6 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - spotify
 - telegram
 - visual-studio-code
-- warp
 - whatsapp
 - zoom
 
@@ -130,7 +130,7 @@ The script `install/settings.sh` sets up various configuration files:
 - bettervim config
 - starship config
 - vscode settings
-- warp theme
+- ghostty config
 
 ---
 

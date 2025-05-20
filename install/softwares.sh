@@ -14,6 +14,7 @@ cask=(
   "cursor"
   "discord"
   "figma"
+  "ghostty"
   "google-chrome"
   "notion"
   "orbstack"
@@ -26,7 +27,6 @@ cask=(
   "transmission"
   "twingate"
   "visual-studio-code"
-  "warp"
   "whatsapp"
   "zoom"
 )
