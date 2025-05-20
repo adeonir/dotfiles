@@ -22,16 +22,6 @@ fi
 ln -sf $DOTFILES/settings/cursor/settings.json $HOME/Library/Application\ Support/Cursor/User/
 msg_checking "cursor settings"
 
-# Windsurf settings
-if [ -f "$HOME/Library/Application\ Support/Windsurf/User/settings.json" ]; then
-  msg_update "windsurf settings"
-  rm $HOME/Library/Application\ Support/Windsurf/User/settings.json
-else
-  msg_install "windsurf settings"
-fi
-ln -sf $DOTFILES/settings/windsurf/settings.json $HOME/Library/Application\ Support/Windsurf/User/
-msg_checking "windsurf settings"
-
 # .editorconfig
 if [ -f "$HOME/.editorconfig" ]; then
   msg_update ".editorconfig"

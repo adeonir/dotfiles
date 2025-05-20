@@ -113,9 +113,7 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - telegram
 - visual-studio-code
 - whatsapp
-- windsurf
 - yaak
-- zoom
 
 ## Settings
 
@@ -133,7 +131,6 @@ The script `install/settings.sh` sets up various configuration files:
 - starship config
 - vscode settings
 - cursor settings
-- windsurf settings
 - ghostty config
 ---
 

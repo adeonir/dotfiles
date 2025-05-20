@@ -26,9 +26,7 @@ cask=(
   "transmission"
   "visual-studio-code"
   "whatsapp"
-  "windsurf"
   "yaak"
-  "zoom"
 )
 
 for app in "${cask[@]}"; do
