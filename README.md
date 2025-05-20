@@ -105,7 +105,6 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - font-fira-code-nerd-font
 - ghostty
 - google-chrome
-- postman
 - raycast
 - setapp
 - slack
@@ -114,6 +113,7 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - visual-studio-code
 - whatsapp
 - windsurf
+- yaak
 - zoom
 
 ## Settings

@@ -18,17 +18,16 @@ cask=(
   "google-chrome"
   "notion"
   "orbstack"
-  "postman"
   "raycast"
   "setapp"
   "slack"
   "spotify"
   "telegram"
   "transmission"
-  "twingate"
   "visual-studio-code"
   "whatsapp"
   "windsurf"
+  "yaak"
   "zoom"
 )
 
