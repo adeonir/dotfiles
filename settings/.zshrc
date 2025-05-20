@@ -67,6 +67,7 @@ zinit for \
 eval "$(starship init zsh)"
 
 # Fnm
+export PATH="$HOME/.fnm:$PATH"
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
 # Bun
@@ -91,6 +92,13 @@ export PATH=$HOME/.gem/bin:$PATH
 # Openjdk
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
+# Initialize pyenv
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# Add pyenv to PATH
+export PATH="$HOME/.pyenv/bin:$PATH"
+
 # Joyjet ssh key
 function cd() {
   builtin cd "$@"  # Call the original `cd` command
@@ -99,13 +107,6 @@ function cd() {
     ssh-add ~/.ssh/id_rsa_joyjet
   fi
 }
-
-# Add pyenv to PATH
-export PATH="$HOME/.pyenv/bin:$PATH"
-
-# Initialize pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
 
 # Added by Windsurf
 export PATH="/Users/adeonir/.codeium/windsurf/bin:$PATH"
