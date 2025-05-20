@@ -100,11 +100,12 @@ The script `install/softwares.sh` installs the following software using Homebrew
 - clockify
 - cursor
 - discord
-- docker
 - figma
 - font-fira-code-nerd-font
 - ghostty
 - google-chrome
+- notion
+- orbstack
 - raycast
 - setapp
 - slack
