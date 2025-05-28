@@ -1,19 +1,17 @@
+# Hide 'last login' message
+printf '\33c\e[3J'
+
 # Path
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib:$PATH"
-
-# Xterm config
-export TERM=xterm-256color
-
-# Fix lint-staged spinners and colors
-export FORCE_COLOR=1
 
 # Path to oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Path sourses
 source $ZSH/oh-my-zsh.sh
+
 source $HOME/.aliases
 source $HOME/.functions
 
@@ -27,6 +25,10 @@ plugins=(
   docker
   github
   macos
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-completions
+  zsh-history-substring-search
 )
 
 # Zsh history settings
@@ -42,6 +44,11 @@ setopt INC_APPEND_HISTORY
 # Zsh key bindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# Zsh plugins
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Starship
 eval "$(starship init zsh)"

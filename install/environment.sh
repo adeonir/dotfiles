@@ -27,14 +27,16 @@ brew install \
   fnm \
   gh \
   git \
-  httpie \
   node \
   pnpm \
   starship \
   tree \
-  vercel-cli \
   wget \
-  zsh
+  zsh \
+  zsh-syntax-highlighting \
+  zsh-autosuggestions \
+  zsh-completions \
+  zsh-history-substring-search
 msg_ok "Apps installed"
 
 # Fnm
@@ -56,18 +58,4 @@ if (test ! -d $HOME/.oh-my-zsh); then
   msg_ok "oh-my-zsh installed"
 else
   msg_alert "oh-my-zsh already installed"
-fi
-
-# oh-my-zsh plugins
-if (test ! -d $HOME/.oh-my-zsh); then
-  msg_install "Installing oh-my-zsh plugins"
-
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
-  git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
-
-  msg_ok "oh-my-zsh plugins installed"
-else
-  msg_alert "oh-my-zsh plugins already installed"
 fi
