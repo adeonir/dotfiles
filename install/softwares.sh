@@ -22,7 +22,6 @@ cask=(
   "slack"
   "spotify"
   "telegram"
-  "transmission"
   "visual-studio-code"
   "whatsapp"
   "yaak"
