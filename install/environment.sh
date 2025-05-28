@@ -28,21 +28,12 @@ brew install \
   gh \
   git \
   httpie \
-  mysql \
   node \
-  openssl \
-  php \
   pnpm \
-  postgresql \
-  python3 \
-  readline \
-  ruby \
-  sqlite \
   starship \
   tree \
   vercel-cli \
   wget \
-  yarn \
   zsh
 msg_ok "Apps installed"
 
@@ -67,11 +58,16 @@ else
   msg_alert "oh-my-zsh already installed"
 fi
 
-# zinit
-if (test ! -d $HOME/.local/share/zinit); then
-  msg_install "Installing zinit"
-  sh -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-  msg_ok "zinit installed"
+# oh-my-zsh plugins
+if (test ! -d $HOME/.oh-my-zsh); then
+  msg_install "Installing oh-my-zsh plugins"
+
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
+  git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+
+  msg_ok "oh-my-zsh plugins installed"
 else
-  msg_alert "zinit already installed"
+  msg_alert "oh-my-zsh plugins already installed"
 fi

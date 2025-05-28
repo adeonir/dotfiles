@@ -21,10 +21,8 @@ source $HOME/.functions
 plugins=(
   z
   git
-  vscode
   brew
   node
-  yarn
   npm
   docker
   github
@@ -44,24 +42,6 @@ setopt INC_APPEND_HISTORY
 # Zsh key bindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-# Zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-
-zinit ice wait
-zinit for \
-    light-mode zsh-users/zsh-apple-touchbar \
-    light-mode zsh-users/zsh-autosuggestions \
-    light-mode zsh-users/zsh-completions \
-    light-mode zsh-users/zsh-history-substring-search \
-    light-mode zsh-users/zsh-syntax-highlighting \
-    light-mode zdharma-continuum/fast-syntax-highlighting \
-    light-mode zdharma-continuum/history-search-multi-word \
-    load agkozak/zsh-z
-# Zinit end
 
 # Starship
 eval "$(starship init zsh)"
@@ -86,19 +66,6 @@ esac
 # Console Ninja
 PATH=$HOME/.console-ninja/.bin:$PATH
 
-# CocoaPods
-export PATH=$HOME/.gem/bin:$PATH
-
-# Openjdk
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
-# Initialize pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-
-# Add pyenv to PATH
-export PATH="$HOME/.pyenv/bin:$PATH"
-
 # Joyjet ssh key
 function cd() {
   builtin cd "$@"  # Call the original `cd` command
@@ -107,6 +74,3 @@ function cd() {
     ssh-add ~/.ssh/id_rsa_joyjet
   fi
 }
-
-# Added by Windsurf
-export PATH="/Users/adeonir/.codeium/windsurf/bin:$PATH"

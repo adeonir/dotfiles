@@ -7,7 +7,6 @@ msg_install "Installing software with brew cask"
 cask=(
   "1password"
   "arc"
-  "calibre"
   "catch"
   "chatgpt"
   "clockify"
