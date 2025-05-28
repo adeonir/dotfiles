@@ -32,6 +32,7 @@ brew install \
   starship \
   tree \
   wget \
+  zoxide \
   zsh \
   zsh-syntax-highlighting \
   zsh-autosuggestions \

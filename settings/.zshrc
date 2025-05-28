@@ -17,18 +17,14 @@ source $HOME/.functions
 
 # Zsh plugins
 plugins=(
-  z
-  git
   brew
-  node
-  npm
   docker
+  git
   github
   macos
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  zsh-completions
-  zsh-history-substring-search
+  node
+  npm
+  zoxide
 )
 
 # Zsh history settings
@@ -49,6 +45,9 @@ bindkey '^[[B' history-substring-search-down
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# Zoxide
+eval "$(zoxide init zsh)"
 
 # Starship
 eval "$(starship init zsh)"
