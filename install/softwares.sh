@@ -1,8 +1,11 @@
 #!/bin/sh
 
+set -e
+
 source colors.sh
 
 #  Brew Cask
+echo
 msg_install "Installing software with brew cask"
 cask=(
   "1password-cli"
@@ -32,25 +35,30 @@ cask=(
 )
 
 for app in "${cask[@]}"; do
-  msg_install "Installing $app"
-  brew install --cask $app
-  msg_ok "$app installed"
+  if brew list --cask $app &>/dev/null; then
+    msg_info "$app already installed"
+  else
+    msg_install "Installing $app"
+    brew install --cask $app
+    msg_ok "$app installed"
+  fi
 done
 
-# BetterVim
-msg_alert "What is the license key for BetterVim?"
+echo
+# BetterVim Configuration
+msg_prompt "What is the license key for BetterVim?"
 read BETTER_VIM_LICENSE
 
-if [ -z "$BETTER_VIM_LICENSE" ]; then
-  msg_alert "BETTER_VIM_LICENSE is not set"
-else
+if [ -n "$BETTER_VIM_LICENSE" ]; then
   if [ -f "$HOME/.config/better-vim/better-vim.lua" ]; then
-      msg_update "better-vim"
-      rm ~/.config/better-vim/better-vim.lua
+    msg_update "better-vim"
+    rm ~/.config/better-vim/better-vim.lua
   else
-      msg_install "better-vim"
+    msg_install "better-vim"
+    mkdir -p ~/.config/better-vim
   fi
+  ln -sf $DOTFILES/settings/better-vim/better-vim.lua ~/.config/better-vim/
+  msg_checking "better-vim"
+else
+  msg_skip "BetterVim - no license key provided"
 fi
-
-ln -sf $DOTFILES/settings/better-vim/better-vim.lua ~/.config/better-vim/
-msg_checking "better-vim"

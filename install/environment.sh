@@ -1,44 +1,63 @@
 #!/bin/sh
 
+set -e
+
 source colors.sh
 
 # Brew
+echo
 msg_install "Setting up Homebrew"
-if test ! $(which brew); then
+if ! command -v brew >/dev/null 2>&1; then
   msg_install "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   msg_ok 'Homebrew installed'
   exec "$SHELL"
 else
-  msg_alert "Homebrew already installed"
+  msg_info "Homebrew already installed"
 fi
 
+echo
 msg_update "Updating Homebrew"
 brew update
 brew upgrade
 
-# Brew apps
-msg_install "Installing apps with brew"
+# Command Line Tools
+echo
+msg_install "Installing command line tools with brew"
 brew cleanup
 brew tap buo/cask-upgrade
-brew install \
-  bat \
-  curl \
-  fnm \
-  gh \
-  git \
-  node \
-  pnpm \
-  starship \
-  tree \
-  wget \
-  zoxide \
-  zsh \
-  zsh-syntax-highlighting \
-  zsh-autosuggestions \
-  zsh-completions \
-  zsh-history-substring-search
-msg_ok "Apps installed"
+
+tools=(
+  "bat"
+  "curl"
+  "fnm"
+  "fzf"
+  "gh"
+  "git"
+  "jq"
+  "node"
+  "pnpm"
+  "starship"
+  "tldr"
+  "tree"
+  "wget"
+  "zoxide"
+  "zsh"
+  "zsh-syntax-highlighting"
+  "zsh-autosuggestions"
+  "zsh-completions"
+  "zsh-history-substring-search"
+)
+
+for tool in "${tools[@]}"; do
+  if brew list $tool &>/dev/null; then
+    msg_info "$tool already installed"
+  else
+    msg_install "Installing $tool"
+    brew install $tool
+    msg_ok "$tool installed"
+  fi
+done
 
 # Fnm
 fnm default system
@@ -49,7 +68,7 @@ if [ ! -d $HOME/.bun ]; then
   curl -fsSL https://bun.sh/install | bash
   msg_ok "Bun installed"
 else
-  msg_alert "Bun already installed"
+  msg_info "Bun already installed"
 fi
 
 # oh-my-zsh
@@ -58,5 +77,5 @@ if (test ! -d $HOME/.oh-my-zsh); then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   msg_ok "oh-my-zsh installed"
 else
-  msg_alert "oh-my-zsh already installed"
+  msg_info "oh-my-zsh already installed"
 fi
