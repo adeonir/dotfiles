@@ -38,13 +38,12 @@ for app in "${cask[@]}"; do
   if brew list --cask $app &>/dev/null; then
     msg_info "$app already installed"
   else
-    msg_install "Installing $app"
+    msg_install_item "Installing $app"
     brew install --cask $app
     msg_ok "$app installed"
   fi
 done
 
-echo
 # BetterVim Configuration
 msg_prompt "What is the license key for BetterVim?"
 read BETTER_VIM_LICENSE
@@ -54,7 +53,7 @@ if [ -n "$BETTER_VIM_LICENSE" ]; then
     msg_update "better-vim"
     rm ~/.config/better-vim/better-vim.lua
   else
-    msg_install "better-vim"
+    msg_install_item "better-vim"
     mkdir -p ~/.config/better-vim
   fi
   ln -sf $DOTFILES/settings/better-vim/better-vim.lua ~/.config/better-vim/

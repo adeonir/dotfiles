@@ -8,7 +8,7 @@ source colors.sh
 echo
 msg_install "Setting up Homebrew"
 if ! command -v brew >/dev/null 2>&1; then
-  msg_install "Installing homebrew"
+  msg_install_item "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   msg_ok 'Homebrew installed'
   exec "$SHELL"
@@ -53,7 +53,7 @@ for tool in "${tools[@]}"; do
   if brew list $tool &>/dev/null; then
     msg_info "$tool already installed"
   else
-    msg_install "Installing $tool"
+    msg_install_item "Installing $tool"
     brew install $tool
     msg_ok "$tool installed"
   fi
@@ -64,7 +64,7 @@ fnm default system
 
 # Bun
 if [ ! -d $HOME/.bun ]; then
-  msg_install "Installing Bun"
+  msg_install_item "Installing Bun"
   curl -fsSL https://bun.sh/install | bash
   msg_ok "Bun installed"
 else
@@ -73,7 +73,7 @@ fi
 
 # oh-my-zsh
 if (test ! -d $HOME/.oh-my-zsh); then
-  msg_install "Installing oh-my-zsh"
+  msg_install_item "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   msg_ok "oh-my-zsh installed"
 else
