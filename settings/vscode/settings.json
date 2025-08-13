@@ -1,5 +1,13 @@
 {
   // Editor
+  "chat.mcp.serverSampling": {
+    "Global in Code: context7": {
+      "allowedModels": [
+        "github.copilot-chat/gpt-4.1",
+        "github.copilot-chat/claude-3.5-sonnet"
+      ]
+    }
+  },
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
@@ -159,7 +167,7 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "package.json": "package*, pnpm*, bun*, .npm*, yarn*, .nvm*, tsconfig*, .eslint*, eslint*, .prettier*, .editorconfig, vite*, biome*, .lintstaged*, babel*, metro*, docker*, tsup*, lefthook*",
+    "package.json": "package*, pnpm*, .pnpm*, bun*, .npm*, yarn*, .nvm*, tsconfig*, .eslint*, eslint*, .prettier*, .editorconfig, vite*, biome*, .lintstaged*, babel*, metro*, docker*, tsup*, lefthook*",
     "tailwind.config.*": "tailwind.config*, postcss.config*"
   },
   "problems.decorations.enabled": false,
@@ -262,6 +270,7 @@
   "terminal.integrated.showExitAlert": false,
 
   // Workbench
+  "workbench.activityBar.orientation": "vertical",
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
@@ -272,9 +281,9 @@
   "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "none",
   "workbench.tips.enabled": false,
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always",
-  "workbench.activityBar.orientation": "vertical"
+  "workbench.tree.renderIndentGuides": "always"
 }

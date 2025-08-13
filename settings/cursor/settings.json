@@ -1,6 +1,9 @@
 {
   // Editor
+  "biome.suggestInstallingGlobally": false,
   "cursor.cpp.disabledLanguages": ["plaintext", "scminput"],
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.semanticSearch.includePullRequests": false,
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
@@ -251,6 +254,14 @@
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "args": ["-l"],
+      "path": "/opt/homebrew/bin/zsh"
+    }
+  },
+  "terminal.integrated.shellIntegration.enabled": true,
   "terminal.integrated.env.osx": {},
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "terminal.integrated.fontSize": 13,
@@ -260,6 +271,7 @@
   "terminal.integrated.showExitAlert": false,
 
   // Workbench
+  "workbench.activityBar.orientation": "vertical",
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
@@ -273,6 +285,5 @@
   "workbench.tips.enabled": false,
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always",
-  "workbench.activityBar.orientation": "vertical"
+  "workbench.tree.renderIndentGuides": "always"
 }
