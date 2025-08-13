@@ -13,7 +13,7 @@ alias projects='~/Developer/projects'
 alias temp='~/Developer/temp'
 
 # Command aliases
-alias bup='brew update; brew upgrade; brew cleanup; brew cu --all --yes --no-brew-update'
+alias bup='brew update -q; brew upgrade -q; echo "\033[34m==>\033[1;37m Updating casks...\033[0m"; brew cu -q -a -y --no-brew-update; echo "\033[34m==>\033[1;37m Cleaning up...\033[0m"; brew cleanup -q --scrub --prune=all'
 alias npm-up='npx npm-check-updates --dep prod,dev --upgrade --color --interactive'
 alias npm-gup='npm update -g'
 alias pnpm-up='pnpm up --latest -r -i'
@@ -41,6 +41,3 @@ alias releasedock='defaults write com.apple.Dock size-immutable -bool false; kil
 
 # Lock the screen (when going away from keyboard)
 alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
-
-# Sleep
-alias sleep='pmset sleepnow'

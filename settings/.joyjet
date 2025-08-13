@@ -1,0 +1,8 @@
+# Joyjet ssh key
+function cd() {
+  builtin cd "$@"  # Call the original `cd` command
+
+  if [[ "$PWD" == "$HOME/Developer/joyjet"* ]]; then
+    ssh-add ~/.ssh/id_rsa_joyjet
+  fi
+}

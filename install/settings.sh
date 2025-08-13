@@ -82,6 +82,16 @@ fi
 ln -sf $DOTFILES/settings/.functions $HOME/
 msg_checking ".functions"
 
+# .joyjet
+if [ -f "$HOME/.joyjet" ]; then
+  msg_update ".joyjet"
+  rm $HOME/.joyjet
+else
+  msg_install ".joyjet"
+fi
+ln -sf $DOTFILES/settings/.joyjet $HOME/
+msg_checking ".joyjet"
+
 # .npmrc
 if [ -f "$HOME/.npmrc" ]; then
   msg_update ".npmrc"

@@ -2,18 +2,13 @@
 printf '\33c\e[3J'
 
 # Path
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib:$PATH"
 
 # Path to oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# Path sourses
-source $ZSH/oh-my-zsh.sh
-
-source $HOME/.aliases
-source $HOME/.functions
 
 # Zsh plugins
 plugins=(
@@ -26,6 +21,13 @@ plugins=(
   npm
   zoxide
 )
+
+# Path sourses
+source $ZSH/oh-my-zsh.sh
+
+source $HOME/.aliases
+source $HOME/.functions
+source $HOME/.joyjet
 
 # Zsh history settings
 export HISTFILESIZE=1000000000
@@ -52,10 +54,6 @@ eval "$(zoxide init zsh)"
 # Starship
 eval "$(starship init zsh)"
 
-# Fnm
-export PATH="$HOME/.fnm:$PATH"
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
-
 # Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -72,11 +70,14 @@ esac
 # Console Ninja
 PATH=$HOME/.console-ninja/.bin:$PATH
 
-# Joyjet ssh key
-function cd() {
-  builtin cd "$@"  # Call the original `cd` command
+# Fnm
+export PATH="$HOME/.fnm:$PATH"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)"
 
-  if [[ "$PWD" == "$HOME/Developer/joyjet"* ]]; then
-    ssh-add ~/.ssh/id_rsa_joyjet
-  fi
-}
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/adeonir/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)" || true
