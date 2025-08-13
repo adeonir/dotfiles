@@ -19,6 +19,7 @@ cask=(
   "discord"
   "figma"
   "font-fira-code-nerd-font"
+  "font-monaspace-nerd-font"
   "google-chrome"
   "notion"
   "obsidian"
