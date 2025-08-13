@@ -102,16 +102,27 @@ fi
 ln -sf $DOTFILES/settings/.npmrc $HOME/
 msg_checking ".npmrc"
 
-# Ghostty config
-if [ -f "$HOME/.config/ghostty" ]; then
-  msg_update "ghostty config"
-  rm $HOME/.config/ghostty
+# Claude settings
+if [ -f "$HOME/.claude/CLAUDE.md" ]; then
+  msg_update "claude CLAUDE.md"
+  rm $HOME/.claude/CLAUDE.md
 else
-  msg_install "ghostty config"
-  mkdir -p $HOME/.config/ghostty
+  msg_install "claude CLAUDE.md"
+  mkdir -p $HOME/.claude
 fi
-ln -sf $DOTFILES/settings/ghostty/config $HOME/.config/ghostty/
-msg_checking "ghostty config"
+ln -sf $DOTFILES/settings/claude/CLAUDE.md $HOME/.claude/
+msg_checking "claude CLAUDE.md"
+
+if [ -f "$HOME/.claude/settings.json" ]; then
+  msg_update "claude settings.json"
+  rm $HOME/.claude/settings.json
+else
+  msg_install "claude settings.json"
+  mkdir -p $HOME/.claude
+fi
+ln -sf $DOTFILES/settings/claude/settings.json $HOME/.claude/
+msg_checking "claude settings.json"
+
 
 # Starship
 if [ -f "$HOME/.config/starship.toml" ]; then

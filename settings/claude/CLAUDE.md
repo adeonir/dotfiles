@@ -1,0 +1,3 @@
+- Always use descriptive variables names
+- NEVER use emojis in responses, commit messages, or pull request descriptions
+- Only add comments for magic numbers, complex business logic, or non-self-explanatory functions - avoid obvious comments

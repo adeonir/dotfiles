@@ -1,8 +1,0 @@
-theme = catppuccin-mocha
-
-font-family = "FiraCode Nerd Font"
-font-size = 13
-
-adjust-cell-height = 12
-window-padding-x = 20
-cursor-style = bar
