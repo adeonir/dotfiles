@@ -19,7 +19,6 @@ cask=(
   "discord"
   "figma"
   "font-fira-code-nerd-font"
-  "font-monaspace-nerd-font"
   "ghostty"
   "google-chrome"
   "notion"

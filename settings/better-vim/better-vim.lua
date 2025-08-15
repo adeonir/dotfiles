@@ -1,6 +1,6 @@
 return {
   theme = {
     name = "catppuccin",
-    catppuccin_flavour = "macchiato"
+    catppuccin_flavour = "mocha"
   }
 }
