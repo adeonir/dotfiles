@@ -45,20 +45,3 @@ for app in "${cask[@]}"; do
   fi
 done
 
-# better-vim
-msg_prompt "What is the license key for BetterVim?"
-read BETTER_VIM_LICENSE
-
-if [ -n "$BETTER_VIM_LICENSE" ]; then
-  if [ -f "$HOME/.config/better-vim/better-vim.lua" ]; then
-    msg_update "better-vim"
-    rm ~/.config/better-vim/better-vim.lua
-  else
-    msg_install_item "better-vim"
-    mkdir -p ~/.config/better-vim
-  fi
-  ln -sf $DOTFILES/settings/better-vim/better-vim.lua ~/.config/better-vim/
-  msg_checking "better-vim"
-else
-  msg_skip "BetterVim - no license key provided"
-fi

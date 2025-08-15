@@ -182,3 +182,4 @@ else
 fi
 ln -sf $DOTFILES/settings/ghostty/config $HOME/.config/ghostty/
 msg_checking "ghostty config"
+
