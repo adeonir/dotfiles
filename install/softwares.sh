@@ -20,6 +20,7 @@ cask=(
   "figma"
   "font-fira-code-nerd-font"
   "font-monaspace-nerd-font"
+  "ghostty"
   "google-chrome"
   "notion"
   "obsidian"
@@ -45,7 +46,7 @@ for app in "${cask[@]}"; do
   fi
 done
 
-# BetterVim Configuration
+# better-vim
 msg_prompt "What is the license key for BetterVim?"
 read BETTER_VIM_LICENSE
 

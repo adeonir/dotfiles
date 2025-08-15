@@ -1,0 +1,10 @@
+theme = catppuccin-mocha
+
+font-family = "MonaspiceNe Nerd Font"
+font-size = 13
+
+adjust-cell-height = 10
+window-padding-x = 20
+window-padding-y = 10
+window-padding-balance = true
+cursor-style = bar

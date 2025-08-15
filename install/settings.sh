@@ -171,3 +171,14 @@ else
 fi
 ln -sf $DOTFILES/settings/starship.toml $HOME/.config/
 msg_checking "starship"
+
+# ghostty
+if [ -f "$HOME/.config/ghostty" ]; then
+  msg_update "ghostty config"
+  rm $HOME/.config/ghostty
+else
+  msg_config "ghostty config"
+  mkdir -p $HOME/.config/ghostty
+fi
+ln -sf $DOTFILES/settings/ghostty/config $HOME/.config/ghostty/
+msg_checking "ghostty config"
