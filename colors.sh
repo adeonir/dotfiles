@@ -14,7 +14,7 @@
 
 function msg_install { echo -e "\033[1;40m==> $1\033[0m"; }
 function msg_install_item { echo -e "\033[1;35m[installing] $1\033[0m"; }
-function msg_checking { echo -e "\033[1;32m[checking] $1\033[0m"; }
+function msg_checking { echo -e "\033[1;32m[checked] $1 updated\033[0m"; }
 function msg_update { echo -e "\033[1;34m[updating] $1\033[0m"; }
 function msg_ok { echo -e "\033[1;32m[installed] $1\033[0m"; }
 function msg_alert { echo -e "\033[1;31m[alert] $1\033[0m"; }

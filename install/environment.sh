@@ -35,6 +35,7 @@ tools=(
   "gh"
   "git"
   "jq"
+  "neovim"
   "node"
   "pnpm"
   "starship"
@@ -78,4 +79,22 @@ if (test ! -d $HOME/.oh-my-zsh); then
   msg_ok "oh-my-zsh installed"
 else
   msg_info "oh-my-zsh already installed"
+fi
+
+
+# astronvim
+if [ -f "$HOME/.config/nvim/lua/plugins/astroui.lua" ]; then
+  msg_info "astronvim already installed"
+else
+  if [ -d "$HOME/.config/nvim" ]; then
+    msg_update "astronvim (replacing existing nvim config)"
+    rm -rf $HOME/.config/nvim
+  else
+    msg_install_item "astronvim"
+  fi
+
+  git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
+  rm -rf ~/.config/nvim/.git
+  cp -rf $DOTFILES/settings/astronvim/lua/* ~/.config/nvim/lua/
+  msg_ok "astronvim installed"
 fi

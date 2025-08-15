@@ -183,3 +183,11 @@ fi
 ln -sf $DOTFILES/settings/ghostty/config $HOME/.config/ghostty/
 msg_checking "ghostty config"
 
+# astronvim config
+if [ -f "$HOME/.config/nvim/lua/plugins/astroui.lua" ]; then
+  msg_update "astronvim config"
+  cp -rf $DOTFILES/settings/astronvim/lua/* ~/.config/nvim/lua/
+  msg_checking "astronvim config"
+else
+  msg_skip "astronvim config (AstroNvim not installed)"
+fi
