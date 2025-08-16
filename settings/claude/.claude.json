@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "env": {}
+    },
+    "browser-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@browsermcp/mcp@latest"
+      ],
+      "env": {}
+    },
+    "figma": {
+      "type": "sse",
+      "url": "http://127.0.0.1:3845/sse"
+    }
+  }
+}

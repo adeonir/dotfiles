@@ -52,6 +52,19 @@ fi
 ln -sf $DOTFILES/settings/claude/settings.json $HOME/.claude/
 msg_checking "claude settings.json"
 
+# Backup existing .claude.json and merge MCP servers
+if [ -f "$HOME/.claude.json" ]; then
+  msg_update "claude MCP servers configuration"
+  cp $HOME/.claude.json $HOME/.claude.json.backup
+  jq -s '.[0] * {"mcpServers": (.[0].mcpServers // {} | . * .[1].mcpServers)}' $HOME/.claude.json $DOTFILES/settings/claude/.claude.json > $HOME/.claude.json.tmp
+  mv $HOME/.claude.json.tmp $HOME/.claude.json
+  msg_checking "claude MCP servers merged"
+else
+  msg_config "claude MCP servers configuration"
+  cp $DOTFILES/settings/claude/.claude.json $HOME/.claude.json
+  msg_checking "claude MCP servers configuration"
+fi
+
 #=================
 # GIT & EDITOR CONFIGURATIONS
 #=================
