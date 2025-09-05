@@ -30,6 +30,7 @@
   "editor.hover.delay": 1000,
   "editor.hover.enabled": true,
   "editor.inlayHints.padding": true,
+  "editor.largeFileOptimizations": false,
   "editor.lightbulb.enabled": "off",
   "editor.lineHeight": 2,
   "editor.linkedEditing": true,
@@ -104,7 +105,7 @@
     ".prettierrc": "json",
     ".stylelintrc": "json",
     ".sequelizerc": "javascript",
-    ".md": "mdx",
+    "*.md": "markdown",
     "*.css": "tailwindcss",
     "*.tsx": "typescriptreact",
     "*.config": "aspnetcorerazor"
@@ -274,7 +275,6 @@
   "workbench.activityBar.orientation": "vertical",
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editor.empty.hint": "hidden",
-  "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.labelFormat": "short",
   "workbench.fontAliasing": "antialiased",
@@ -286,4 +286,11 @@
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.autoLockGroups": {
+    "mainThreadWebview-browserPreview": false
+  },
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  }
 }
