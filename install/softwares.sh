@@ -33,6 +33,7 @@ cask=(
   "warp"
   "whatsapp"
   "yaak"
+  "zen-browser"
 )
 
 for app in "${cask[@]}"; do
@@ -44,4 +45,3 @@ for app in "${cask[@]}"; do
     msg_ok "$app installed"
   fi
 done
-
