@@ -179,9 +179,12 @@ if [ -f "$HOME/.config/ghostty" ]; then
 else
   msg_config "ghostty config"
   mkdir -p $HOME/.config/ghostty
+  mkdir -p $HOME/.config/ghostty/themes
 fi
 ln -sf $DOTFILES/settings/ghostty/config $HOME/.config/ghostty/
 msg_checking "ghostty config"
+ln -sf $DOTFILES/settings/ghostty/catppuccin-mocha $HOME/.config/ghostty/themes/catppuccin-mocha
+msg_checking "ghostty theme"
 
 # astronvim config
 if [ -f "$HOME/.config/nvim/lua/plugins/astroui.lua" ]; then
