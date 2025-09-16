@@ -21,3 +21,6 @@ Session.vim
 
 # git
 *.patch
+
+# local
+*.local
