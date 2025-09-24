@@ -3,7 +3,7 @@
   email = adeonir@gmail.com
   initials = ak
 [core]
-  editor = cursor -w
+  editor = ~/.local/bin/git-editor
   excludesfiles = ~/.gitignore
 [branch]
   autosetuprebase = always

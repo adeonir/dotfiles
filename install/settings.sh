@@ -87,6 +87,17 @@ fi
 ln -sf $DOTFILES/settings/git/.gitignore $HOME/
 msg_checking ".gitignore"
 
+# git-editor script
+if [ -f "$HOME/.local/bin/git-editor" ]; then
+  msg_update "git-editor script"
+  rm $HOME/.local/bin/git-editor
+else
+  msg_config "git-editor script"
+  mkdir -p $HOME/.local/bin
+fi
+ln -sf $DOTFILES/settings/bin/git-editor $HOME/.local/bin/
+msg_checking "git-editor script"
+
 # .editorconfig
 if [ -f "$HOME/.editorconfig" ]; then
   msg_update ".editorconfig"
