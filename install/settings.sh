@@ -42,16 +42,6 @@ fi
 ln -sf $DOTFILES/settings/claude/CLAUDE.md $HOME/.claude/
 msg_checking "claude CLAUDE.md"
 
-if [ -f "$HOME/.claude/settings.json" ]; then
-  msg_update "claude settings.json"
-  rm $HOME/.claude/settings.json
-else
-  msg_config "claude settings.json"
-  mkdir -p $HOME/.claude
-fi
-ln -sf $DOTFILES/settings/claude/settings.json $HOME/.claude/
-msg_checking "claude settings.json"
-
 #=================
 # GIT & EDITOR CONFIGURATIONS
 #=================

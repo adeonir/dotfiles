@@ -42,8 +42,8 @@
   "editor.renderLineHighlight": "gutter",
   "editor.renderWhitespace": "trailing",
   "editor.rulers": [80, 120, 160],
-  "editor.scrollbar.horizontalScrollbarSize": 10,
-  "editor.scrollbar.verticalScrollbarSize": 10,
+  "editor.scrollbar.horizontalScrollbarSize": 8,
+  "editor.scrollbar.verticalScrollbarSize": 8,
   "editor.semanticHighlighting.enabled": false,
   "editor.smoothScrolling": true,
   "editor.snippetSuggestions": "bottom",
@@ -263,8 +263,11 @@
   "terminal.integrated.showExitAlert": false,
 
   // Workbench
-  "workbench.activityBar.orientation": "vertical",
+  "workbench.activityBar.location": "default",
   "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  },
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
@@ -277,9 +280,5 @@
   "workbench.tips.enabled": false,
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always",
-  "workbench.editorAssociations": {
-    "*.copilotmd": "vscode.markdown.preview.editor",
-    "*.svg": "default"
-  }
+  "workbench.tree.renderIndentGuides": "always"
 }

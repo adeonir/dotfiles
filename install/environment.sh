@@ -30,6 +30,7 @@ brew tap buo/cask-upgrade
 tools=(
   "bat"
   "curl"
+  "eza"
   "fnm"
   "fzf"
   "gh"
