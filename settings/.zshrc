@@ -70,6 +70,9 @@ esac
 # Console Ninja
 PATH=$HOME/.console-ninja/.bin:$PATH
 
+# Npm
+export NPM_CONFIG_LOGLEVEL=error
+
 # Fnm
 export PATH="$HOME/.fnm:$PATH"
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)"
@@ -78,4 +81,3 @@ eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)
 fpath=(/Users/adeonir/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
-# End of Docker CLI completions
