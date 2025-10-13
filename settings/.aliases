@@ -13,7 +13,7 @@ alias projects='~/Developer/projects'
 alias temp='~/Developer/temp'
 
 # Command aliases
-alias bup='brew update -q; brew upgrade -q; echo "\033[34m==>\033[1;37m Updating casks...\033[0m"; brew cu -q -a -y --no-brew-update; echo "\033[34m==>\033[1;37m Cleaning up...\033[0m"; brew cleanup -q --scrub --prune=all'
+alias bup='brew update -q; brew upgrade -q; brew cu -q -a -y --no-brew-update; brew cleanup -q --scrub --prune=all'
 alias npm-up='npx npm-check-updates --dep prod,dev --upgrade --color --interactive'
 alias npm-gup='npm update -g'
 alias pnpm-up='pnpm up --latest -r -i'
