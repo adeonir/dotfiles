@@ -1,4 +1,5 @@
 {
+  "claudeCode.useTerminal": true,
   // Editor
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
@@ -263,7 +264,7 @@
   "terminal.integrated.showExitAlert": false,
 
   // Workbench
-  "workbench.activityBar.location": "default",
+  "workbench.activityBar.location": "top",
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.editorAssociations": {
     "*.svg": "default"
@@ -280,5 +281,6 @@
   "workbench.tips.enabled": false,
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always"
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.startupEditor": "welcomePage"
 }
