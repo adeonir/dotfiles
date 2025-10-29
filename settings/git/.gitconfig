@@ -4,7 +4,7 @@
   initials = ak
 [core]
   editor = ~/.local/bin/git-editor
-  excludesfiles = ~/.gitignore
+  excludesfile = ~/.gitignore
 [branch]
   autosetuprebase = always
   sort = -committerdate

@@ -24,3 +24,4 @@ Session.vim
 
 # local
 *.local
+*.local.*

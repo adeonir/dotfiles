@@ -1,8 +1,15 @@
 #!/bin/sh
 
-set -e
+# Environment setup script
+# Installs and configures the development environment:
+#
+# This script can be run independently or via install.sh
 
-source colors.sh
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+
+# Source initialization script
+source "$SCRIPT_DIR/init.sh"
 
 # Brew
 echo

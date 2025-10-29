@@ -1,8 +1,15 @@
 #!/bin/sh
 
-set -e
+# Settings configuration script
+# Creates symlinks for configuration files:
+#
+# This script can be run independently or via install.sh
 
-source colors.sh
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+
+# Source initialization script
+source "$SCRIPT_DIR/init.sh"
 
 echo
 msg_install "Installing settings files"
@@ -12,24 +19,14 @@ msg_install "Installing settings files"
 #================="
 
 # Vscode settings
-if [ -f "$HOME/Library/Application\ Support/Code/User/settings.json" ]; then
+if [ -f "$HOME/Library/Application Support/Code/User/settings.json" ]; then
   msg_update "vscode settings"
-  rm $HOME/Library/Application\ Support/Code/User/settings.json
+  rm "$HOME/Library/Application Support/Code/User/settings.json"
 else
   msg_config "vscode settings"
 fi
-ln -sf $DOTFILES/settings/vscode/settings.json $HOME/Library/Application\ Support/Code/User/
+ln -sf "$DOTFILES/settings/vscode/settings.json" "$HOME/Library/Application Support/Code/User/"
 msg_checking "vscode settings"
-
-# Cursor settings
-if [ -f "$HOME/Library/Application\ Support/Cursor/User/settings.json" ]; then
-  msg_update "cursor settings"
-  rm $HOME/Library/Application\ Support/Cursor/User/settings.json
-else
-  msg_config "cursor settings"
-fi
-ln -sf $DOTFILES/settings/cursor/settings.json $HOME/Library/Application\ Support/Cursor/User/
-msg_checking "cursor settings"
 
 # Claude settings
 if [ -f "$HOME/.claude/CLAUDE.md" ]; then
@@ -68,7 +65,7 @@ ln -sf $DOTFILES/settings/joyjet/.gitconfig $HOME/Developer/joyjet/
 msg_checking ".gitconfig (joyjet)"
 
 # .gitignore
-if [ -f "$HOME/settings/git/.gitignore" ]; then
+if [ -f "$HOME/.gitignore" ]; then
   msg_update ".gitignore"
   rm $HOME/.gitignore
 else

@@ -1,6 +1,6 @@
 {
+  "biome.suggestInstallingGlobally": false,
   "claudeCode.useTerminal": true,
-  // Editor
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
