@@ -2,14 +2,14 @@
 
 DOTFILES="$HOME/Developer/projects/dotfiles"
 
-if [[ -d $DOTFILES ]]; then
+if [[ -d "$DOTFILES" ]]; then
   echo 'Checking dotfiles directory'
 else
   echo 'Cloning dotfiles'
-  git clone https://github.com/adeonir/dotfiles.git $DOTFILES
+  git clone https://github.com/adeonir/dotfiles.git "$DOTFILES"
 fi
 
-cd $DOTFILES
+cd "$DOTFILES"
 
 source install/environment.sh
 source install/softwares.sh

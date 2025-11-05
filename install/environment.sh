@@ -18,7 +18,7 @@ if ! command -v brew >/dev/null 2>&1; then
   msg_install_item "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   msg_ok 'Homebrew installed'
-  exec "$SHELL"
+  msg_info 'Please restart your shell to continue'
 else
   msg_info "Homebrew already installed"
 fi
@@ -47,7 +47,7 @@ tools=(
   "node"
   "pnpm"
   "starship"
-  "tldr"
+  "tlrc"
   "tree"
   "wget"
   "zoxide"
@@ -59,11 +59,11 @@ tools=(
 )
 
 for tool in "${tools[@]}"; do
-  if brew list $tool &>/dev/null; then
+  if brew list "$tool" &>/dev/null; then
     msg_info "$tool already installed"
   else
     msg_install_item "Installing $tool"
-    brew install $tool
+    brew install "$tool"
     msg_ok "$tool installed"
   fi
 done
@@ -72,7 +72,7 @@ done
 fnm default system
 
 # Bun
-if [ ! -d $HOME/.bun ]; then
+if [ ! -d "$HOME/.bun" ]; then
   msg_install_item "Installing Bun"
   curl -fsSL https://bun.sh/install | bash
   msg_ok "Bun installed"
@@ -81,7 +81,7 @@ else
 fi
 
 # oh-my-zsh
-if (test ! -d $HOME/.oh-my-zsh); then
+if (test ! -d "$HOME/.oh-my-zsh"); then
   msg_install_item "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   msg_ok "oh-my-zsh installed"
@@ -96,13 +96,13 @@ if [ -f "$HOME/.config/nvim/lua/plugins/astroui.lua" ]; then
 else
   if [ -d "$HOME/.config/nvim" ]; then
     msg_update "astronvim (replacing existing nvim config)"
-    rm -rf $HOME/.config/nvim
+    rm -rf "$HOME/.config/nvim"
   else
     msg_install_item "astronvim"
   fi
 
-  git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
-  rm -rf ~/.config/nvim/.git
-  cp -rf $DOTFILES/settings/astronvim/lua/* ~/.config/nvim/lua/
+  git clone --depth 1 https://github.com/AstroNvim/template "$HOME/.config/nvim"
+  rm -rf "$HOME/.config/nvim/.git"
+  cp -rf "$DOTFILES/settings/astronvim/lua/"* "$HOME/.config/nvim/lua/"
   msg_ok "astronvim installed"
 fi

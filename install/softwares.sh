@@ -37,15 +37,14 @@ cask=(
   "visual-studio-code"
   "whatsapp"
   "yaak"
-  "zen-browser"
 )
 
 for app in "${cask[@]}"; do
-  if brew list --cask $app &>/dev/null; then
+  if brew list --cask "$app" &>/dev/null; then
     msg_info "$app already installed"
   else
     msg_install_item "Installing $app"
-    brew install --cask $app
+    brew install --cask "$app"
     msg_ok "$app installed"
   fi
 done
