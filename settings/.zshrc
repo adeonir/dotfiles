@@ -29,6 +29,10 @@ source $HOME/.aliases
 source $HOME/.functions
 source $HOME/.joyjet
 
+if [ -f "$HOME/.secrets" ]; then
+  source $HOME/.secrets
+fi
+
 # Zsh history settings
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
@@ -81,3 +85,7 @@ eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)
 fpath=(/Users/adeonir/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
+
+# Task Master aliases added on 11/12/2025
+alias tm='task-master'
+alias taskmaster='task-master'

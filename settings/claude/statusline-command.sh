@@ -31,28 +31,12 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
   branch=$(git branch --show-current 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
   if [[ -n "$branch" ]]; then
     git_info=" $branch"
-
-    # Git status indicators (matching Starship git_status)
-    git_status=""
-    if ! git diff --quiet 2>/dev/null; then
-      git_status="${git_status}●" # Modified
-    fi
-    if ! git diff --cached --quiet 2>/dev/null; then
-      git_status="${git_status}+" # Staged
-    fi
-    if [[ -n $(git ls-files --others --exclude-standard 2>/dev/null) ]]; then
-      git_status="${git_status}?" # Untracked
-    fi
-
-    if [[ -n "$git_status" ]]; then
-      git_info="$git_info $git_status"
-    fi
   fi
 fi
 
-# Node.js version (matching Starship nodejs config)
+# Node.js version
 node_info=""
-if [[ -f "package.json" ]] && [[ ! -f "bun.lockb" ]]; then
+if command -v node &> /dev/null; then
   node_version=$(node --version 2>/dev/null)
   if [[ -n "$node_version" ]]; then
     node_info=" $node_version"

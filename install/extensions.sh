@@ -26,11 +26,11 @@ while IFS= read -r extension || [ -n "$extension" ]; do
     continue
   fi
 
-  if code --list-extensions | grep -q "^${extension}$"; then
+  if code --list-extensions 2>/dev/null | grep -q "^${extension}$"; then
     msg_info "$extension already installed"
   else
     msg_install_item "Installing $extension"
-    code --install-extension "$extension" --force
+    code --install-extension "$extension" --force >/dev/null 2>&1 || true
     msg_ok "$extension installed"
   fi
 done < "$EXTENSIONS_FILE"

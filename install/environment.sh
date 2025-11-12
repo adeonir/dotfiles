@@ -69,7 +69,9 @@ for tool in "${tools[@]}"; do
 done
 
 # Fnm
+msg_config "Setting Homebrew Node as fnm default"
 fnm default system
+msg_ok "fnm default configured"
 
 # Bun
 if [ ! -d "$HOME/.bun" ]; then
@@ -91,11 +93,11 @@ fi
 
 
 # astronvim
-if [ -f "$HOME/.config/nvim/lua/plugins/astroui.lua" ]; then
-  msg_info "astronvim already installed"
+if [ -L "$HOME/.config/nvim/lua/plugins" ] && [ -L "$HOME/.config/nvim/lua/community.lua" ]; then
+  msg_info "astronvim already installed and configured"
 else
   if [ -d "$HOME/.config/nvim" ]; then
-    msg_update "astronvim (replacing existing nvim config)"
+    msg_update "astronvim"
     rm -rf "$HOME/.config/nvim"
   else
     msg_install_item "astronvim"
@@ -103,6 +105,12 @@ else
 
   git clone --depth 1 https://github.com/AstroNvim/template "$HOME/.config/nvim"
   rm -rf "$HOME/.config/nvim/.git"
-  cp -rf "$DOTFILES/settings/astronvim/lua/"* "$HOME/.config/nvim/lua/"
   msg_ok "astronvim installed"
+
+  msg_config "astronvim config"
+  rm -rf "$HOME/.config/nvim/lua/plugins"
+  rm -f "$HOME/.config/nvim/lua/community.lua"
+  ln -sf "$DOTFILES/settings/astronvim/lua/plugins" "$HOME/.config/nvim/lua/plugins"
+  ln -sf "$DOTFILES/settings/astronvim/lua/community.lua" "$HOME/.config/nvim/lua/community.lua"
+  msg_ok "astronvim config configured"
 fi

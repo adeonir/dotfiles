@@ -20,3 +20,19 @@ else
   echo "Error: colors.sh not found at $DOTFILES/colors.sh"
   exit 1
 fi
+
+# Helper function to create symlinks
+create_symlink() {
+  local source="$1"
+  local target="$2"
+  local description="$3"
+
+  if [ -e "$target" ]; then
+    msg_info "$description already exists"
+  else
+    msg_config "$description"
+    mkdir -p "$(dirname "$target")"
+    ln -sf "$source" "$target"
+    msg_ok "$description configured"
+  fi
+}
