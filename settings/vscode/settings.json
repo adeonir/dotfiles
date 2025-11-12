@@ -250,6 +250,11 @@
   "debug.console.fontSize": 13,
   "debug.console.lineHeight": 24,
   "debug.disassemblyView.showSourceCode": false,
+  "github.copilot.advanced.enableTelemetry": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.suggest.enableInlineCompletions": true,
+  "github.copilot.suggest.showCompletionsOnlyOnExplicitTrigger": false,
+  "github.copilot.suggest.triggerDelay": 0,
   "githubPullRequests.pullBranch": "never",
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.cursorStyle": "line",
@@ -257,9 +262,9 @@
   "terminal.integrated.env.osx": {},
   "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
   "terminal.integrated.fontLigatures.enabled": true,
-  "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.fontWeightBold": "500",
+  "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.lineHeight": 1.8,
   "terminal.integrated.showExitAlert": false,
 
@@ -278,9 +283,9 @@
   "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "welcomePage",
   "workbench.tips.enabled": false,
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always",
-  "workbench.startupEditor": "welcomePage"
+  "workbench.tree.renderIndentGuides": "always"
 }

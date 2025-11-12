@@ -39,6 +39,17 @@ fi
 ln -sf "$DOTFILES/settings/claude/CLAUDE.md" "$HOME/.claude/"
 msg_checking "claude CLAUDE.md"
 
+# Claude statusline
+if [ -f "$HOME/.claude/statusline-command.sh" ]; then
+  msg_update "claude statusline-command.sh"
+  rm "$HOME/.claude/statusline-command.sh"
+else
+  msg_config "claude statusline-command.sh"
+fi
+ln -sf "$DOTFILES/settings/claude/statusline-command.sh" "$HOME/.claude/"
+chmod +x "$HOME/.claude/statusline-command.sh"
+msg_checking "claude statusline-command.sh"
+
 #=================
 # GIT & EDITOR CONFIGURATIONS
 #=================
