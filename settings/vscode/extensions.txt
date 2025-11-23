@@ -43,8 +43,6 @@ tyriar.sort-lines
 unifiedjs.vscode-mdx
 usernamehw.errorlens
 vincaslt.highlight-matching-tag
-visualstudioexptteam.intellicode-api-usage-examples
-visualstudioexptteam.vscodeintellicode
 vitest.explorer
 vue.volar
 wakatime.vscode-wakatime
