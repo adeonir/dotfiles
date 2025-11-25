@@ -3,14 +3,24 @@ printf '\33c\e[3J'
 
 # Path
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.fnm:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
+export PATH="$HOME/.pnpm:$PATH"
+export PATH="$HOME/.console-ninja/.bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib:$PATH"
 
-# Path to oh-my-zsh installation.
+# Environment variables
 export ZSH="$HOME/.oh-my-zsh"
+export BUN_INSTALL="$HOME/.bun"
+export PNPM_HOME="$HOME/.pnpm"
+export NPM_CONFIG_LOGLEVEL=error
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
 
-# Zsh plugins
+# Oh-my-zsh plugins
 plugins=(
   brew
   docker
@@ -22,21 +32,20 @@ plugins=(
   zoxide
 )
 
-# Path sourses
+# Sources
 source $ZSH/oh-my-zsh.sh
-
 source $HOME/.aliases
 source $HOME/.functions
 source $HOME/.joyjet
 
-if [ -f "$HOME/.secrets" ]; then
-  source $HOME/.secrets
-fi
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+[ -f "$HOME/.secrets" ] && source $HOME/.secrets
 
-# Zsh history settings
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000000
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+# Zsh options
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_DUPS
@@ -47,45 +56,12 @@ setopt INC_APPEND_HISTORY
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# Zsh plugins
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-# Zoxide
-eval "$(zoxide init zsh)"
-
-# Starship
-eval "$(starship init zsh)"
-
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-# Bun end
-
-# Pnpm
-export PNPM_HOME="$HOME/.pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# Console Ninja
-PATH=$HOME/.console-ninja/.bin:$PATH
-
-# Npm
-export NPM_CONFIG_LOGLEVEL=error
-
-# Fnm
-export PATH="$HOME/.fnm:$PATH"
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)"
-
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/adeonir/.docker/completions $fpath)
+# Completions
+fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 
-# Task Master aliases added on 11/12/2025
-alias tm='task-master'
-alias taskmaster='task-master'
+# Initializations
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)"

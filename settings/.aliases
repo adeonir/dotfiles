@@ -5,39 +5,43 @@ alias external-ip='curl -4 icanhazip.com'
 alias local-ip='ipconfig getifaddr en0'
 alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
-# Folder aliases
+# Folder
 alias courses='~/Developer/courses'
 alias github='~/Developer/github'
 alias joyjet='~/Developer/joyjet'
 alias projects='~/Developer/projects'
 alias temp='~/Developer/temp'
 
-# Command aliases
+# Package Manager
 alias bup='brew update -q; brew upgrade -q; brew cu -q -a -y --no-brew-update; brew cleanup -q --scrub --prune=all'
+alias to-nvmrc='echo $(node -v) > .nvmrc'
 alias npm-up='npx npm-check-updates --dep prod,dev --upgrade --color --interactive'
 alias npm-gup='npm update -g'
 alias pnpm-up='pnpm up --latest -r -i'
 alias bun-up='bunx npm-check-updates -i'
 alias yarn-up='yarn upgrade-interactive --latest'
-alias to-nvmrc='echo $(node -v) > .nvmrc'
+
+# Editors
 alias sz='source ~/.zshrc'
 alias vim='nvim'
 alias vi='nvim'
-alias cc='claude'
 
-# Show/hide hidden files in Finder
+# AI Tools
+alias cc='claude'
+alias tm='task-master'
+alias taskmaster='task-master'
+
+# Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
 alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
-
-# Hide/show all desktop icons (useful when presenting)
 alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
 alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 
-# Lock/unlock the Dock
+# Dock
 alias lockdock='defaults write com.apple.Dock position-immutable -bool yes && killall Dock'
 alias unlockdock='defaults write com.apple.Dock position-immutable -bool no && killall Dock'
 alias fixdock='defaults write com.apple.Dock size-immutable -bool true; killall Dock'
 alias releasedock='defaults write com.apple.Dock size-immutable -bool false; killall Dock'
 
-# Lock the screen (when going away from keyboard)
+# Screen
 alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
