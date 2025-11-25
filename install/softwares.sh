@@ -37,6 +37,7 @@ cask=(
   "visual-studio-code"
   "warp"
   "whatsapp"
+  "windsurf"
   "yaak"
 )
 
