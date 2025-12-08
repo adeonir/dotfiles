@@ -49,6 +49,7 @@ tools=(
   "starship"
   "tlrc"
   "tree"
+  "uv"
   "wget"
   "zoxide"
   "zsh"
