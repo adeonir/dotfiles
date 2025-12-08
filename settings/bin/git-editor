@@ -5,7 +5,8 @@ ACTIVE_APP=$(osascript -e 'tell application "System Events" to get name of first
 
 if [[ "$ACTIVE_APP" == "Ghostty" ]]; then
     nvim "$@"
+elif [[ "$ACTIVE_APP" == "Windsurf" ]]; then
+    surf --wait "$@"
 else
-    # Default to VSCode for all other cases
     code --wait "$@"
 fi
