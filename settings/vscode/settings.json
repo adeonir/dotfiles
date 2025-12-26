@@ -25,7 +25,7 @@
   "editor.guides.bracketPairs": true,
   "editor.hideCursorInOverviewRuler": true,
   "editor.hover.delay": 1000,
-  "editor.hover.enabled": true,
+  "editor.hover.enabled": "on",
   "editor.inlayHints.padding": true,
   "editor.largeFileOptimizations": false,
   "editor.lightbulb.enabled": "off",
@@ -283,10 +283,11 @@
   "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "right",
-  "workbench.startupEditor": "welcomePage",
+  "workbench.startupEditor": "none",
   "workbench.tips.enabled": false,
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
-  "claudeCode.useTerminal": true
+  "claudeCode.useTerminal": true,
+  "claudeCode.preferredLocation": "panel"
 }
