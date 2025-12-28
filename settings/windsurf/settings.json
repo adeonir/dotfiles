@@ -54,8 +54,9 @@
   // Symbols
   "symbols.hidesExplorerArrows": false,
   "symbols.folders.associations": {
-    "configs": "folder-config",
+    "web": "folder-blue",
     "errors": "folder-red",
+    "configs": "folder-config",
     "in-memory": "folder-orange-code",
     "node_modules": "folder-modules",
     "packages": "folder-blue-code"
@@ -67,7 +68,17 @@
     ".env.test": "document",
     ".env.example": "document",
     "*.e2e-spec.ts": "ts-test",
-    "vitest.config.e2e.ts": "vitest"
+    "vitest.config.e2e.ts": "vitest",
+    "*.module.ts": "nest",
+    "*.controller.ts": "nest-controller",
+    "*.service.ts": "nest-service",
+    "*.guard.ts": "nest-guard",
+    "*.pipe.ts": "nest",
+    "*.filter.ts": "nest",
+    "*.interceptor.ts": "nest",
+    "*.middleware.ts": "nest",
+    "*.decorator.ts": "nest",
+    "*.strategy.ts": "nest"
   },
 
   // Emmet

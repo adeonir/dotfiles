@@ -28,14 +28,14 @@ create_symlink "$DOTFILES/settings/windsurf/settings.json" "$HOME/Library/Applic
 create_symlink "$DOTFILES/settings/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md" "claude CLAUDE.md"
 
 # Claude statusline
-if [ -f "$HOME/.claude/statusline-command.sh" ]; then
-  msg_info "claude statusline-command.sh already exists"
+if [ -f "$HOME/.claude/statusline.sh" ]; then
+  msg_info "claude statusline.sh already exists"
 else
-  msg_config "claude statusline-command.sh"
+  msg_config "claude statusline.sh"
   mkdir -p "$HOME/.claude"
-  ln -sf "$DOTFILES/settings/claude/statusline-command.sh" "$HOME/.claude/"
-  chmod +x "$HOME/.claude/statusline-command.sh"
-  msg_ok "claude statusline-command.sh configured"
+  ln -sf "$DOTFILES/settings/claude/statusline.sh" "$HOME/.claude/"
+  chmod +x "$HOME/.claude/statusline.sh"
+  msg_ok "claude statusline.sh configured"
 fi
 
 #=================
