@@ -34,15 +34,6 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
   fi
 fi
 
-# Node.js version
-node_info=""
-if command -v node &> /dev/null; then
-  node_version=$(node --version 2>/dev/null)
-  if [[ -n "$node_version" ]]; then
-    node_info="$node_version"
-  fi
-fi
-
 # Model name
 model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
 
@@ -51,8 +42,18 @@ context_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200
 usage=$(echo "$input" | jq -r '.context_window.current_usage // empty')
 context_percent="0"
 if [[ -n "$usage" && "$usage" != "null" ]]; then
-  tokens=$(echo "$usage" | jq '(.input_tokens // 0) + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0)')
-  context_percent=$((tokens * 100 / context_size))
+  # Full context = new tokens + cached tokens + output
+  input_total=$(echo "$usage" | jq '(.input_tokens // 0) + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0)')
+  output_total=$(echo "$usage" | jq '.output_tokens // 0')
+  total_tokens=$((input_total + output_total))
+
+  # Autocompact buffer is ~23% of context
+  buffer=$((context_size * 23 / 100))
+  threshold=$((context_size - buffer))
+
+  # Usage relative to autocompact threshold
+  context_percent=$((total_tokens * 100 / threshold))
+  [[ $context_percent -gt 100 ]] && context_percent=100
 fi
 
 # Build left side
@@ -63,28 +64,11 @@ left_side+="\033[1;34m${dir_display}\033[0m"
 left_plain+="$dir_display"
 
 if [[ -n "$git_info" ]]; then
-  left_side+=" \033[0;37m|\033[0m \033[1;35m${git_info}\033[0m"
-  left_plain+=" | ${git_info}"
+  left_side+=" \033[0;37m‣\033[0m \033[1;35m${git_info}\033[0m"
 fi
 
-if [[ -n "$node_info" ]]; then
-  left_side+=" \033[0;37m|\033[0m \033[0;32m${node_info}\033[0m"
-  left_plain+=" | ${node_info}"
-fi
-
-# Build right side
-right_side="\033[0;33m${model}\033[0m \033[0;37m|\033[0m \033[0;36m${context_percent}%%\033[0m"
-right_plain="${model} | ${context_percent}%"
-
-# Calculate padding for right alignment
-term_width=$(tput cols 2>/dev/null || echo 80)
-left_len=${#left_plain}
-right_len=${#right_plain}
-padding=$((term_width - left_len - right_len))
-
-if [[ $padding -lt 1 ]]; then
-  padding=1
-fi
+# Add model and context usage
+left_side+=" \033[0;37m|\033[0m \033[0;33m${model}\033[0m \033[0;37m‣\033[0m \033[0;36m${context_percent}%\033[0m"
 
 # Output
-printf "%b%*s%b" "$left_side" "$padding" "" "$right_side"
+printf "%b" "$left_side"
