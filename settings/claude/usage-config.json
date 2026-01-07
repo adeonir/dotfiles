@@ -1,0 +1,8 @@
+{
+  "plan": "max5",
+  "limits": {
+    "5h_cost_usd": 29,
+    "weekly_cost_usd": 215
+  },
+  "cache_ttl_seconds": 30
+}

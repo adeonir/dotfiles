@@ -38,6 +38,9 @@ else
   msg_ok "claude statusline.sh configured"
 fi
 
+# Claude usage config (for statusline rate limit tracking)
+create_symlink "$DOTFILES/settings/claude/usage-config.json" "$HOME/.claude/usage-config.json" "claude usage-config.json"
+
 #=================
 # GIT & EDITOR CONFIGURATIONS
 #=================
