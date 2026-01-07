@@ -24,15 +24,6 @@ if [[ $(echo "$dir_display" | grep -o "/" | wc -l) -gt 2 ]]; then
   dir_display="../$(echo "$dir_display" | rev | cut -d'/' -f1,2 | rev)"
 fi
 
-# Git branch with icon (matching Starship git_branch symbol)
-git_info=""
-if git rev-parse --git-dir > /dev/null 2>&1; then
-  branch=$(git branch --show-current 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
-  if [[ -n "$branch" ]]; then
-    git_info="$branch"
-  fi
-fi
-
 # Model name
 model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
 
@@ -134,10 +125,6 @@ fi
 left_side=""
 
 left_side+="\033[1;34m${dir_display}\033[0m"
-
-if [[ -n "$git_info" ]]; then
-  left_side+=" \033[0;37m|\033[0m \033[1;35m${git_info}\033[0m"
-fi
 
 # Add model, context usage, and rate limits
 left_side+=" \033[0;37m|\033[0m \033[0;33m${model}\033[0m"
