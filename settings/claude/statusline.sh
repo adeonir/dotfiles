@@ -9,7 +9,7 @@ cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 # Change to the working directory
 cd "$cwd" 2>/dev/null || cd "$HOME"
 
-# Directory with truncation (similar to Starship config)
+# Directory with truncation (keep last 2 parts)
 current_dir=$(pwd)
 if [[ "$current_dir" == "$HOME" ]]; then
   dir_display="~"
@@ -19,7 +19,6 @@ else
   dir_display="$current_dir"
 fi
 
-# Truncate directory (keep last 2 parts like Starship truncation_length = 2)
 if [[ $(echo "$dir_display" | grep -o "/" | wc -l) -gt 2 ]]; then
   dir_display="../$(echo "$dir_display" | rev | cut -d'/' -f1,2 | rev)"
 fi
@@ -29,41 +28,26 @@ model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
 
 # Context window usage percentage
 context_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
-usage=$(echo "$input" | jq -r '.context_window.current_usage // empty')
-context_percent="0"
-if [[ -n "$usage" && "$usage" != "null" ]]; then
-  input_total=$(echo "$usage" | jq '(.input_tokens // 0) + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0)')
-  output_total=$(echo "$usage" | jq '.output_tokens // 0')
-  total_tokens=$((input_total + output_total))
+input_total=$(echo "$input" | jq '(.context_window.current_usage.input_tokens // 0) + (.context_window.current_usage.cache_creation_input_tokens // 0) + (.context_window.current_usage.cache_read_input_tokens // 0)')
+output_total=$(echo "$input" | jq '.context_window.current_usage.output_tokens // 0')
+total_tokens=$((input_total + output_total))
 
-  buffer=$((context_size * 23 / 100))
-  threshold=$((context_size - buffer))
-
-  context_percent=$((total_tokens * 100 / threshold))
+if [[ $total_tokens -eq 0 ]]; then
+  context_percent="--"
+else
+  context_percent=$((total_tokens * 100 / context_size))
   [[ $context_percent -gt 100 ]] && context_percent=100
 fi
 
-# Usage tracking via ccusage (with caching)
+# Usage tracking via Anthropic API (with caching)
 CACHE_DIR="$HOME/.cache/claude-statusline"
-CACHE_FILE="$CACHE_DIR/usage.json"
-CONFIG_FILE="$HOME/.claude/usage-config.json"
+CACHE_FILE="$CACHE_DIR/usage-api.json"
 CACHE_TTL=30
 
 mkdir -p "$CACHE_DIR"
 
-# Default limits (Max5 plan)
-LIMIT_5H=50
-LIMIT_WEEKLY=500
-
-# Load config if exists
-if [[ -f "$CONFIG_FILE" ]]; then
-  LIMIT_5H=$(jq -r '.limits["5h_cost_usd"] // 50' "$CONFIG_FILE")
-  LIMIT_WEEKLY=$(jq -r '.limits["weekly_cost_usd"] // 500' "$CONFIG_FILE")
-  CACHE_TTL=$(jq -r '.cache_ttl_seconds // 30' "$CONFIG_FILE")
-fi
-
-usage_5h="--"
-usage_weekly="--"
+session_percent="--"
+weekly_percent="--"
 
 # Check if cache is valid
 cache_valid=false
@@ -75,62 +59,54 @@ if [[ -f "$CACHE_FILE" ]]; then
 fi
 
 if [[ "$cache_valid" == "true" ]]; then
-  # Read from cache
-  usage_5h=$(jq -r '.usage_5h // "--"' "$CACHE_FILE")
-  usage_weekly=$(jq -r '.usage_weekly // "--"' "$CACHE_FILE")
+  session_percent=$(jq -r '.session // "--"' "$CACHE_FILE")
+  weekly_percent=$(jq -r '.weekly // "--"' "$CACHE_FILE")
 else
-  # Fetch fresh data from ccusage (run in background to not block)
+  # Fetch fresh data from Anthropic API (run in background)
   (
-    # Get current 5h block
-    block_data=$(npx --yes ccusage@latest blocks --json 2>/dev/null | jq '[.blocks[] | select(.isActive == true)] | .[0] // empty')
-    block_cost=0
-    if [[ -n "$block_data" && "$block_data" != "null" ]]; then
-      block_cost=$(echo "$block_data" | jq -r '.costUSD // 0')
-    fi
+    # Get credentials from keychain
+    creds=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null)
+    if [[ -n "$creds" ]]; then
+      access_token=$(echo "$creds" | jq -r '.claudeAiOauth.accessToken // empty')
 
-    # Get current week
-    weekly_data=$(npx --yes ccusage@latest weekly --json 2>/dev/null | jq '.weekly[-1] // empty')
-    weekly_cost=0
-    if [[ -n "$weekly_data" && "$weekly_data" != "null" ]]; then
-      weekly_cost=$(echo "$weekly_data" | jq -r '.totalCost // 0')
-    fi
+      if [[ -n "$access_token" ]]; then
+        response=$(curl -s -X GET "https://api.anthropic.com/api/oauth/usage" \
+          -H "Authorization: Bearer $access_token" \
+          -H "anthropic-beta: oauth-2025-04-20" \
+          -H "User-Agent: claude-code/2.1.2" \
+          -H "Accept: application/json" \
+          -H "Content-Type: application/json")
 
-    # Calculate percentages
-    if [[ -n "$block_cost" && "$block_cost" != "0" ]]; then
-      pct_5h=$(echo "scale=0; $block_cost * 100 / $LIMIT_5H" | bc 2>/dev/null || echo "0")
-      [[ $pct_5h -gt 100 ]] && pct_5h=100
-    else
-      pct_5h=0
-    fi
+        if [[ -n "$response" ]]; then
+          five_hour=$(echo "$response" | jq -r '.five_hour.utilization // 0')
+          seven_day=$(echo "$response" | jq -r '.seven_day.utilization // 0')
 
-    if [[ -n "$weekly_cost" && "$weekly_cost" != "0" ]]; then
-      pct_weekly=$(echo "scale=0; $weekly_cost * 100 / $LIMIT_WEEKLY" | bc 2>/dev/null || echo "0")
-      [[ $pct_weekly -gt 100 ]] && pct_weekly=100
-    else
-      pct_weekly=0
-    fi
+          # Round to integer (utilization is already 0-100)
+          session_pct=$(printf "%.0f" "$five_hour" 2>/dev/null || echo "0")
+          weekly_pct=$(printf "%.0f" "$seven_day" 2>/dev/null || echo "0")
 
-    # Write cache
-    echo "{\"usage_5h\": \"${pct_5h}\", \"usage_weekly\": \"${pct_weekly}\", \"block_cost\": $block_cost, \"weekly_cost\": $weekly_cost}" > "$CACHE_FILE"
+          [[ $session_pct -gt 100 ]] && session_pct=100
+          [[ $weekly_pct -gt 100 ]] && weekly_pct=100
+
+          echo "{\"session\": \"${session_pct}\", \"weekly\": \"${weekly_pct}\"}" > "$CACHE_FILE"
+        fi
+      fi
+    fi
   ) &
 
-  # Use stale cache if available, otherwise show placeholder
+  # Use stale cache if available
   if [[ -f "$CACHE_FILE" ]]; then
-    usage_5h=$(jq -r '.usage_5h // "--"' "$CACHE_FILE")
-    usage_weekly=$(jq -r '.usage_weekly // "--"' "$CACHE_FILE")
+    session_percent=$(jq -r '.session // "--"' "$CACHE_FILE")
+    weekly_percent=$(jq -r '.weekly // "--"' "$CACHE_FILE")
   fi
 fi
 
-# Build left side
-left_side=""
+# Build output
+output=""
+output+="\033[1;34m${dir_display}\033[0m"
+output+=" \033[0;37m|\033[0m \033[0;33m${model}\033[0m"
+output+=" \033[0;37m|\033[0m \033[0;36m${context_percent}% context\033[0m"
+output+=" \033[0;37m|\033[0m \033[0;32m${session_percent}% session\033[0m"
+output+=" \033[0;37m|\033[0m \033[0;35m${weekly_percent}% weekly\033[0m"
 
-left_side+="\033[1;34m${dir_display}\033[0m"
-
-# Add model, context usage, and rate limits
-left_side+=" \033[0;37m|\033[0m \033[0;33m${model}\033[0m"
-left_side+=" \033[0;37m|\033[0m \033[0;36mctx ${context_percent}%\033[0m"
-left_side+=" \033[0;37m|\033[0m \033[0;32m5h ${usage_5h}%\033[0m"
-left_side+=" \033[0;37m|\033[0m \033[0;35m7d ${usage_weekly}%\033[0m"
-
-# Output
-printf "%b" "$left_side"
+printf "%b" "$output"
