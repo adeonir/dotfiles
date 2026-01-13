@@ -62,5 +62,3 @@
   log = true
 [credential]
 	helper = osxkeychain
-[includeIf "gitdir:~/Developer/joyjet/"]
-  path = ~/Developer/joyjet/.gitconfig

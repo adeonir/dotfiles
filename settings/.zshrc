@@ -36,8 +36,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
 source $HOME/.functions
-source $HOME/.joyjet
-
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 [ -f "$HOME/.secrets" ] && source $HOME/.secrets
 

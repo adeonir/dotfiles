@@ -48,9 +48,6 @@ create_symlink "$DOTFILES/settings/claude/usage-config.json" "$HOME/.claude/usag
 # .gitconfig (global)
 create_symlink "$DOTFILES/settings/git/.gitconfig" "$HOME/.gitconfig" ".gitconfig (global)"
 
-# .gitconfig (joyjet)
-create_symlink "$DOTFILES/settings/joyjet/.gitconfig" "$HOME/Developer/joyjet/.gitconfig" ".gitconfig (joyjet)"
-
 # .gitignore
 create_symlink "$DOTFILES/settings/git/.gitignore" "$HOME/.gitignore" ".gitignore"
 
@@ -69,9 +66,6 @@ create_symlink "$DOTFILES/settings/.aliases" "$HOME/.aliases" ".aliases"
 
 # .functions
 create_symlink "$DOTFILES/settings/.functions" "$HOME/.functions" ".functions"
-
-# .joyjet
-create_symlink "$DOTFILES/settings/.joyjet" "$HOME/.joyjet" ".joyjet"
 
 # .npmrc
 create_symlink "$DOTFILES/settings/.npmrc" "$HOME/.npmrc" ".npmrc"

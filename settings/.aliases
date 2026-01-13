@@ -8,7 +8,6 @@ alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 # Folder
 alias courses='~/Developer/courses'
 alias github='~/Developer/github'
-alias joyjet='~/Developer/joyjet'
 alias projects='~/Developer/projects'
 alias temp='~/Developer/temp'
 
