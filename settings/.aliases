@@ -25,11 +25,6 @@ alias sz='source ~/.zshrc'
 alias vim='nvim'
 alias vi='nvim'
 
-# AI Tools
-alias cc='claude'
-alias tm='task-master'
-alias taskmaster='task-master'
-
 # Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
 alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'

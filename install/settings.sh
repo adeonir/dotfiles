@@ -91,6 +91,3 @@ create_symlink "$DOTFILES/settings/starship.toml" "$HOME/.config/starship.toml" 
 # ghostty
 create_symlink "$DOTFILES/settings/ghostty/config" "$HOME/.config/ghostty/config" "ghostty config"
 create_symlink "$DOTFILES/settings/ghostty/catppuccin-mocha" "$HOME/.config/ghostty/themes/catppuccin-mocha" "ghostty theme"
-
-# warp
-create_symlink "$DOTFILES/settings/warp/theme/catppuccin_mocha.yml" "$HOME/.warp/themes/catppuccin_mocha.yml" "warp theme"

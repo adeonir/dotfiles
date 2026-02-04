@@ -35,7 +35,6 @@ cask=(
   "spotify"
   "telegram"
   "visual-studio-code"
-  "warp"
   "whatsapp"
   "windsurf"
   "yaak"
