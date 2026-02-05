@@ -12,8 +12,8 @@ alias projects='~/Developer/projects'
 alias temp='~/Developer/temp'
 
 # Package Manager
-alias bup='brew update -q; brew upgrade -q; brew cu -q -a -y --no-brew-update; brew cleanup -q --scrub --prune=all'
 alias to-nvmrc='echo $(node -v) > .nvmrc'
+alias bup='brew update -q; brew upgrade -q; brew cu -q -a -y --no-brew-update; brew cleanup -q --scrub --prune=all'
 alias npm-up='npx npm-check-updates --dep prod,dev --upgrade --color --interactive'
 alias npm-gup='npm update -g'
 alias pnpm-up='pnpm up --latest -r -i'
@@ -22,8 +22,6 @@ alias yarn-up='yarn upgrade-interactive --latest'
 
 # Editors
 alias sz='source ~/.zshrc'
-alias vim='nvim'
-alias vi='nvim'
 
 # Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'

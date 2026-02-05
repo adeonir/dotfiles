@@ -43,11 +43,9 @@ tools=(
   "gh"
   "git"
   "jq"
-  "neovim"
   "node"
   "pnpm"
   "starship"
-  "tlrc"
   "tree"
   "uv"
   "wget"
@@ -90,28 +88,4 @@ if (test ! -d "$HOME/.oh-my-zsh"); then
   msg_ok "oh-my-zsh installed"
 else
   msg_info "oh-my-zsh already installed"
-fi
-
-
-# astronvim
-if [ -L "$HOME/.config/nvim/lua/plugins" ] && [ -L "$HOME/.config/nvim/lua/community.lua" ]; then
-  msg_info "astronvim already installed and configured"
-else
-  if [ -d "$HOME/.config/nvim" ]; then
-    msg_update "astronvim"
-    rm -rf "$HOME/.config/nvim"
-  else
-    msg_install_item "astronvim"
-  fi
-
-  git clone --depth 1 https://github.com/AstroNvim/template "$HOME/.config/nvim"
-  rm -rf "$HOME/.config/nvim/.git"
-  msg_ok "astronvim installed"
-
-  msg_config "astronvim config"
-  rm -rf "$HOME/.config/nvim/lua/plugins"
-  rm -f "$HOME/.config/nvim/lua/community.lua"
-  ln -sf "$DOTFILES/settings/astronvim/lua/plugins" "$HOME/.config/nvim/lua/plugins"
-  ln -sf "$DOTFILES/settings/astronvim/lua/community.lua" "$HOME/.config/nvim/lua/community.lua"
-  msg_ok "astronvim config configured"
 fi

@@ -4,9 +4,9 @@
 ACTIVE_APP=$(osascript -e 'tell application "System Events" to get displayed name of first application process whose frontmost is true')
 
 if [[ "$ACTIVE_APP" == "Ghostty" ]]; then
-    nvim "$@"
+    vim "$@"
 elif [[ "$ACTIVE_APP" == "Windsurf" ]]; then
-    surf --wait "$@"
+    windsurf --wait "$@"
 else
     code --wait "$@"
 fi
