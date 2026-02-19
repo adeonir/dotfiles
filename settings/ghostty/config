@@ -8,4 +8,7 @@ window-padding-x = 20
 window-padding-y = 10
 window-padding-balance = true
 cursor-style = bar
+macos-option-as-alt = true
 keybind = shift+enter=text:\x1b\r
+keybind = alt+backspace=text:\x17
+keybind = alt+delete=text:\x1bd
