@@ -2,6 +2,7 @@
 printf '\33c\e[3J'
 
 # Paths
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.fnm:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
