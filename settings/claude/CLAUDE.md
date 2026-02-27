@@ -6,6 +6,7 @@
 - When writing files in Portuguese, always use proper accents (e.g., "código", "informação", "será", "não", "área") — in chat responses accents are optional
 - When skills are available, always follow their guidelines and workflows instead of default behavior
 - Never push to remote without explicit confirmation
+- Never add Co-Authored-By or any Claude attribution to commit messages or pull request descriptions
 
 ## Environment
 - Shell is always zsh

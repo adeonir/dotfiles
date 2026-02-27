@@ -54,6 +54,7 @@ mkdir -p "$CACHE_DIR"
 
 session_percent="--"
 weekly_percent="--"
+extra_percent="--"
 
 # Check if cache is valid
 cache_valid=false
@@ -67,34 +68,38 @@ fi
 if [[ "$cache_valid" == "true" ]]; then
   session_percent=$(jq -r '.session // "--"' "$CACHE_FILE")
   weekly_percent=$(jq -r '.weekly // "--"' "$CACHE_FILE")
+  extra_percent=$(jq -r '.extra // "--"' "$CACHE_FILE")
 else
   # Fetch fresh data from Anthropic API (run in background)
   (
-    # Get credentials from keychain
-    creds=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null)
-    if [[ -n "$creds" ]]; then
-      access_token=$(echo "$creds" | jq -r '.claudeAiOauth.accessToken // empty')
+    # Get credentials from keychain (hex-encoded since ~2026-02)
+    creds_raw=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null)
+    if [[ -n "$creds_raw" ]]; then
+      # Decode hex, strip control characters, wrap as valid JSON
+      creds_decoded=$(echo "$creds_raw" | xxd -r -p | tr -d '\000-\037')
+      access_token=$(echo "{${creds_decoded}}" | perl -ne 'print $1 if /"accessToken":"([^"]+)"/')
 
       if [[ -n "$access_token" ]]; then
         response=$(curl -s -X GET "https://api.anthropic.com/api/oauth/usage" \
           -H "Authorization: Bearer $access_token" \
           -H "anthropic-beta: oauth-2025-04-20" \
           -H "User-Agent: claude-code/2.1.2" \
-          -H "Accept: application/json" \
-          -H "Content-Type: application/json")
+          -H "Accept: application/json")
 
-        if [[ -n "$response" ]]; then
+        if echo "$response" | jq -e '.five_hour' >/dev/null 2>&1; then
           five_hour=$(echo "$response" | jq -r '.five_hour.utilization // 0')
           seven_day=$(echo "$response" | jq -r '.seven_day.utilization // 0')
+          extra_usage=$(echo "$response" | jq -r '.extra_usage.utilization // 0')
 
-          # Round to integer (utilization is already 0-100)
           session_pct=$(printf "%.0f" "$five_hour" 2>/dev/null || echo "0")
           weekly_pct=$(printf "%.0f" "$seven_day" 2>/dev/null || echo "0")
+          extra_pct=$(printf "%.0f" "$extra_usage" 2>/dev/null || echo "0")
 
           [[ $session_pct -gt 100 ]] && session_pct=100
           [[ $weekly_pct -gt 100 ]] && weekly_pct=100
+          [[ $extra_pct -gt 100 ]] && extra_pct=100
 
-          echo "{\"session\": \"${session_pct}\", \"weekly\": \"${weekly_pct}\"}" > "$CACHE_FILE"
+          echo "{\"session\": \"${session_pct}\", \"weekly\": \"${weekly_pct}\", \"extra\": \"${extra_pct}\"}" > "$CACHE_FILE"
         fi
       fi
     fi
@@ -104,6 +109,7 @@ else
   if [[ -f "$CACHE_FILE" ]]; then
     session_percent=$(jq -r '.session // "--"' "$CACHE_FILE")
     weekly_percent=$(jq -r '.weekly // "--"' "$CACHE_FILE")
+    extra_percent=$(jq -r '.extra // "--"' "$CACHE_FILE")
   fi
 fi
 
@@ -114,5 +120,6 @@ output+=" \033[0;37m|\033[0m \033[0;33m${model}\033[0m"
 output+=" \033[0;37m|\033[0m \033[0;36m${context_percent}% context\033[0m"
 output+=" \033[0;37m|\033[0m \033[0;32m${session_percent}% session\033[0m"
 output+=" \033[0;37m|\033[0m \033[0;35m${weekly_percent}% weekly\033[0m"
+output+=" \033[0;37m|\033[0m \033[0;31m${extra_percent}% extra\033[0m"
 
 printf "%b" "$output"
