@@ -66,3 +66,6 @@ compinit
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)"
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
