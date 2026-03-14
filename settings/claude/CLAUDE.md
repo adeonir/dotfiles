@@ -7,6 +7,11 @@
 - When skills are available, always follow their guidelines and workflows instead of default behavior
 - Never push to remote without explicit confirmation
 - Never add Co-Authored-By or any Claude attribution to commit messages or pull request descriptions
+- When I ask a question during a conversation, treat it as a question -- just answer it
+- Do NOT interpret questions as implicit requests to revert, undo code, modify, or make changes
+- When the user asks a question or requests analysis, do NOT start editing files or implementing changes. Ask/plan first, act only when explicitly told to proceed
+- Always use the git-helpers skill for commits. Follow conventional commit format with contextual bullet points in the body (not paragraphs). Never commit without following skill conventions
+- Obsidian CLI: the command is `obsidian` (not `obsidian-cli`). Do not use --path flag, do not use --silent flag. Create notes with proper frontmatter and consistent formatting, and never append to wrong date files
 
 ## Environment
 - Shell is always zsh
