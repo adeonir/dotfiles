@@ -26,29 +26,13 @@ fi
 # Model name
 model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
 
-# Context window usage percentage
-context_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
-
-# Sum all token types that contribute to context usage
-input_tokens=$(echo "$input" | jq '.context_window.current_usage.input_tokens // 0')
-cache_creation_tokens=$(echo "$input" | jq '.context_window.current_usage.cache_creation_input_tokens // 0')
-cache_read_tokens=$(echo "$input" | jq '.context_window.current_usage.cache_read_input_tokens // 0')
-output_tokens=$(echo "$input" | jq '.context_window.current_usage.output_tokens // 0')
-
-# Total tokens = input + cache_creation + cache_read + output (fixed 2026-02-21)
-total_tokens=$((input_tokens + cache_creation_tokens + cache_read_tokens + output_tokens))
-
-if [[ $total_tokens -eq 0 ]]; then
-  context_percent="--"
-else
-  context_percent=$((total_tokens * 100 / context_size))
-  [[ $context_percent -gt 100 ]] && context_percent=100
-fi
+# Context window usage (pre-calculated by Claude Code)
+context_percent=$(echo "$input" | jq -r '.context_window.used_percentage // "--"')
 
 # Usage tracking via Anthropic API (with caching)
 CACHE_DIR="$HOME/.cache/claude-statusline"
 CACHE_FILE="$CACHE_DIR/usage-api.json"
-CACHE_TTL=30
+CACHE_TTL=120
 
 mkdir -p "$CACHE_DIR"
 

@@ -4,5 +4,5 @@
     "5h_cost_usd": 29,
     "weekly_cost_usd": 215
   },
-  "cache_ttl_seconds": 30
+  "cache_ttl_seconds": 120
 }
