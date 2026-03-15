@@ -98,12 +98,19 @@ else
   fi
 fi
 
-# Build output
-output=""
-output+="\033[1;34m${dir_display}\033[0m"
-output+=" \033[0;37m|\033[0m \033[0;33m${model}\033[0m"
-output+=" \033[0;37m|\033[0m \033[0;36m${context_percent}% context\033[0m"
-output+=" \033[0;37m|\033[0m \033[0;32m${session_percent}% session\033[0m"
-output+=" \033[0;37m|\033[0m \033[0;35m${weekly_percent}% weekly\033[0m"
+# Git branch
+branch=$(git symbolic-ref --short HEAD 2>/dev/null || echo "")
 
-printf "%b" "$output"
+# Build output (2 lines)
+line1="\033[1;34m${dir_display}\033[0m"
+if [[ -n "$branch" ]]; then
+  line1+=" \033[0;37mon\033[0m \033[0;32m${branch}\033[0m"
+fi
+
+line2="\033[0;33m${model}\033[0m"
+line2+=" \033[0;37m|\033[0m \033[0;36m${context_percent}% context\033[0m"
+line2+=" \033[0;37m|\033[0m \033[0;32m${session_percent}% session\033[0m"
+line2+=" \033[0;37m|\033[0m \033[0;35m${weekly_percent}% weekly\033[0m"
+
+echo -e "$line2"
+echo -e "$line1"
