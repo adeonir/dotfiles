@@ -11,7 +11,7 @@
 - Do NOT interpret questions as implicit requests to revert, undo code, modify, or make changes
 - When the user asks a question or requests analysis, do NOT start editing files or implementing changes. Ask/plan first, act only when explicitly told to proceed
 - Always use the git-helpers skill for commits. Follow conventional commit format with contextual bullet points in the body (not paragraphs). Never commit without following skill conventions
-- Obsidian CLI: the command is `obsidian` (not `obsidian-cli`). Do not use --path flag, do not use --silent flag. Create notes with proper frontmatter and consistent formatting, and never append to wrong date files
+- Always use the spec-driven skill to create, modify, or audit feature specs (spec.md, design.md, tasks.md). Never draft specs freehand -- load the skill first and follow its templates, auto-sizing rules, and knowledge verification chain
 
 ## Environment
 - Shell is always zsh
