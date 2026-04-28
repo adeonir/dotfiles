@@ -26,8 +26,49 @@ fi
 # Model name
 model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
 
-# Context window usage (pre-calculated by Claude Code)
+# Context window: size, percent, absolute tokens
+window_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
 context_percent=$(echo "$input" | jq -r '.context_window.used_percentage // "--"')
+
+tokens_used=$(echo "$input" | jq -r '
+  (.context_window.current_usage.input_tokens // 0) +
+  (.context_window.current_usage.output_tokens // 0) +
+  (.context_window.current_usage.cache_creation_input_tokens // 0) +
+  (.context_window.current_usage.cache_read_input_tokens // 0)
+')
+
+if [[ "$tokens_used" == "0" && "$context_percent" != "--" ]]; then
+  tokens_used=$(awk -v w="$window_size" -v p="$context_percent" 'BEGIN { printf "%d", (w*p)/100 }')
+fi
+
+if [[ "$context_percent" != "--" ]]; then
+  tokens_display=$(awk -v n="$tokens_used" 'BEGIN {
+    if (n >= 1000000) printf "%.1fM", n/1000000
+    else if (n >= 1000) printf "%.1fk", n/1000
+    else printf "%d", n
+  }')
+else
+  tokens_display="--"
+fi
+
+# Color thresholds for context (1M: 100k/250k, 200k: 50k/100k)
+if [[ "$window_size" == "1000000" ]]; then
+  yellow_max=100000
+  orange_max=250000
+else
+  yellow_max=50000
+  orange_max=100000
+fi
+
+if [[ "$tokens_display" == "--" ]]; then
+  ctx_color="\033[0;37m"
+elif (( tokens_used < yellow_max )); then
+  ctx_color="\033[0;33m"
+elif (( tokens_used < orange_max )); then
+  ctx_color="\033[38;5;214m"
+else
+  ctx_color="\033[38;5;203m"
+fi
 
 # Usage tracking via Anthropic API (with caching)
 CACHE_DIR="$HOME/.cache/claude-statusline"
@@ -107,10 +148,12 @@ if [[ -n "$branch" ]]; then
   line1+=" \033[0;37mon\033[0m \033[1;35m${branch}\033[0m"
 fi
 
-line2="\033[0;33m${model}\033[0m"
-line2+=" \033[0;37m|\033[0m \033[38;5;214m${context_percent}% context\033[0m"
-line2+=" \033[0;37m|\033[0m \033[38;5;75m${session_percent}% session\033[0m"
-line2+=" \033[0;37m|\033[0m \033[38;5;114m${weekly_percent}% weekly\033[0m"
+sep="\033[0;37m|\033[0m"
+line2="\033[1;37m${model}\033[0m"
+line2+=" ${sep} \033[38;5;213m${tokens_display}\033[0m"
+line2+=" ${sep} ${ctx_color}${context_percent}%\033[0m"
+line2+=" ${sep} \033[38;5;114m${session_percent}% 5h\033[0m"
+line2+=" ${sep} \033[38;5;75m${weekly_percent}% 7d\033[0m"
 
 echo -e "$line2"
 echo -e "$line1"
