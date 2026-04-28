@@ -26,6 +26,16 @@ fi
 # Model name
 model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
 
+# Claude Code version (used in API User-Agent)
+cli_version=$(echo "$input" | jq -r '.version // "2.1.76"')
+
+# Session cost
+session_cost=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
+cost_display=$(awk -v c="$session_cost" 'BEGIN {
+  if (c+0 < 0.005) printf "$0"
+  else printf "$%.2f", c
+}')
+
 # Context window: size, percent, absolute tokens
 window_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
 context_percent=$(echo "$input" | jq -r '.context_window.used_percentage // "--"')
@@ -79,6 +89,8 @@ mkdir -p "$CACHE_DIR"
 
 session_percent="--"
 weekly_percent="--"
+session_resets_at=""
+weekly_resets_at=""
 
 # Check if cache is valid
 cache_valid=false
@@ -92,6 +104,8 @@ fi
 if [[ "$cache_valid" == "true" ]]; then
   session_percent=$(jq -r '.session // "--"' "$CACHE_FILE")
   weekly_percent=$(jq -r '.weekly // "--"' "$CACHE_FILE")
+  session_resets_at=$(jq -r '.session_resets_at // ""' "$CACHE_FILE")
+  weekly_resets_at=$(jq -r '.weekly_resets_at // ""' "$CACHE_FILE")
 else
   # Fetch fresh data from Anthropic API (run in background)
   (
@@ -116,19 +130,27 @@ else
     response=$(curl -s -X GET "https://api.anthropic.com/api/oauth/usage" \
       -H "Authorization: Bearer $access_token" \
       -H "anthropic-beta: oauth-2025-04-20" \
-      -H "User-Agent: claude-code/2.1.2" \
+      -H "User-Agent: claude-code/${cli_version}" \
       -H "Accept: application/json")
 
     if echo "$response" | jq -e '.five_hour' >/dev/null 2>&1; then
       five_hour=$(echo "$response" | jq -r '.five_hour.utilization // 0')
       seven_day=$(echo "$response" | jq -r '.seven_day.utilization // 0')
+      session_reset=$(echo "$response" | jq -r '.five_hour.resets_at // ""')
+      weekly_reset=$(echo "$response" | jq -r '.seven_day.resets_at // ""')
       session_pct=$(printf "%.0f" "$five_hour" 2>/dev/null || echo "0")
       weekly_pct=$(printf "%.0f" "$seven_day" 2>/dev/null || echo "0")
 
       [[ $session_pct -gt 100 ]] && session_pct=100
       [[ $weekly_pct -gt 100 ]] && weekly_pct=100
 
-      echo "{\"session\": \"${session_pct}\", \"weekly\": \"${weekly_pct}\"}" > "$CACHE_FILE"
+      jq -n \
+        --arg session "$session_pct" \
+        --arg weekly "$weekly_pct" \
+        --arg session_resets_at "$session_reset" \
+        --arg weekly_resets_at "$weekly_reset" \
+        '{session: $session, weekly: $weekly, session_resets_at: $session_resets_at, weekly_resets_at: $weekly_resets_at}' \
+        > "$CACHE_FILE"
     fi
   ) &
 
@@ -136,8 +158,57 @@ else
   if [[ -f "$CACHE_FILE" ]]; then
     session_percent=$(jq -r '.session // "--"' "$CACHE_FILE")
     weekly_percent=$(jq -r '.weekly // "--"' "$CACHE_FILE")
+    session_resets_at=$(jq -r '.session_resets_at // ""' "$CACHE_FILE")
+    weekly_resets_at=$(jq -r '.weekly_resets_at // ""' "$CACHE_FILE")
   fi
 fi
+
+# Format seconds as "4d2h", "1h12m", or "42m"
+fmt_duration() {
+  local diff="$1"
+  if (( diff <= 0 )); then
+    echo "0m"
+    return
+  fi
+  local days=$((diff / 86400))
+  local hours=$(( (diff % 86400) / 3600 ))
+  local mins=$(( (diff % 3600) / 60 ))
+  if (( days > 0 )); then
+    printf "%dd%dh" "$days" "$hours"
+  elif (( hours > 0 )); then
+    printf "%dh%dm" "$hours" "$mins"
+  else
+    printf "%dm" "$mins"
+  fi
+}
+
+# Format ISO 8601 timestamp as time-until: "4d2h", "1h12m", "42m", or "now"
+fmt_until() {
+  local target_iso="$1"
+  if [[ -z "$target_iso" || "$target_iso" == "null" ]]; then
+    echo "--"
+    return
+  fi
+  local clean="${target_iso%%.*}"
+  clean="${clean%%+*}"
+  local target_ts
+  target_ts=$(date -j -u -f "%Y-%m-%dT%H:%M:%S" "$clean" +%s 2>/dev/null) || { echo "--"; return; }
+  local now_ts
+  now_ts=$(date +%s)
+  local diff=$((target_ts - now_ts))
+  if (( diff <= 0 )); then
+    echo "now"
+    return
+  fi
+  fmt_duration "$diff"
+}
+
+session_until=$(fmt_until "$session_resets_at")
+weekly_until=$(fmt_until "$weekly_resets_at")
+
+# Session duration
+session_duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
+session_duration=$(fmt_duration "$((session_duration_ms / 1000))")
 
 # Git branch
 branch=$(git symbolic-ref --short HEAD 2>/dev/null || echo "")
@@ -147,13 +218,14 @@ line1="\033[1;34m${dir_display}\033[0m"
 if [[ -n "$branch" ]]; then
   line1+=" \033[0;37mon\033[0m \033[1;35m${branch}\033[0m"
 fi
+line1+=" \033[0;37mfor\033[0m \033[0;37m${session_duration}\033[0m"
 
 sep="\033[0;37m|\033[0m"
+dot="\033[0;37m·\033[0m"
 line2="\033[1;37m${model}\033[0m"
-line2+=" ${sep} \033[38;5;213m${tokens_display}\033[0m"
-line2+=" ${sep} ${ctx_color}${context_percent}%\033[0m"
-line2+=" ${sep} \033[38;5;114m${session_percent}% 5h\033[0m"
-line2+=" ${sep} \033[38;5;75m${weekly_percent}% 7d\033[0m"
+line2+=" ${sep} ${ctx_color}${tokens_display}\033[0m ${dot} ${ctx_color}${context_percent}%\033[0m ${dot} \033[38;5;108m${cost_display}\033[0m"
+line2+=" ${sep} \033[38;5;147m${session_percent}% 5h \033[0;37m·\033[38;5;147m ${session_until}\033[0m"
+line2+=" ${sep} \033[38;5;75m${weekly_percent}% 7d \033[0;37m·\033[38;5;75m ${weekly_until}\033[0m"
 
 echo -e "$line2"
 echo -e "$line1"
