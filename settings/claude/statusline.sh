@@ -138,8 +138,8 @@ else
       seven_day=$(echo "$response" | jq -r '.seven_day.utilization // 0')
       session_reset=$(echo "$response" | jq -r '.five_hour.resets_at // ""')
       weekly_reset=$(echo "$response" | jq -r '.seven_day.resets_at // ""')
-      session_pct=$(printf "%.0f" "$five_hour" 2>/dev/null || echo "0")
-      weekly_pct=$(printf "%.0f" "$seven_day" 2>/dev/null || echo "0")
+      session_pct=$(awk -v v="$five_hour" 'BEGIN { printf "%d", (v == int(v) ? v : int(v) + 1) }')
+      weekly_pct=$(awk -v v="$seven_day" 'BEGIN { printf "%d", (v == int(v) ? v : int(v) + 1) }')
 
       [[ $session_pct -gt 100 ]] && session_pct=100
       [[ $weekly_pct -gt 100 ]] && weekly_pct=100
