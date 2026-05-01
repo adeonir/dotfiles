@@ -24,7 +24,7 @@ if [[ $(echo "$dir_display" | grep -o "/" | wc -l) -gt 2 ]]; then
 fi
 
 # Model name
-model=$(echo "$input" | jq -r '.model.display_name // "Claude"')
+model=$(echo "$input" | jq -r '.model.display_name // "Claude"' | sed 's/ (\([^)]*\) context)/ \1/')
 
 # Claude Code version (used in API User-Agent)
 cli_version=$(echo "$input" | jq -r '.version // "2.1.76"')
@@ -38,7 +38,7 @@ cost_display=$(awk -v c="$session_cost" 'BEGIN {
 
 # Context window: size, percent, absolute tokens
 window_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
-context_percent=$(echo "$input" | jq -r '.context_window.used_percentage // "--"')
+context_percent=$(echo "$input" | jq -r '.context_window.used_percentage // 0')
 
 tokens_used=$(echo "$input" | jq -r '
   (.context_window.current_usage.input_tokens // 0) +
@@ -47,19 +47,15 @@ tokens_used=$(echo "$input" | jq -r '
   (.context_window.current_usage.cache_read_input_tokens // 0)
 ')
 
-if [[ "$tokens_used" == "0" && "$context_percent" != "--" ]]; then
+if [[ "$tokens_used" == "0" && "$context_percent" != "0" ]]; then
   tokens_used=$(awk -v w="$window_size" -v p="$context_percent" 'BEGIN { printf "%d", (w*p)/100 }')
 fi
 
-if [[ "$context_percent" != "--" ]]; then
-  tokens_display=$(awk -v n="$tokens_used" 'BEGIN {
-    if (n >= 1000000) printf "%.1fM", n/1000000
-    else if (n >= 1000) printf "%.1fk", n/1000
-    else printf "%d", n
-  }')
-else
-  tokens_display="--"
-fi
+tokens_display=$(awk -v n="$tokens_used" 'BEGIN {
+  if (n >= 1000000) printf "%.1fM", n/1000000
+  else if (n >= 1000) printf "%.1fk", n/1000
+  else printf "0k"
+}')
 
 # Color thresholds for context (1M: 100k/250k, 200k: 50k/100k)
 if [[ "$window_size" == "1000000" ]]; then
@@ -70,9 +66,7 @@ else
   orange_max=100000
 fi
 
-if [[ "$tokens_display" == "--" ]]; then
-  ctx_color="\033[0;37m"
-elif (( tokens_used < yellow_max )); then
+if (( tokens_used < yellow_max )); then
   ctx_color="\033[0;33m"
 elif (( tokens_used < orange_max )); then
   ctx_color="\033[38;5;214m"
@@ -200,7 +194,7 @@ fmt_until() {
     echo "now"
     return
   fi
-  fmt_duration "$diff"
+  echo "~$(fmt_duration "$diff")"
 }
 
 session_until=$(fmt_until "$session_resets_at")
@@ -224,8 +218,8 @@ sep="\033[0;37m|\033[0m"
 dot="\033[0;37m·\033[0m"
 line2="\033[1;37m${model}\033[0m"
 line2+=" ${sep} ${ctx_color}${tokens_display}\033[0m ${dot} ${ctx_color}${context_percent}%\033[0m ${dot} \033[38;5;108m${cost_display}\033[0m"
-line2+=" ${sep} \033[38;5;147m${session_percent}% 5h \033[0;37m·\033[38;5;147m ${session_until}\033[0m"
-line2+=" ${sep} \033[38;5;75m${weekly_percent}% 7d \033[0;37m·\033[38;5;75m ${weekly_until}\033[0m"
+line2+=" ${sep} \033[38;5;147m5h:${session_percent}% ${session_until}\033[0m"
+line2+=" ${sep} \033[38;5;75m7d:${weekly_percent}% ${weekly_until}\033[0m"
 
 echo -e "$line2"
 echo -e "$line1"
