@@ -24,7 +24,7 @@ if [[ $(echo "$dir_display" | grep -o "/" | wc -l) -gt 2 ]]; then
 fi
 
 # Model name
-model=$(echo "$input" | jq -r '.model.display_name // "Claude"' | sed 's/ (\([^)]*\) context)/ \1/')
+model=$(echo "$input" | jq -r '.model.display_name // "Claude"' | sed 's/ ([^)]*)//')
 
 # Claude Code version (used in API User-Agent)
 cli_version=$(echo "$input" | jq -r '.version // "2.1.76"')
@@ -32,8 +32,8 @@ cli_version=$(echo "$input" | jq -r '.version // "2.1.76"')
 # Session cost
 session_cost=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
 cost_display=$(awk -v c="$session_cost" 'BEGIN {
-  if (c+0 < 0.005) printf "$0"
-  else printf "$%.2f", c
+  if (c+0 < 0.00005) printf "$0"
+  else printf "$%.4f", c
 }')
 
 # Context window: size, percent, absolute tokens
@@ -42,7 +42,6 @@ context_percent=$(echo "$input" | jq -r '.context_window.used_percentage // 0')
 
 tokens_used=$(echo "$input" | jq -r '
   (.context_window.current_usage.input_tokens // 0) +
-  (.context_window.current_usage.output_tokens // 0) +
   (.context_window.current_usage.cache_creation_input_tokens // 0) +
   (.context_window.current_usage.cache_read_input_tokens // 0)
 ')
@@ -55,6 +54,12 @@ tokens_display=$(awk -v n="$tokens_used" 'BEGIN {
   if (n >= 1000000) printf "%.1fM", n/1000000
   else if (n >= 1000) printf "%.1fk", n/1000
   else printf "0k"
+}')
+
+window_display=$(awk -v n="$window_size" 'BEGIN {
+  if (n >= 1000000) printf "%gm", n/1000000
+  else if (n >= 1000) printf "%gk", n/1000
+  else printf "%d", n
 }')
 
 # Color thresholds for context (1M: 100k/250k, 200k: 50k/100k)
@@ -86,12 +91,31 @@ weekly_percent="--"
 session_resets_at=""
 weekly_resets_at=""
 
-# Check if cache is valid
+# Parse ISO 8601 timestamp to epoch seconds (0 if invalid/empty)
+iso_to_epoch() {
+  local iso="$1"
+  if [[ -z "$iso" || "$iso" == "null" ]]; then
+    echo 0
+    return
+  fi
+  local clean="${iso%%.*}"
+  clean="${clean%%+*}"
+  date -j -u -f "%Y-%m-%dT%H:%M:%S" "$clean" +%s 2>/dev/null || echo 0
+}
+
+# Check if cache is valid (fresh AND no reset boundary crossed)
 cache_valid=false
 if [[ -f "$CACHE_FILE" ]]; then
   cache_age=$(($(date +%s) - $(stat -f %m "$CACHE_FILE" 2>/dev/null || echo 0)))
   if [[ $cache_age -lt $CACHE_TTL ]]; then
-    cache_valid=true
+    now_ts=$(date +%s)
+    cached_session_reset=$(jq -r '.session_resets_at // ""' "$CACHE_FILE")
+    cached_weekly_reset=$(jq -r '.weekly_resets_at // ""' "$CACHE_FILE")
+    session_reset_ts=$(iso_to_epoch "$cached_session_reset")
+    weekly_reset_ts=$(iso_to_epoch "$cached_weekly_reset")
+    if (( session_reset_ts > now_ts )) && (( weekly_reset_ts > now_ts )); then
+      cache_valid=true
+    fi
   fi
 fi
 
@@ -217,9 +241,9 @@ line1+=" \033[0;37mfor\033[0m \033[0;37m${session_duration}\033[0m"
 sep="\033[0;37m|\033[0m"
 dot="\033[0;37m·\033[0m"
 line2="\033[1;37m${model}\033[0m"
-line2+=" ${sep} ${ctx_color}${tokens_display}\033[0m ${dot} ${ctx_color}${context_percent}%\033[0m ${dot} \033[38;5;108m${cost_display}\033[0m"
-line2+=" ${sep} \033[38;5;147m5h:${session_percent}% ${session_until}\033[0m"
-line2+=" ${sep} \033[38;5;75m7d:${weekly_percent}% ${weekly_until}\033[0m"
+line2+=" ${sep} ${ctx_color}${tokens_display}/${window_display} (${context_percent}%)\033[0m ${dot} \033[38;5;108m${cost_display}\033[0m"
+line2+=" ${sep} \033[38;5;147m5h ${session_until} (${session_percent}%)\033[0m"
+line2+=" ${sep} \033[38;5;75m7d ${weekly_until} (${weekly_percent}%)\033[0m"
 
 echo -e "$line2"
 echo -e "$line1"
