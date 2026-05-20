@@ -5,12 +5,6 @@ alias external-ip='curl -4 icanhazip.com'
 alias local-ip='ipconfig getifaddr en0'
 alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
-# Folder
-alias courses='~/Developer/courses'
-alias github='~/Developer/github'
-alias projects='~/Developer/projects'
-alias temp='~/Developer/temp'
-
 # Package Manager
 alias to-nvmrc='echo $(node -v) > .nvmrc'
 alias bup='brew update -q; brew upgrade -q; brew cu -q -a -y --no-brew-update; brew cleanup -q --scrub --prune=all'
