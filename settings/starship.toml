@@ -94,8 +94,16 @@ symbol = ' '
 symbol = '󰍛 '
 
 [nodejs]
+disabled = true
 symbol = ' '
 detect_files = ['package.json', '.node-version', '!bun.lockb']
+
+[custom.node]
+symbol = ' '
+command = 'node -v'
+when = 'command -v node'
+format = 'via [$symbol($output )]($style)'
+style = 'bold green'
 
 [ocaml]
 symbol = ' '
