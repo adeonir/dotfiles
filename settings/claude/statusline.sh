@@ -29,13 +29,6 @@ model=$(echo "$input" | jq -r '.model.display_name // "Claude"' | sed 's/ ([^)]*
 # Claude Code version (used in API User-Agent)
 cli_version=$(echo "$input" | jq -r '.version // "2.1.76"')
 
-# Session cost
-session_cost=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
-cost_display=$(awk -v c="$session_cost" 'BEGIN {
-  if (c+0 < 0.00005) printf "$0"
-  else printf "$%.4f", c
-}')
-
 # Context window: size, percent, absolute tokens
 window_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
 context_percent=$(echo "$input" | jq -r '.context_window.used_percentage // 0')
@@ -221,8 +214,58 @@ fmt_until() {
   echo "~$(fmt_duration "$diff")"
 }
 
+# Render a pace bar: consumed fill with a marker at the elapsed-time position
+pace_bar() {
+  local consumed="$1" elapsed="$2"
+  awk -v consumed="$consumed" -v elapsed="$elapsed" 'BEGIN {
+    width = 14
+    fill_col = "\033[38;5;75m"
+    empty_col = "\033[38;5;240m"
+    reset = "\033[0m"
+
+    # Marker color signals pace: green on/under, orange/red over budget
+    delta = consumed - elapsed
+    if (delta <= 0) mark_col = "\033[38;5;71m"
+    else if (delta <= 10) mark_col = "\033[38;5;214m"
+    else mark_col = "\033[38;5;203m"
+
+    fill_cells = int(consumed / 100 * width + 0.5)
+    if (fill_cells > width) fill_cells = width
+    if (fill_cells < 0) fill_cells = 0
+    mark_pos = int(elapsed / 100 * width + 0.5)
+    if (mark_pos > width) mark_pos = width
+    if (mark_pos < 0) mark_pos = 0
+
+    out = ""
+    for (i = 0; i < width; i++) {
+      if (i == mark_pos) out = out mark_col "│" reset
+      if (i < fill_cells) out = out fill_col "━" reset
+      else out = out empty_col "─" reset
+    }
+    if (mark_pos == width) out = out mark_col "│" reset
+    printf "%s", out
+  }'
+}
+
 session_until=$(fmt_until "$session_resets_at")
 weekly_until=$(fmt_until "$weekly_resets_at")
+
+# Weekly pace: fraction of the 7-day window elapsed, for the marker position
+weekly_bar=""
+if [[ "$weekly_percent" != "--" && -n "$weekly_resets_at" ]]; then
+  weekly_reset_epoch=$(iso_to_epoch "$weekly_resets_at")
+  if (( weekly_reset_epoch > 0 )); then
+    now_epoch=$(date +%s)
+    elapsed_pct=$(awk -v rem="$((weekly_reset_epoch - now_epoch))" 'BEGIN {
+      week = 604800  # 7-day window in seconds
+      e = (week - rem) / week * 100
+      if (e < 0) e = 0
+      if (e > 100) e = 100
+      printf "%d", e
+    }')
+    weekly_bar=" $(pace_bar "$weekly_percent" "$elapsed_pct")"
+  fi
+fi
 
 # Session duration
 session_duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
@@ -239,11 +282,11 @@ fi
 line1+=" \033[0;37mfor\033[0m \033[0;37m${session_duration}\033[0m"
 
 sep="\033[0;37m|\033[0m"
-dot="\033[0;37m·\033[0m"
 line2="\033[1;37m${model}\033[0m"
-line2+=" ${sep} ${ctx_color}${tokens_display}/${window_display} (${context_percent}%)\033[0m ${dot} \033[38;5;108m${cost_display}\033[0m"
+line2+=" ${sep} ${ctx_color}${tokens_display}/${window_display} (${context_percent}%)\033[0m"
 line2+=" ${sep} \033[38;5;147m5h ${session_until} (${session_percent}%)\033[0m"
 line2+=" ${sep} \033[38;5;75m7d ${weekly_until} (${weekly_percent}%)\033[0m"
+[[ -n "$weekly_bar" ]] && line2+=" ${sep} ${weekly_bar}"
 
 echo -e "$line2"
 echo -e "$line1"
