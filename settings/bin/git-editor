@@ -3,10 +3,10 @@
 # Get the currently focused application
 ACTIVE_APP=$(osascript -e 'tell application "System Events" to get displayed name of first application process whose frontmost is true')
 
-if [[ "$ACTIVE_APP" == "Ghostty" ]]; then
+if [[ "$ACTIVE_APP" == "Warp" ]]; then
     vim "$@"
-elif [[ "$ACTIVE_APP" == "Windsurf" ]]; then
-    windsurf --wait "$@"
+elif [[ "$ACTIVE_APP" == "Zed" ]]; then
+    zed --wait "$@"
 else
     code --wait "$@"
 fi
