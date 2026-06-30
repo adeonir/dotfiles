@@ -55,21 +55,13 @@ window_display=$(awk -v n="$window_size" 'BEGIN {
   else printf "%d", n
 }')
 
-# Color thresholds for context (1M: 100k/250k, 200k: 50k/100k)
-if [[ "$window_size" == "1000000" ]]; then
-  yellow_max=100000
-  orange_max=250000
+# Color by % of window: green <50, yellow 50-60, red >=60
+if (( context_percent < 50 )); then
+  ctx_color="\033[38;5;48m"
+elif (( context_percent < 60 )); then
+  ctx_color="\033[38;5;220m"
 else
-  yellow_max=50000
-  orange_max=100000
-fi
-
-if (( tokens_used < yellow_max )); then
-  ctx_color="\033[0;33m"
-elif (( tokens_used < orange_max )); then
-  ctx_color="\033[38;5;214m"
-else
-  ctx_color="\033[38;5;203m"
+  ctx_color="\033[38;5;196m"
 fi
 
 # Usage tracking via Anthropic API (with caching)
@@ -219,15 +211,15 @@ pace_bar() {
   local consumed="$1" elapsed="$2"
   awk -v consumed="$consumed" -v elapsed="$elapsed" 'BEGIN {
     width = 14
-    fill_col = "\033[38;5;75m"
+    fill_col = "\033[38;5;247m"
     empty_col = "\033[38;5;240m"
     reset = "\033[0m"
 
     # Marker color signals pace: green on/under, orange/red over budget
     delta = consumed - elapsed
-    if (delta <= 0) mark_col = "\033[38;5;71m"
-    else if (delta <= 10) mark_col = "\033[38;5;214m"
-    else mark_col = "\033[38;5;203m"
+    if (delta <= 0) mark_col = "\033[38;5;48m"
+    else if (delta <= 10) mark_col = "\033[38;5;208m"
+    else mark_col = "\033[38;5;196m"
 
     fill_cells = int(consumed / 100 * width + 0.5)
     if (fill_cells > width) fill_cells = width
@@ -279,13 +271,13 @@ line1="\033[1;34m${dir_display}\033[0m"
 if [[ -n "$branch" ]]; then
   line1+=" \033[0;37mon\033[0m \033[1;35m${branch}\033[0m"
 fi
-line1+=" \033[0;37mfor\033[0m \033[0;37m${session_duration}\033[0m"
+line1+=" \033[38;5;244mfor\033[0m \033[38;5;244m${session_duration}\033[0m"
 
-sep="\033[0;37m|\033[0m"
+sep="\033[38;5;240m|\033[0m"
 line2="\033[1;37m${model}\033[0m"
 line2+=" ${sep} ${ctx_color}${tokens_display}/${window_display} (${context_percent}%)\033[0m"
-line2+=" ${sep} \033[38;5;147m5h ${session_until} (${session_percent}%)\033[0m"
-line2+=" ${sep} \033[38;5;75m7d ${weekly_until} (${weekly_percent}%)\033[0m"
+line2+=" ${sep} \033[38;5;183m5h ${session_until} (${session_percent}%)\033[0m"
+line2+=" ${sep} \033[38;5;39m7d ${weekly_until} (${weekly_percent}%)\033[0m"
 [[ -n "$weekly_bar" ]] && line2+=" ${sep} ${weekly_bar}"
 
 echo -e "$line2"
