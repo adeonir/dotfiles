@@ -215,10 +215,10 @@ pace_bar() {
     empty_col = "\033[38;5;240m"
     reset = "\033[0m"
 
-    # Marker color signals pace: green on/under, orange/red over budget
+    # Marker color signals pace: green on/under, yellow/red over budget
     delta = consumed - elapsed
     if (delta <= 0) mark_col = "\033[38;5;48m"
-    else if (delta <= 10) mark_col = "\033[38;5;208m"
+    else if (delta <= 10) mark_col = "\033[38;5;220m"
     else mark_col = "\033[38;5;196m"
 
     fill_cells = int(consumed / 100 * width + 0.5)
