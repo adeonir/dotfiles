@@ -210,7 +210,7 @@ fmt_until() {
 pace_bar() {
   local consumed="$1" elapsed="$2"
   awk -v consumed="$consumed" -v elapsed="$elapsed" 'BEGIN {
-    width = 14
+    width = 21
     fill_col = "\033[38;5;247m"
     empty_col = "\033[38;5;240m"
     reset = "\033[0m"
