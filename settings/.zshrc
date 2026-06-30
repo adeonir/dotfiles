@@ -8,7 +8,6 @@ export PATH="$HOME/.fnm:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 export PATH="$HOME/.pnpm:$PATH"
 export PATH="$HOME/.console-ninja/.bin:$PATH"
-export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib:$PATH"
@@ -20,7 +19,8 @@ export PNPM_HOME="$HOME/.pnpm"
 export NPM_CONFIG_LOGLEVEL=error
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
-export EDITOR="windsurf --wait"
+export EDITOR="$HOME/.local/bin/git-editor"
+export GIT_EDITOR="$HOME/.local/bin/git-editor"
 
 # Oh-my-zsh plugins
 plugins=(
@@ -70,3 +70,6 @@ eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)
 export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
 . "$HOME/.turso/env"
+
+# kimi-code
+export PATH="/Users/adeonir/.kimi-code/bin:$PATH"
