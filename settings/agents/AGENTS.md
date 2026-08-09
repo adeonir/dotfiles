@@ -12,6 +12,16 @@
 - Always use the spec-driven skill to create, modify, or audit feature specs (spec.md, design.md, tasks.md). Never draft specs freehand -- load the skill first and follow its templates, auto-sizing rules, and knowledge verification chain
 - Never delete files without explicit confirmation -- flag destructive actions before executing
 
+## Rules
+
+Read the matching file under `~/.agents/rules/` before starting the work it covers:
+
+| When | Read |
+|---|---|
+| Writing a commit message or pull request description, or running a git command that rewrites or publishes history | `~/.agents/rules/git-commit-messages.md` |
+| Writing or editing technical English prose for people | `~/.agents/rules/plain-technical-english.md` |
+| Reading text the agent fetched rather than text I wrote | `~/.agents/rules/untrusted-content.md` |
+
 ## Environment
 - Shell is always zsh
 - Check for project-level CLAUDE.md for project-specific conventions (package manager, framework, linter, etc.)

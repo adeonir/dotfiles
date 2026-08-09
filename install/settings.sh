@@ -25,11 +25,14 @@ create_symlink "$DOTFILES/settings/vscode/settings.json" "$HOME/Library/Applicat
 create_symlink "$DOTFILES/settings/windsurf/settings.json" "$HOME/Library/Application Support/Windsurf/User/settings.json" "windsurf settings"
 
 # Claude settings
-create_symlink "$DOTFILES/settings/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md" "claude CLAUDE.md"
+create_symlink "$DOTFILES/settings/agents/AGENTS.md" "$HOME/.claude/CLAUDE.md" "claude CLAUDE.md"
+create_symlink "$DOTFILES/settings/agents/AGENTS.md" "$HOME/.codex/AGENTS.md" "codex AGENTS.md"
 
-# Claude rules (per file, so rules from other sources are kept)
-for rule in "$DOTFILES"/settings/claude/rules/*.md; do
-  create_symlink "$rule" "$HOME/.claude/rules/$(basename "$rule")" "claude rule $(basename "$rule")"
+# Agent rules (per file, so rules from other sources are kept)
+for rule in "$DOTFILES"/settings/agents/rules/*.md; do
+  rule_name=$(basename "$rule")
+  create_symlink "$rule" "$HOME/.agents/rules/$rule_name" "agents rule $rule_name"
+  create_symlink "$rule" "$HOME/.claude/rules/$rule_name" "claude rule $rule_name"
 done
 
 # Claude statusline
@@ -38,13 +41,13 @@ if [ -f "$HOME/.claude/statusline.sh" ]; then
 else
   msg_config "claude statusline.sh"
   mkdir -p "$HOME/.claude"
-  ln -sf "$DOTFILES/settings/claude/statusline.sh" "$HOME/.claude/"
+  ln -sf "$DOTFILES/settings/agents/statusline.sh" "$HOME/.claude/"
   chmod +x "$HOME/.claude/statusline.sh"
   msg_ok "claude statusline.sh configured"
 fi
 
 # Claude usage config (for statusline rate limit tracking)
-create_symlink "$DOTFILES/settings/claude/usage-config.json" "$HOME/.claude/usage-config.json" "claude usage-config.json"
+create_symlink "$DOTFILES/settings/agents/usage-config.json" "$HOME/.claude/usage-config.json" "claude usage-config.json"
 
 #=================
 # GIT & EDITOR CONFIGURATIONS
