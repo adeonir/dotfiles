@@ -27,6 +27,11 @@ create_symlink "$DOTFILES/settings/windsurf/settings.json" "$HOME/Library/Applic
 # Claude settings
 create_symlink "$DOTFILES/settings/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md" "claude CLAUDE.md"
 
+# Claude rules (per file, so rules from other sources are kept)
+for rule in "$DOTFILES"/settings/claude/rules/*.md; do
+  create_symlink "$rule" "$HOME/.claude/rules/$(basename "$rule")" "claude rule $(basename "$rule")"
+done
+
 # Claude statusline
 if [ -f "$HOME/.claude/statusline.sh" ]; then
   msg_info "claude statusline.sh already exists"
