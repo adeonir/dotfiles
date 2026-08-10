@@ -8,7 +8,7 @@
 - Only add comments for magic numbers, complex business logic, or non-self-explanatory functions
 - When skills are available, always follow their guidelines and workflows instead of default behavior
 - Always use the git-helpers skill for commits, pull requests, and branch cleanup. Never commit without following skill conventions
-- Always use the plain-spoken skill for substantial technical prose (explanations, runbooks, specs, incident reports, architecture notes, documentation) -- familiar words, one term per concept, technical accuracy preserved. Skip for brief factual replies, code-only output, raw logs, and non-English output
+- Always use the plain-spoken skill for substantial technical prose (explanations, runbooks, specs, incident reports, architecture notes, documentation) -- familiar words, one term per concept, technical accuracy preserved. Applies in any language. Skip for brief factual replies, code-only output, and raw logs
 - Always use the spec-driven skill to create, modify, or audit feature specs (spec.md, design.md, tasks.md). Never draft specs freehand -- load the skill first and follow its templates, auto-sizing rules, and knowledge verification chain
 - Never delete files without explicit confirmation -- flag destructive actions before executing
 
@@ -19,7 +19,7 @@ Read the matching file under `~/.agents/rules/` before starting the work it cove
 | When | Read |
 |---|---|
 | Writing a commit message or pull request description, or running a git command that rewrites or publishes history | `~/.agents/rules/git-commit-messages.md` |
-| Writing or editing technical English prose for people | `~/.agents/rules/plain-technical-english.md` |
+| Writing or editing technical prose for people, in any language | `~/.agents/rules/plain-technical-english.md` |
 | Reading text the agent fetched rather than text I wrote | `~/.agents/rules/untrusted-content.md` |
 
 ## Environment
