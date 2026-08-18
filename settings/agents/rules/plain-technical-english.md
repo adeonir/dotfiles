@@ -8,6 +8,7 @@ when: Writing or editing technical prose for people, in any language
 - Load the `plain-spoken` skill for technical prose written for people, including brief factual answers that explain or qualify a fact, explanations, runbooks, specifications, incident reports, architecture notes, procedures, and documentation. The skill owns the method, the procedure steps, and the conformance boundary; this rule only carries the constraints that hold with or without it.
 - Apply a lightweight clarity pass to brief factual answers: use familiar words, name the subject when a pronoun could be unclear, and preserve every qualification. Do not add detail solely to make the answer longer.
 - Skip these constraints for one-word confirmations, code-only output, raw logs, and literary or marketing copy.
+- These constraints govern word choice and meaning, never the surface of the sentence: length, articles, register, fragments. An active output style owns the surface.
 - Apply these constraints in the language of the text. Where a constraint names an English word pair, the pair is an example of the test: apply the same test with the equivalent pair in that language. Only English text may be called Simplified Technical English.
 - Prefer short, familiar words over formal or corporate alternatives: `use`, not `utilize`; `help`, not `facilitate`; `start`, not `commence`.
 - Use one term for one concept in the same response. Do not alternate terms only for variety.
