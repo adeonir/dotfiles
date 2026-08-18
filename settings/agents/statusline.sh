@@ -211,8 +211,8 @@ pace_bar() {
   local consumed="$1" elapsed="$2"
   awk -v consumed="$consumed" -v elapsed="$elapsed" 'BEGIN {
     width = 21
-    fill_col = "\033[38;5;247m"
-    empty_col = "\033[38;5;240m"
+    fill_col = "\033[38;5;252m"
+    empty_col = "\033[38;5;244m"
     reset = "\033[0m"
 
     # Marker color signals pace: green on/under, yellow/red over budget
@@ -225,16 +225,15 @@ pace_bar() {
     if (fill_cells > width) fill_cells = width
     if (fill_cells < 0) fill_cells = 0
     mark_pos = int(elapsed / 100 * width + 0.5)
-    if (mark_pos > width) mark_pos = width
+    if (mark_pos > width - 1) mark_pos = width - 1
     if (mark_pos < 0) mark_pos = 0
 
     out = ""
     for (i = 0; i < width; i++) {
       if (i == mark_pos) out = out mark_col "│" reset
-      if (i < fill_cells) out = out fill_col "━" reset
-      else out = out empty_col "─" reset
+      else if (i < fill_cells) out = out fill_col "━" reset
+      else out = out empty_col "┈" reset
     }
-    if (mark_pos == width) out = out mark_col "│" reset
     printf "%s", out
   }'
 }
@@ -255,7 +254,7 @@ if [[ "$weekly_percent" != "--" && -n "$weekly_resets_at" ]]; then
       if (e > 100) e = 100
       printf "%d", e
     }')
-    weekly_bar=" $(pace_bar "$weekly_percent" "$elapsed_pct")"
+    weekly_bar=$(pace_bar "$weekly_percent" "$elapsed_pct")
   fi
 fi
 
