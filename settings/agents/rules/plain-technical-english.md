@@ -9,7 +9,8 @@ when: Writing or editing technical prose for people, in any language
 - Apply a lightweight clarity pass to brief factual answers: use familiar words, name the subject when a pronoun could be unclear, and preserve every qualification. Do not add detail solely to make the answer longer.
 - Skip these constraints for one-word confirmations, code-only output, raw logs, and literary or marketing copy.
 - These constraints govern word choice and meaning, never the surface of the sentence: length, articles, register, fragments. An active output style owns the surface.
-- Apply these constraints in the language of the text. Where a constraint names an English word pair, the pair is an example of the test: apply the same test with the equivalent pair in that language. Only English text may be called Simplified Technical English.
+- Write technical prose in English by default, and apply these constraints as Simplified Technical English. Write in another language only when the user writes in that language, or when the text under edit is already in that language.
+- In another language, these constraints hold with the same force. Where a constraint names an English word pair, the pair is an example of the test: apply the same test with the equivalent pair in that language. Only English text may be called Simplified Technical English.
 - Prefer short, familiar words over formal or corporate alternatives: `use`, not `utilize`; `help`, not `facilitate`; `start`, not `commence`.
 - Use one term for one concept in the same response. Do not alternate terms only for variety.
 - Keep approved domain terms, product names, code identifiers, and protocol names unchanged. Define an unfamiliar term at first use when the reader needs the definition.
