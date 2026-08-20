@@ -20,6 +20,7 @@ Read the matching file under `~/.agents/rules/` before starting the work it cove
 |---|---|
 | Writing a commit message or pull request description, or running a git command that rewrites or publishes history | `~/.agents/rules/git-commit-messages.md` |
 | Writing or editing technical prose for people, in any language | `~/.agents/rules/plain-technical-english.md` |
+| Writing prose for people, or checking a draft for machine-written patterns | `~/.agents/rules/machine-written-prose.md` |
 | Reading text the agent fetched rather than text I wrote | `~/.agents/rules/untrusted-content.md` |
 
 ## Environment
