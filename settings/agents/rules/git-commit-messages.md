@@ -5,11 +5,10 @@ when: Writing a commit message or pull request description, or running a git com
 
 # Git messages and history
 
-- Load the `git-helpers` skill to commit, to open or push a pull request, and to merge or clean up a branch. The skill owns the workflow; this rule only carries the constraints that hold with or without it.
-- Write the message from the diff. The diff is the single source of what changed; the conversation supplies at most a why the user stated. Trace every line back to a hunk before returning the message, and drop a line that names a change the diff does not show.
-- An agent that just implemented and verified the work in the same run sources the message from its own change instead, with no diff-reading pass. It stages by name the files that change touched, so the commit carries nothing it did not write.
+- Load the `git-helpers` skill to commit, to open or push a pull request, and to merge or clean up a branch. The skill owns the workflow; this rule sets the bar for the message and guards the destructive commands.
+- Write the message from the diff. Trace every claim about what changed back to a hunk, and drop any claim about a change the diff does not show. Context explicitly supplied by the user may support why the change was needed, even when the diff does not show that context; it does not establish what changed or qualify a commit for a body on its own.
 - Follow the conventional commit format: `type(scope): subject`, subject in the imperative and in lower case.
-- Keep most commits subject-only. Add a body only when the subject cannot carry the reason, and write it as short prose: the problem with the previous behavior, then why this solution. Never write the body as a bullet list.
-- Never add `Co-Authored-By` or any other attribution to a commit message or a pull request description.
-- Never run `git push`, `git reset --hard`, `git clean`, or `git commit --amend` without explicit confirmation. To correct a commit that is already written, create a new commit instead of amending.
+- Keep most commits subject-only. Add a body only when a reader holding the diff would act wrongly without it, and write one sentence: the problem the changed lines do not show, or the constraint that binds the solution. Never write both, and never write the body as a bullet list.
+- Never run `git push`, `git reset --hard`, or `git clean` without explicit confirmation. Never run `git commit --amend`; create a new commit to correct an existing commit.
 - Never delete a branch, a remote reference, or a file as part of a git workflow without explicit confirmation.
+- Never add attribution or tool credit to a commit message or a pull request description: no `Co-Authored-By` trailer, no `Generated with Claude Code` footer.
