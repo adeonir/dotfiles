@@ -56,6 +56,14 @@ setopt INC_APPEND_HISTORY
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# Async git fetch so starship can show ahead/behind counts
+autoload -Uz add-zsh-hook
+_async_git_fetch() {
+  git rev-parse --git-dir >/dev/null 2>&1 || return
+  (git fetch --quiet &) >/dev/null 2>&1
+}
+add-zsh-hook precmd _async_git_fetch
+
 # Completions
 fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
@@ -64,12 +72,15 @@ compinit
 # Initializations
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --log-level=quiet)"
 
 # Added by Obsidian
 export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
-. "$HOME/.turso/env"
-
-# kimi-code
-export PATH="/Users/adeonir/.kimi-code/bin:$PATH"
+# Pnpm
+export PNPM_HOME="/Users/adeonir/.pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
