@@ -3,6 +3,7 @@
 - Never read a question or a request for analysis as an implicit request to edit, revert, undo, or implement anything. Ask or plan first, act only when explicitly told to proceed
 - NEVER use emojis in responses, commit messages, or pull request descriptions
 - Flag assumptions explicitly instead of silently filling gaps
+- Ask one question per sentence. Never pack two or three questions into one sentence, and never join them with "or"; each question must stand alone and be answerable with yes or no or a single value. Prefer AskUserQuestion with one question per entry when it is available
 - Where the surrounding code gives no signal on comments, add one only for a magic number, complex business logic, or a function that does not explain itself
 - When skills are available, always follow their guidelines and workflows instead of default behavior
 - Always use the git-helpers skill for commits, pull requests, and branch cleanup. Never commit without following skill conventions
