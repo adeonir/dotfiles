@@ -21,7 +21,8 @@ msg_install "Installing settings files"
 # Vscode settings
 create_symlink "$DOTFILES/settings/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json" "vscode settings"
 
-# Claude settings
+# Agent settings
+create_symlink "$DOTFILES/settings/agents/AGENTS.md" "$HOME/.agents/AGENTS.md" "agents AGENTS.md"
 create_symlink "$DOTFILES/settings/agents/AGENTS.md" "$HOME/.claude/CLAUDE.md" "claude CLAUDE.md"
 create_symlink "$DOTFILES/settings/agents/AGENTS.md" "$HOME/.codex/AGENTS.md" "codex AGENTS.md"
 

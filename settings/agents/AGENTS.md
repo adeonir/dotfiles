@@ -24,7 +24,7 @@ Read the matching file under `~/.agents/rules/` before starting the work it cove
 
 ## Skills
 
-- Source of truth for skills is the `agent-skills` repository at `~/Developer/projects/agent-skills/skills/`. Never edit `~/.agents/skills/` or `~/.claude/skills/` -- those are install targets
+- When editing a skill, edit its source under `~/Developer/projects/agent-skills/skills/<category>/<skill-name>/`. Load an invoked skill only from the path supplied by the runtime; do not search or load it from the `agent-skills` repository. Never edit `~/.agents/skills/` or `~/.claude/skills/` -- those are install targets
 
 ## Environment
 - Shell is always zsh
