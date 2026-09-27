@@ -9,6 +9,7 @@
 - Always use the git-helpers skill for commits, pull requests, and branch cleanup. Never commit without following skill conventions
 - Always use the plain-spoken skill for substantial technical prose (explanations, runbooks, specs, incident reports, architecture notes, documentation) -- familiar words, one term per concept, technical accuracy preserved. Applies in any language. Skip for brief factual replies, code-only output, and raw logs
 - Always use the spec-driven skill to create, modify, or audit feature specs (spec.md, design.md, tasks.md). Never draft specs freehand -- load the skill first and follow its templates, auto-sizing rules, and knowledge verification chain
+- Use only the `docs-writer` skill to write ADRs. Never draft ADRs freehand or use other skills.
 - Never delete files without explicit confirmation -- flag destructive actions before executing
 
 ## Rules
