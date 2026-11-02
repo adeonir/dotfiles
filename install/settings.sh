@@ -76,13 +76,13 @@ create_symlink "$DOTFILES/settings/.functions" "$HOME/.functions" ".functions"
 # .npmrc
 create_symlink "$DOTFILES/settings/.npmrc" "$HOME/.npmrc" ".npmrc"
 
-# .secrets
-if [ -f "$HOME/.secrets" ]; then
-  msg_info ".secrets already exists (preserving your API keys)"
+# .zshenv
+if [ -f "$HOME/.zshenv" ]; then
+  msg_info ".zshenv already exists (preserving your API keys)"
 else
-  msg_config ".secrets"
-  ln -sf "$DOTFILES/settings/.secrets" "$HOME/.secrets"
-  msg_ok ".secrets created (remember to add your API keys)"
+  msg_config ".zshenv"
+  ln -sf "$DOTFILES/settings/.zshenv" "$HOME/.zshenv"
+  msg_ok ".zshenv created (remember to add your API keys)"
 fi
 
 # .zshrc

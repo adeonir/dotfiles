@@ -14,7 +14,7 @@ alias pnpm-up='pnpm up --latest -r -i'
 alias bun-up='bunx npm-check-updates -i'
 alias yarn-up='yarn upgrade-interactive --latest'
 
-# Editors
+# Misc
 alias sz='source ~/.zshrc'
 
 # Finder

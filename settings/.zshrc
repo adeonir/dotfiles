@@ -27,7 +27,7 @@ plugins=(
   brew
   docker
   git
-  github
+  gh
   macos
   node
   npm
@@ -39,7 +39,6 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
 source $HOME/.functions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-[ -f "$HOME/.secrets" ] && source $HOME/.secrets
 
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -84,3 +83,6 @@ case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
+
+# opencode
+export PATH=/Users/adeonir/.opencode/bin:$PATH
